@@ -12,6 +12,7 @@ class Solution {
         else if(root.val == p.val || root.val == q.val) {
             return root;
         }
-        return null;
+        else
+            return null;
     }
 }
