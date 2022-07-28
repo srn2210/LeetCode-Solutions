@@ -10,7 +10,7 @@ class Solution {
         right += dfs(node.right);
         
         if(Math.abs(left - right) > 1) ans = false;
-        if(left == 0 && right == 0) return 1;
+        //if(left == 0 && right == 0) return 1;
         return left > right ? left+1 : right+1;
     }
     public boolean isBalanced(TreeNode root) {
