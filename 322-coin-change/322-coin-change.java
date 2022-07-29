@@ -1,23 +1,45 @@
-class Solution {
-    int helper(int[] coins, int rem, int[] dp) {
-        if(rem < 0) return -1;
+public class Solution {
+    public int coinChange(int[] coins, int amount) {
+        if (amount == 0) {
+            return 0;
+        }
         
-        if(rem == 0) return 0;
+        Arrays.sort(coins);
         
-        if(dp[rem] != 0) return dp[rem];
+        Queue<Integer> queue = new LinkedList<>();
+        boolean[] set = new boolean[amount + 1];
         
-        int min = Integer.MAX_VALUE;
+        queue.offer(amount);
+        set[amount] = true;
         
-        for(int i:coins) {
-            int temp = helper(coins, rem-i, dp);
-            if(temp != -1 && temp < min) {
-                min = 1 + temp;
+        int currLevel = 1;
+        int currLevelCount = 1;
+        int nextLevelCount = 0;
+        
+        while (!queue.isEmpty()) {
+            int curr = queue.poll();
+            currLevelCount --;
+            
+            for (int coin : coins) {
+                int child = curr - coin;
+                if (child == 0) {
+                    return currLevel;
+                } else if (child > 0 && !set[child]) {
+                    queue.add(child);
+                    set[child] = true;
+                    nextLevelCount ++;
+                } else if (child < 0) {
+                    continue;
+                }
+            }
+            
+            if (currLevelCount == 0) {
+                currLevel ++;
+                currLevelCount = nextLevelCount;
+                nextLevelCount = 0;
             }
         }
-        dp[rem] = (min == Integer.MAX_VALUE) ? -1 : min;
-        return dp[rem];
-    }
-    public int coinChange(int[] coins, int amount) {
-        return helper(coins, amount, new int[amount+1]);
+        
+        return -1;
     }
 }
