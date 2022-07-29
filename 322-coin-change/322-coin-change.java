@@ -1,45 +1,35 @@
-public class Solution {
-    public int coinChange(int[] coins, int amount) {
+class Solution {
+        public int coinChange(int[] coins, int amount) {
         if (amount == 0) {
             return 0;
         }
-        
-        Arrays.sort(coins);
-        
+
         Queue<Integer> queue = new LinkedList<>();
-        boolean[] set = new boolean[amount + 1];
-        
+        boolean[] visited = new boolean[amount + 1];
+
         queue.offer(amount);
-        set[amount] = true;
-        
+        visited[amount] = true;
         int currLevel = 1;
-        int currLevelCount = 1;
-        int nextLevelCount = 0;
-        
+
         while (!queue.isEmpty()) {
-            int curr = queue.poll();
-            currLevelCount --;
-            
-            for (int coin : coins) {
-                int child = curr - coin;
-                if (child == 0) {
-                    return currLevel;
-                } else if (child > 0 && !set[child]) {
-                    queue.add(child);
-                    set[child] = true;
-                    nextLevelCount ++;
-                } else if (child < 0) {
-                    continue;
+            int size = queue.size();
+            System.out.println(queue);
+            for (int i = 0; i < size; i++) {
+                int curr = queue.poll();
+
+                for (int coin : coins) {
+                    int child = curr - coin;
+                    if (child == 0) {
+                        return currLevel;
+                    } else if (child > 0 && !visited[child]) {
+                        queue.add(child);
+                        visited[child] = true;
+                    }
                 }
             }
-            
-            if (currLevelCount == 0) {
-                currLevel ++;
-                currLevelCount = nextLevelCount;
-                nextLevelCount = 0;
-            }
+            currLevel++;
         }
-        
+
         return -1;
     }
 }
