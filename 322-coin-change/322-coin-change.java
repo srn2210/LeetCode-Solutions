@@ -18,7 +18,6 @@ class Solution {
         return dp[rem];
     }
     public int coinChange(int[] coins, int amount) {
-        //Arrays.sort(coins);
         return helper(coins, amount, new int[amount+1]);
     }
 }
