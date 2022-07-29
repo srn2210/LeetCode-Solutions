@@ -20,7 +20,7 @@ class Solution {
             }
             if(flag == true) list.add(words[i]);
             flag = true;
-            hm = new HashMap();
+            hm.clear();
         }
         
         return list;
