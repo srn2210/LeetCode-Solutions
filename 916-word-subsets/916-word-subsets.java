@@ -13,8 +13,7 @@ class Solution {
             }
         }
         
-        for(int i=0; i<words1.length; i++) {
-            
+        for(int i=0; i<words1.length; i++) {            
             int[] temp = new int[26];
             for(int j=0; j<words1[i].length(); j++) {
                 temp[words1[i].charAt(j) - 'a'] += 1;
@@ -28,8 +27,7 @@ class Solution {
                 }
             }
             if(flag == false) continue;
-            ans.add(words1[i]);
-            
+            ans.add(words1[i]);            
         }
         
         return ans;
