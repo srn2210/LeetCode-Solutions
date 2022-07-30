@@ -13,8 +13,10 @@ class Solution {
             list1.add(temp);
         }
         
+        int[] temp = new int[26];
+        
         for(int i=0; i<words2.length; i++) {
-            int[] temp = new int[26];
+            temp = new int[26];
             for(int j=0; j<words2[i].length(); j++) {
                 temp[words2[i].charAt(j) - 'a'] += 1;
             }
