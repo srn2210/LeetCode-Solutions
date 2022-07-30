@@ -5,7 +5,6 @@ class Solution {
         List<String> ans = new ArrayList();
         
         for(int i=0; i<words1.length; i++) {
-            ans.add(words1[i]);
             int[] temp = new int[26];
             for(int j=0; j<words1[i].length(); j++) {
                 temp[words1[i].charAt(j) - 'a'] += 1;
@@ -25,8 +24,6 @@ class Solution {
         }
         
         
-        int[] remove = new int[list1.size()];
-        
         for(int i=0; i<list1.size(); i++) {
             boolean flag = true;
             for(int j=0; j<26; j++) {
@@ -35,14 +32,8 @@ class Solution {
                     break;
                 }
             }
-            if(flag == false) remove[i] = 1;
-        }
-        
-        
-        for(int i=remove.length-1; i>=0; i--) {
-            if(remove[i] == 1) {
-                ans.remove((int) i);
-            }
+            if(flag == false) continue;
+            ans.add(words1[i]);
         }
         
         return ans;
