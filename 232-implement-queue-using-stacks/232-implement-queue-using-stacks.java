@@ -9,12 +9,12 @@ class MyQueue {
     }
     
     public void push(int x) {
-        while(main.size() != 0) {
+        while(!main.isEmpty()) {
             temp.push(main.pop());
         }
         temp.push(x);
         
-        while(temp.size() != 0) {
+        while(!temp.isEmpty()) {
             main.push(temp.pop());
         }
         
@@ -29,7 +29,7 @@ class MyQueue {
     }
     
     public boolean empty() {
-        return main.size() == 0;
+        return main.isEmpty();
     }
 }
 
