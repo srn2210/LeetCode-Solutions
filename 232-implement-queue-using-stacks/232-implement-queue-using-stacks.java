@@ -1,11 +1,11 @@
 class MyQueue {
     
-    Stack<Integer> main = new Stack();
-    Stack<Integer> temp = new Stack();
+    Stack main = new Stack();
+    Stack temp = new Stack();
 
     public MyQueue() {
-        Stack<Integer> main = new Stack();
-        Stack<Integer> temp = new Stack();
+        Stack main = new Stack();
+        Stack temp = new Stack();
     }
     
     public void push(int x) {
@@ -21,11 +21,11 @@ class MyQueue {
     }
     
     public int pop() {
-        return main.pop();
+        return (int)main.pop();
     }
     
     public int peek() {
-        return main.peek();
+        return (int)main.peek();
     }
     
     public boolean empty() {
