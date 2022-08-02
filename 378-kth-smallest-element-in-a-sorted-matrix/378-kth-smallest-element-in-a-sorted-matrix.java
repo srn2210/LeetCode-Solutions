@@ -29,6 +29,6 @@ class Solution {
             }
         }
         
-        return hi;
+        return lo;
     }
 }
