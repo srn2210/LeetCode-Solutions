@@ -1,16 +1,34 @@
-class Solution { // 18 ms, faster than 32.44%
-    public int kthSmallest(int[][] matrix, int k) {
-        int m = matrix.length, n = matrix[0].length, ans = -1; // For general, the matrix need not be a square
-        PriorityQueue<int[]> minHeap = new PriorityQueue<>(Comparator.comparingInt(o -> o[0]));
-        for (int r = 0; r < Math.min(m, k); ++r)
-            minHeap.offer(new int[]{matrix[r][0], r, 0});
-
-        for (int i = 1; i <= k; ++i) {
-            int[] top = minHeap.poll();
-            int r = top[1], c = top[2];
-            ans = top[0];
-            if (c + 1 < n) minHeap.offer(new int[]{matrix[r][c + 1], r, c + 1});
+class Solution {
+    int count(int[][] arr, int x) {
+        int row = 0;
+        int col = arr[0].length-1;
+        int c = 0;
+        while(row < arr.length && col >= 0) {
+            if(arr[row][col] <= x) {
+                c += col + 1;
+                row++;
+            }
+            else col--;
         }
-        return ans;
+        return c;
+    }
+    public int kthSmallest(int[][] matrix, int k) {
+        int n = matrix.length;
+        int lo = matrix[0][0];
+        int hi = matrix[n-1][n-1];
+        int ans = 0;
+        
+        while(lo != hi) {
+            int mid = lo + ((hi-lo)/2);
+            ans = count(matrix, mid);            
+            if(ans < k) {
+                lo = mid+1;
+            }
+            else {
+                hi = mid;
+            }
+        }
+        
+        return lo;
     }
 }
