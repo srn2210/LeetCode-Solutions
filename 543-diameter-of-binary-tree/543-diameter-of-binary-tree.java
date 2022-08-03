@@ -21,19 +21,17 @@ class Solution {
         int left = 0;
         int right = 0;
         
-        left = 1 + diameter(node.left);
-        right = 1 + diameter(node.right);
+        left = diameter(node.left);
+        right = diameter(node.right);
         
-        //System
-        
-        count = Math.max(count, left + right - 1);
+        count = Math.max(count, left + right);
         
         
-        return Math.max(left, right);
+        return Math.max(left, right) + 1;
         
     }
     public int diameterOfBinaryTree(TreeNode root) {
         diameter(root);
-        return count-1;
+        return count;
     }
 }
