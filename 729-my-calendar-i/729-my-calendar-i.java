@@ -1,24 +1,22 @@
 class MyCalendar {
-    Set<List<Integer>> set;
+    TreeMap<Integer, Integer> map;
     public MyCalendar() {
-        set = new LinkedHashSet();
+        map = new TreeMap();
     }
     
     public boolean book(int start, int end) {
-        if(set == null) {
-            List<Integer> temp = new ArrayList();
-            temp.add(start);
-            temp.add(end);
-            set.add(temp);
+        if(map.size() == 0) {
+            map.put(start, end);
             return true;
         }
-        for(List<Integer> entry: set) {
-            if( (start >= (int)entry.get(0) && start < (int)entry.get(1)) || (end > (int)entry.get(0) && end <= (int)entry.get(1)) || (start <= (int)entry.get(0) && end >= (int)entry.get(1))) return false;
+        
+        Integer prev = map.floorKey(start), next = map.ceilingKey(start);
+        
+        if( (prev == null || map.get(prev) <= start) && (next == null || end <= next)) {
+            map.put(start, end);
+            return true;
         }
-        List<Integer> set1 = new ArrayList();
-        set1.add(start);
-        set1.add(end);
-        set.add(set1);
-        return true;
+        
+        return false;
     }
 }
