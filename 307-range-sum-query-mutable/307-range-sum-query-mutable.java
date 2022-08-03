@@ -33,7 +33,7 @@ class NumArray {
             }
         }
         else {
-            for(int i=left; i<= (l+1)*len-1; i++) {
+            for(int i=left; i< (l+1) * len; i++) {
                 res += arr[i];
             }
             for(int i=l+1; i<r; i++) {
