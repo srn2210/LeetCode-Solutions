@@ -25,15 +25,12 @@ void update(int pos, int val) {
         } else {
             left = pos - 1;
         }
-        // parent is updated after child is updated
         tree[pos / 2] = tree[left] + tree[right];
         pos /= 2;
     }
 }
 public int sumRange(int l, int r) {
-    // get leaf with value 'l'
     l += n;
-    // get leaf with value 'r'
     r += n;
     int sum = 0;
     while (l <= r) {
