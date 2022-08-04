@@ -34,9 +34,9 @@ class Solution {
         
         int y = (q / gcd) % 2;
         
-        if(x % 2 == 0) return 2;
+        if(x == 0) return 2;
         
-        else if(y % 2 == 0) return 0;
+        else if(y == 0) return 0;
         
         else return 1;
     }
