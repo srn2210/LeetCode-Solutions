@@ -36,7 +36,7 @@ class Solution {
         
         if(x % 2 == 0) return 2;
         
-        else if(y % 2 != 0 && x % 2 != 0) return 1;
+        else if(y % 2 != 0) return 1;
         
         else return 0;
     }
