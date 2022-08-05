@@ -15,7 +15,8 @@ class Solution {
         Arrays.fill(dp, -1);
         dp[0] = 1;
         
+        helper(nums, target, dp);
         
-        return helper(nums, target, dp);
+        return dp[target];
     }
 }
