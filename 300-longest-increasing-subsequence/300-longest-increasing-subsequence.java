@@ -1,7 +1,6 @@
 class Solution {
     public int lengthOfLIS(int[] nums) {
         int[] dp = new int[nums.length];
-        //TreeMap<Integer, Integer> tm = new TreeMap();
         int ans = Integer.MIN_VALUE;
         
         
