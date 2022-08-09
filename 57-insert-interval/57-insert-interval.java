@@ -3,25 +3,6 @@ class Solution {
         int x = newInterval[0];
         int y = newInterval[1];
         
-        /*int xcod[] = new int[intervals.length];
-        int ycod[] = new int[intervals.length];
-        
-        for(int i=0; i<intervals.length; i++) {
-            xcod[i] = intervals[i][0];
-            ycod[i] = intervals[i][1];
-        }
-        
-        int insertx = Arrays.binarySearch(xcod, x);
-        int inserty = Arrays.binarySearch(ycod, y);
-        
-        insertx = insertx < 0 ? (-1 * insertx) - 1 : insertx;
-        inserty = inserty < 0 ? (-1 * inserty) - 1 : inserty;
-        
-        System.out.println(insertx);
-        
-        int insx = xcod[insertx] < x ? xcod[insertx] : x;
-        int insy = ycod[inserty] > y ? ycod[inserty] : y;*/
-        
         List<List<Integer>> list = new ArrayList();
         
         if(intervals.length == 0) {
@@ -30,13 +11,6 @@ class Solution {
             res[0][1] = y;
             return res;
         }
-        
-        /*if(y < intervals[0][0]) {
-            List<Integer> l = new ArrayList();
-            l.add(x);
-            l.add(y);
-            list.add(l);
-        }*/
         
         int temp = -1;
         boolean X = false;
@@ -107,7 +81,6 @@ class Solution {
                 list.add(l);
                 X = true;
                 Y = true;
-                //continue;
             }
             List<Integer> l = new ArrayList();
             l.add(i[0]);
