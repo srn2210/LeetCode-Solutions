@@ -1,6 +1,6 @@
 class Solution {
     public int[][] insert(int[][] intervals, int[] newInterval) {
-        int x = newInterval[0];
+        /*int x = newInterval[0];
         int y = newInterval[1];
         
         if(intervals.length == 0) {
@@ -109,6 +109,26 @@ class Solution {
             res[i][1] = list.get(i).get(1);
         }
         
-        return res;        
+        return res;*/
+        
+        List<int[]> res = new ArrayList();
+        
+        for(int [] i:intervals) {
+            if(newInterval[1] < i[0]) {
+                res.add(newInterval);
+                newInterval = i;
+            }
+            else if(i[1] < newInterval[0]) {
+                res.add(i);
+            }
+            else {
+                newInterval[0] = Math.min(i[0], newInterval[0]);
+                newInterval[1] = Math.max(i[1], newInterval[1]);
+            }
+        }
+        
+        res.add(newInterval);
+        
+        return res.toArray(new int[res.size()][2]);
     }
 }
