@@ -3,14 +3,14 @@ class Solution {
         int x = newInterval[0];
         int y = newInterval[1];
         
-        List<List<Integer>> list = new ArrayList();
-        
         if(intervals.length == 0) {
             int[][] res = new int[1][2];
             res[0][0] = x;
             res[0][1] = y;
             return res;
         }
+        
+        List<List<Integer>> list = new ArrayList();
         
         int temp = -1;
         boolean X = false;
