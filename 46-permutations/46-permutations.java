@@ -1,23 +1,21 @@
 class Solution {
-    public void helper(List<List<Integer>> list, Set<Integer> set, int[] nums) {
-        if(set.size() == nums.length) {
-            list.add(new ArrayList(set));
-            return;
-        }
-        else {
-            for(int num:nums) {
-                if(set.add(num)) {
-                    helper(list, set, nums);
-                    set.remove(num);
-                }
-            }
-        }
-    }
-    public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> list = new ArrayList();
-        
-        helper(list, new LinkedHashSet(), nums);
-        
-        return list;
-    }
+public List<List<Integer>> permute(int[] nums) {
+   List<List<Integer>> list = new ArrayList<>();
+   // Arrays.sort(nums); // not necessary
+   backtrack(list, new ArrayList<>(), nums);
+   return list;
+}
+
+private void backtrack(List<List<Integer>> list, List<Integer> tempList, int [] nums){
+   if(tempList.size() == nums.length){
+      list.add(new ArrayList<>(tempList));
+   } else{
+      for(int i = 0; i < nums.length; i++){ 
+         if(tempList.contains(nums[i])) continue; // element already exists, skip
+         tempList.add(nums[i]);
+         backtrack(list, tempList, nums);
+         tempList.remove(tempList.size() - 1);
+      }
+   }
+}
 }
