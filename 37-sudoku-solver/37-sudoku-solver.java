@@ -1,0 +1,52 @@
+class Solution {
+    boolean end = false;
+    boolean isValid(int row, int col, char n, char[][] board) {
+        for(int i=0; i<board.length; i++) {
+            if(board[i][col] == n) return false; 
+        }
+        for(int i=0; i<board[row].length; i++) {
+            if(board[row][i] == n) return false;
+        }
+        
+        int x = (row / 3) * 3;
+        int y = (col / 3) * 3;
+        
+        for(int i=x; i<x+3; i++) {
+            for(int j=y; j<y+3; j++) {
+                if(i == row || j == col) continue;
+                
+                if(board[i][j] == n) return false;
+            }
+        }
+        
+        return true;
+    }
+    public void solveSudoku(char[][] board) {
+        
+        char[] ch = new char[]{'1','2','3','4','5','6','7','8','9'};
+        
+        for(int i=0; i<board.length; i++) {
+            for(int j=0; j<board[i].length; j++) {
+                if(board[i][j] == '.') {
+                    for(char c : ch) {
+                        if(isValid(i, j, c, board)) {
+                            board[i][j] = c;
+                            solveSudoku(board);
+                            if(end) return;
+                            if(i == board.length-1 && j == board[i].length-1) {
+                                end = true;
+                                return;
+                            }
+                            board[i][j] = '.';
+                        }
+                    }
+                    return;
+                }
+                if(i == board.length-1 && j == board[i].length-1) {
+                    end = true;
+                    return;
+                }
+            }
+        }
+    }
+}
