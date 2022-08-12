@@ -38,11 +38,11 @@ class Solution {
                     }
                     return;
                 }
-                if(i == board.length-1 && j == board[i].length-1) {
-                    end = true;
-                    return;
-                }
             }
         }
+        
+        end = true;
+        
+        return;
     }
 }
