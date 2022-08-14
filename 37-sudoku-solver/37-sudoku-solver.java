@@ -1,5 +1,5 @@
 class Solution {
-    boolean end = false;
+    //boolean end = false;
     boolean isValid(int row, int col, char n, char[][] board) {
         for(int i=0; i<board.length; i++) {
             if(board[i][col] == n) return false; 
@@ -21,8 +21,7 @@ class Solution {
         
         return true;
     }
-    public void solveSudoku(char[][] board) {
-        
+    boolean solve(char[][] board) {
         char[] ch = new char[]{'1','2','3','4','5','6','7','8','9'};
         
         for(int i=0; i<board.length; i++) {
@@ -31,18 +30,18 @@ class Solution {
                     for(char c : ch) {
                         if(isValid(i, j, c, board)) {
                             board[i][j] = c;
-                            solveSudoku(board);
-                            if(end) return;
+                            if(solve(board)) return true;
                             board[i][j] = '.';
                         }
                     }
-                    return;
+                    return false;
                 }
             }
         }
         
-        end = true;
-        
-        return;
+        return true;
+    }
+    public void solveSudoku(char[][] board) {
+        solve(board);
     }
 }
