@@ -1,5 +1,4 @@
 class Solution {
-    //boolean end = false;
     boolean isValid(int row, int col, char n, char[][] board) {
         for(int i=0; i<board.length; i++) {
             if(board[i][col] == n) return false; 
