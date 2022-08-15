@@ -1,27 +1,4 @@
 class Solution {
-    /*int[][] directions = new int[][]{{1,0}, {0,1}, {-1,0}, {0,-1}};
-    int upl(int[][] mat, int[][] res, int row, int col) {
-        if(mat[row][col] == 0) return 0;
-        
-        int ans = Integer.MAX_VALUE;
-        
-        for(int[] dir: directions) {
-            int i = row + dir[0];
-            int j = col + dir[1];
-            
-            System.out.println("row and col = "+row+". ."+col);
-            
-            if(i >= 0 && i<mat.length && j>=0 && j<mat[0].length) {
-                System.out.println("neighbous = "+res[i][j]);
-                ans = 1 + Math.min(ans, res[i][j]);
-            }
-        }
-        
-        //res[row][col] = ans;
-        
-        return ans;
-        
-    }*/
     public int[][] updateMatrix(int[][] mat) {
         int[][] res = new int[mat.length][mat[0].length];
         
@@ -65,9 +42,7 @@ class Solution {
                     res[i][j] = Math.min(res[i][j], 1 + res[i][j+1]);
                 }
             }
-        }
-        
-        
+        }        
         
         return res;
     }
