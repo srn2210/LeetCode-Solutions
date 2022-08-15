@@ -48,12 +48,12 @@ class Solution {
         StringBuilder st = new StringBuilder();
         qstr = new ArrayList();
         for(int i=0; i<n; i++) {
-            st.append(".");
-        }
-        for(int i=0; i<n; i++) {
-            st.replace(i, i+1, "Q");
+            st = new StringBuilder();
+            for(int j=0; j<n; j++) {
+                if(i == j) st.append("Q");
+                else st.append(".");
+            }
             qstr.add(st.toString());
-            st.replace(i, i+1, ".");
         }
         solve(res, new ArrayList(), n);
         return res;
