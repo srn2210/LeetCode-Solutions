@@ -46,9 +46,6 @@ class Solution {
     public List<List<String>> solveNQueens(int n) {
         List<List<String>> res = new ArrayList();
         StringBuilder st = new StringBuilder();
-        for(int i=0; i<n; i++) {
-            st.append(".");
-        }
         qstr = new ArrayList();
         for(int i=0; i<n; i++) {
             st = new StringBuilder();
