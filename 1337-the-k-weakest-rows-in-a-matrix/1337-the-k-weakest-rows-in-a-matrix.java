@@ -5,8 +5,6 @@ class Solution {
         int mid = 0;
         while(lo < hi) {
             mid = lo + ((hi-lo)/2);
-            //if(mid+1 < hi && (arr[mid] == 1 && arr[mid+1] == 0)) return mid+1;
-            //else if( mid-1 >= 0 && (arr[mid] == 0 && arr[mid-1] == 1)) return mid;
             if(arr[mid] == 0) {
                 hi = mid;
             }
