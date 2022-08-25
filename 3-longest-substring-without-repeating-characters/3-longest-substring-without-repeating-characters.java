@@ -11,7 +11,7 @@ class Solution {
                 max = Math.max(max, i-j+1);
                 i++;
             }
-            else if(set.contains(s.charAt(i))) {
+            else {
                 set.remove(s.charAt(j));
                 j++;
             }
