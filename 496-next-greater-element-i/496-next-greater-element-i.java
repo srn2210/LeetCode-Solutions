@@ -7,10 +7,10 @@ class Solution {
             if(stack.isEmpty()) {
                 stack.push(nums2[i]);
             }
-            else if(!stack.isEmpty() && nums2[i] < stack.peek()) {
+            else if(nums2[i] < stack.peek()) {
                 stack.push(nums2[i]);
             }
-            else if(!stack.isEmpty() && nums2[i] > stack.peek()) {
+            else {
                 while(!stack.isEmpty() && nums2[i] > stack.peek()) {
                     map.put(stack.pop(), nums2[i]);
                 }
