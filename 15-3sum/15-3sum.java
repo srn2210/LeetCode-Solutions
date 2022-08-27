@@ -19,7 +19,6 @@ class Solution {
                 }
             }
         }
-        //System.out.println(list);
         return new ArrayList(list);
     }
 }
