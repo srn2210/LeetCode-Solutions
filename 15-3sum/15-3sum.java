@@ -29,6 +29,6 @@ class Solution {
             }
             while(i+1<nums.length && nums[i] == nums[i+1]) i++;
         }
-        return new ArrayList(list);
+        return list;
     }
 }
