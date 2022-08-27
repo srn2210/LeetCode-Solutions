@@ -3,8 +3,6 @@ class Solution {
         Arrays.sort(nums);
         List<List<Integer>> list = new ArrayList<>();
         
-        int prex = Integer.MIN_VALUE;
-        int prey = Integer.MIN_VALUE;
         for(int i=0; i<nums.length; i++) {
             int x = nums[i];
             if(x > 0) break;
@@ -28,8 +26,6 @@ class Solution {
                     l++;
                     r--;
                 }
-                prex = x;
-                prey = y;
             }
             while(i+1<nums.length && nums[i] == nums[i+1]) i++;
         }
