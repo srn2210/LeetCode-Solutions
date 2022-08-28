@@ -11,10 +11,8 @@ class Solution {
             int size = queue.size();
             while(size-- > 0) {
                 Node temp = queue.poll();
-                Node n = map.containsKey(temp.val) ? map.get(temp.val) : new Node(temp.val);
-                if(!map.containsKey(n.val)) {
-                    map.put(n.val, n);
-                }
+                Node n = map.containsKey(temp.val) ? map.get(temp.val) : map.put(temp.val, new Node(temp.val));
+                n = map.get(temp.val);
                 List<Node> list = new ArrayList();
                 for(Node i:temp.neighbors) {
                     if(map.containsKey(i.val)) {
