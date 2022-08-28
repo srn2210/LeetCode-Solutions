@@ -15,7 +15,7 @@ class Solution {
                 if(!map.containsKey(n.val)) {
                     map.put(n.val, n);
                 }
-                List<Node> list = new ArrayList<Node>();
+                List<Node> list = new ArrayList();
                 for(int i=0; i<temp.neighbors.size(); i++) {
                     if(map.containsKey(temp.neighbors.get(i).val)) {
                         list.add(map.get(temp.neighbors.get(i).val));
