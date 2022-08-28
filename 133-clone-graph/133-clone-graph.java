@@ -2,8 +2,8 @@ class Solution {
     public Node cloneGraph(Node node) {
         if(node == null) return null;
         
-        HashMap<Integer, Node> map = new HashMap();
-        Queue<Node> queue = new LinkedList();
+        HashMap<Integer, Node> map = new HashMap<Integer, Node>();
+        Queue<Node> queue = new LinkedList<Node>();
         
         queue.offer(node);
         
@@ -16,15 +16,15 @@ class Solution {
                     map.put(n.val, n);
                 }
                 List<Node> list = new ArrayList();
-                for(int i=0; i<temp.neighbors.size(); i++) {
-                    if(map.containsKey(temp.neighbors.get(i).val)) {
-                        list.add(map.get(temp.neighbors.get(i).val));
+                for(Node i:temp.neighbors) {
+                    if(map.containsKey(i.val)) {
+                        list.add(map.get(i.val));
                         continue;
                     }
-                    Node t = new Node(temp.neighbors.get(i).val);
+                    Node t = new Node(i.val);
                     map.put(t.val, t);
                     list.add(t);
-                    queue.offer(temp.neighbors.get(i));
+                    queue.offer(i);
                 }
                 n.neighbors = list;
             }
