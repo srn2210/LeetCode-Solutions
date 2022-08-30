@@ -4,16 +4,16 @@ class Solution {
             list.add(List.copyOf(set));
         }
         else {
-            for(int i=start+1; i<=n; i++) {
+            for(int i=start; i<=n; i++) {
                 set.add(i);
-                backtrack(list, n, k, set, i);
+                backtrack(list, n, k, set, i+1);
                 set.remove(i);
             }
         }
     }
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> list = new ArrayList();
-        backtrack(list, n, k, new LinkedHashSet(), 0);
+        backtrack(list, n, k, new LinkedHashSet(), 1);
         return list;
     }
 }
