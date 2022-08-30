@@ -5,7 +5,7 @@ class Solution {
             list.add(new ArrayList(arr));
         }
         else {
-            for(int i=start; i<=n; i++) {
+            for(int i=start; i<=n-k+size+1; i++) {
                 arr.push(i);
                 backtrack(list, n, k, arr, i+1);
                 arr.pop();
