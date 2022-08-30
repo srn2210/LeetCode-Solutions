@@ -6,7 +6,7 @@ class Solution {
     }
     private void backtrack(List<List<Integer>> list, Set<Integer> tempList, int [] nums){
         if(tempList.size() == nums.length){
-            list.add(new ArrayList<>(tempList));
+            list.add(List.copyOf(tempList));
         } 
         else{
             for(int i = 0; i < nums.length; i++){ 
