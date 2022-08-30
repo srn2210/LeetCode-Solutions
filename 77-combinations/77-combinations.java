@@ -4,7 +4,7 @@ class Solution {
             list.add(new ArrayList(set));
         }
         else {
-            for(int i=start; i<=n; i++) {
+            for(int i=start; i<=n-k+set.size()+1; i++) {
                 set.add(i);
                 backtrack(list, n, k, set, i+1);
                 set.remove((Integer)i);
