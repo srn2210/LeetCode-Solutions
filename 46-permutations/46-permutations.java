@@ -4,7 +4,7 @@ class Solution {
         backtrack(list, new LinkedHashSet<>(), nums);
         return list;
     }
-    private void backtrack(List<List<Integer>> list, LinkedHashSet<Integer> tempList, int [] nums){
+    private void backtrack(List<List<Integer>> list, Set<Integer> tempList, int [] nums){
         if(tempList.size() == nums.length){
             list.add(new ArrayList<>(tempList));
         } 
