@@ -5,8 +5,6 @@ class Solution {
         }
         else {
             for(int i=start+1; i<=n; i++) {
-                /*if(set.contains(i))
-                    continue;*/
                 set.add(i);
                 backtrack(list, n, k, set, i);
                 set.remove(i);
