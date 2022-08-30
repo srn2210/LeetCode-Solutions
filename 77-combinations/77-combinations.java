@@ -1,20 +1,20 @@
 class Solution {
-    void backtrack(List<List<Integer>> list, int n, int k, Deque<Integer> arr, int start) {
+    void backtrack(List<List<Integer>> list, int n, int k, Stack<Integer> arr, int start) {
         int size = arr.size();
         if(size == k) {
             list.add(new ArrayList(arr));
         }
         else {
             for(int i=start; i<=n-k+size+1; i++) {
-                arr.offer(i);
+                arr.push(i);
                 backtrack(list, n, k, arr, i+1);
-                arr.removeLast();
+                arr.pop();
             }
         }
     }
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> list = new ArrayList();
-        backtrack(list, n, k, new ArrayDeque(), 1);
+        backtrack(list, n, k, new Stack(), 1);
         return list;
     }
 }
