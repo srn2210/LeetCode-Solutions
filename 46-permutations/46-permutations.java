@@ -9,11 +9,11 @@ class Solution {
             list.add(List.copyOf(tempList));
         } 
         else{
-            for(int i = 0; i < nums.length; i++){ 
-                if(tempList.contains(nums[i])) continue;
-                tempList.add(nums[i]);
+            for(int i:nums){ 
+                if(tempList.contains(i)) continue;
+                tempList.add(i);
                 backtrack(list, tempList, nums);
-                tempList.remove(nums[i]);
+                tempList.remove(i);
             }
         }
     }
