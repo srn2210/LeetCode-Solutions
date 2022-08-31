@@ -24,7 +24,7 @@ class Solution {
                     st.push(st.pop() / temp);
                     break;
                 default:
-                    st.push(Integer.valueOf(s));
+                    st.push(Integer.parseInt(s));
                     break;
             }
         }
