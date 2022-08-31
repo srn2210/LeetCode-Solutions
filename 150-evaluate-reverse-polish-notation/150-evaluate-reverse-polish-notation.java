@@ -9,23 +9,19 @@ class Solution {
             switch(s) {
                 case "+": 
                     temp = st.pop();
-                    temp += st.pop();
-                    st.push(temp);
+                    st.push(temp + st.pop());
                     break;
                 case "-":
                     temp = st.pop();
-                    temp = st.pop() - temp;
-                    st.push(temp);
+                    st.push(st.pop() - temp);
                     break;
                 case "*":
                     temp = st.pop();
-                    temp *= st.pop();
-                    st.push(temp);
+                    st.push(temp * st.pop());
                     break;
                 case "/":
                     temp = st.pop();
-                    temp = st.pop() / temp;
-                    st.push(temp);
+                    st.push(st.pop() / temp);
                     break;
                 default:
                     st.push(Integer.valueOf(s));
