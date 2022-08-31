@@ -3,7 +3,7 @@ class Solution {
         if(tokens.length == 1) return Integer.valueOf(tokens[0]);
         
         Stack<Integer> st = new Stack();
-        int temp = 0;
+        int temp;
         
         for(String s:tokens) {
             switch(s) {
