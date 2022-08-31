@@ -11,18 +11,22 @@ class Solution {
                     temp = st.pop();
                     st.push(temp + st.pop());
                     break;
+                    
                 case "-":
                     temp = st.pop();
                     st.push(st.pop() - temp);
                     break;
+                    
                 case "*":
                     temp = st.pop();
                     st.push(temp * st.pop());
                     break;
+                    
                 case "/":
                     temp = st.pop();
                     st.push(st.pop() / temp);
                     break;
+                    
                 default:
                     st.push(Integer.parseInt(s));
                     break;
