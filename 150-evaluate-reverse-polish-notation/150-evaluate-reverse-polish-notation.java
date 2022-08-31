@@ -1,6 +1,6 @@
 class Solution {
     public int evalRPN(String[] tokens) {
-        if(tokens.length == 1) return Integer.valueOf(tokens[0]);
+        if(tokens.length == 1) return Integer.parseInt(tokens[0]);
         
         Stack<Integer> st = new Stack<>();
         int temp;
