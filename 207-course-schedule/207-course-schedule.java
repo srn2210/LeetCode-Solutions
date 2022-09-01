@@ -35,6 +35,7 @@ class Solution {
         int[] visited = new int[numCourses];
         
         for(int i=0; i<numCourses; i++) {
+            if(visited[i] == 2) continue;
             if(!util(list, i, visited)) return false;
         }        
         
