@@ -2,7 +2,7 @@ class Solution {
     boolean util(List<List<Integer>> adj, int vertex, int[] visited) {   
         if(visited[vertex] == 1) return false;
         
-        if(visited[vertex] == 2) return true;
+        else if(visited[vertex] == 2) return true;
         
         visited[vertex] = 1;
         
