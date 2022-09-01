@@ -1,20 +1,19 @@
 class Solution {
-    boolean util(List<List<Integer>> adj, int vertex, int[] visited) {   
-        if(visited[vertex] == 1) return false;
-        
-        else if(visited[vertex] == 2) return true;
-        
+    boolean util(List<List<Integer>> adj, int vertex, int[] visited) {
         visited[vertex] = 1;
         
         List<Integer> list = adj.get(vertex);
         
-        if(list.size() == 0) {
+        if(list == null || list.size() == 0) {
             visited[vertex] = 2;
             return true;
         }
         
         for(int i:list) {
-            if(!util(adj, i, visited)) return false;
+            if(visited[i] == 1) return false;
+            if(visited[i] == 0) {
+                if(!util(adj, i, visited)) return false;
+            }
         }
         
         visited[vertex] = 2;
@@ -35,8 +34,7 @@ class Solution {
         int[] visited = new int[numCourses];
         
         for(int i=0; i<numCourses; i++) {
-            if(visited[i] == 2) continue;
-            else if(!util(list, i, visited)) return false;
+            if(!util(list, i, visited)) return false;
         }        
         
         return true;
