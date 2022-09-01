@@ -8,7 +8,7 @@ class Solution {
         
         List<Integer> list = adj.get(vertex);
         
-        if(list == null || list.size() == 0) {
+        if(list.size() == 0) {
             visited[vertex] = 2;
             return true;
         }
