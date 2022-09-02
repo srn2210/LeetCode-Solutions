@@ -1,9 +1,11 @@
 class Solution {
     int solve(int i, int j, String a, String b, int[][] dp) {
         int ans = 0;
-        if(a.length() == i || b.length() == j) return 0;
+        if(a.length() == i || b.length() == j)
+            return 0;
         
-        else if(dp[i][j] != -1) return dp[i][j];
+        else if(dp[i][j] != -1)
+            return dp[i][j];
         
         else if(a.charAt(i) == b.charAt(j)) {
             dp[i][j] = 1 + solve(i+1, j+1, a, b, dp);
