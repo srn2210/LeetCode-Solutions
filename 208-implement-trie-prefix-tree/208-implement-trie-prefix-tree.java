@@ -1,5 +1,5 @@
 class Trie {
-    public class TrieNode {
+    class TrieNode {
         TrieNode[] links;
         
         int count = 26;
