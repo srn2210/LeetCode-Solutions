@@ -21,8 +21,8 @@ class Solution {
         
         while(!queue.isEmpty()) {
             int size = queue.size();
-            Double sum = 0.0;
-            Double n = 0.0;
+            double sum = 0.0;
+            double n = (double) size;
             while(size-- > 0) {
                 TreeNode node = queue.poll();
                 if(node.left != null) {
@@ -32,9 +32,8 @@ class Solution {
                     queue.offer(node.right);
                 }
                 sum += node.val;
-                n += 1;
             }
-            Double avg = sum / n;
+            double avg = sum / n;
             res.add(avg);
         }
         
