@@ -9,10 +9,7 @@ class Solution {
                 if(nums[j] < nums[i]) {
                     dp[i] = Math.max(1 + dp[j], dp[i]);
                 }
-            }
-            
-            //dp[i] += 1;
-            
+            }            
             ans = Math.max(dp[i], ans);
         }
         
