@@ -5,7 +5,7 @@ class Trie {
         boolean isEnd;
         
         TrieNode() {
-            map = new HashMap();
+            map = new HashMap<Character, TrieNode>();
         }
         
         boolean containsKey(char ch) {
