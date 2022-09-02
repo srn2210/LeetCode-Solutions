@@ -22,8 +22,8 @@ class Solution:
                 if node.right != None:
                     queue.append(node.right)
                 ans += node.val
-                size -= 1
                 n += 1
+                size -= 1
             res.append(ans / n)
         
         return res
