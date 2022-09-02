@@ -3,8 +3,8 @@ class Solution:
         dp = [amount+1] * (amount+1)
         dp[0] = 0
         
-        for cash in range(amount+1):
-            for coin in coins:
+        for coin in coins:    
+            for cash in range(amount+1):
                 if(coin <= cash):
                     dp[cash] = min(dp[cash], 1 + dp[cash - coin])
         
