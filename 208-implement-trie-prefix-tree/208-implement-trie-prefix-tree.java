@@ -45,8 +45,7 @@ class Trie {
                 node.put(word.charAt(i), new TrieNode());
             node = node.get(word.charAt(i));
         }
-        node.setEnd();
-        
+        node.setEnd();        
     }
     
     public boolean search(String word) {
@@ -56,7 +55,7 @@ class Trie {
                 return false;
             node = node.get(word.charAt(i));
         }
-        return true && node.isEnd();
+        return node.isEnd();
     }
     
     public boolean startsWith(String prefix) {
