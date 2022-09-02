@@ -8,7 +8,4 @@ class Solution:
                 if(coin <= cash):
                     dp[cash] = min(dp[cash], 1 + dp[cash - coin])
         
-        if(dp[amount] > amount):
-            dp[amount] = -1
-        
-        return dp[amount]
+        return -1 if dp[amount] > amount else dp[amount]
