@@ -1,25 +1,23 @@
 class Trie {
     class TrieNode {
-        TrieNode[] links;
-        
-        int count = 26;
+        HashMap<Character, TrieNode> map;
         
         boolean isEnd;
         
         TrieNode() {
-            links = new TrieNode[count];
+            map = new HashMap();
         }
         
         boolean containsKey(char ch) {
-            return links[ch - 'a'] != null;
+            return map.get(ch) != null;
         }
         
         TrieNode get(char ch) {
-            return links[ch - 'a'];
+            return map.get(ch);
         }
         
         void put(char ch, TrieNode node) {
-            links[ch - 'a'] = node;
+            map.put(ch, node);
         }
         
         void setEnd() {
