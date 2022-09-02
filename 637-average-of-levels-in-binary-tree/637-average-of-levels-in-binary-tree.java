@@ -18,8 +18,7 @@ class Solution {
                 }
                 sum += node.val;
             }
-            double avg = sum / n;
-            res.add(avg);
+            res.add(sum / n);
         }
         
         return res;
