@@ -18,13 +18,8 @@ class Solution {
             n.next = new ListNode();
             n = n.next;
             temp = add(l1, l2, prev);
-            if(temp > 9) {
-                prev = temp / 10;
-                temp = temp % 10;
-            }
-            else {
-                prev = 0;
-            }
+            prev = temp / 10;
+            temp = temp % 10;
             n.val = temp;
             if(l1 != null) l1 = l1.next;
             if(l2 != null) l2 = l2.next;
