@@ -1,13 +1,3 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
 class Solution {
     int add(ListNode a, ListNode b, int carry) {
         int val1 = 0;
@@ -39,7 +29,6 @@ class Solution {
             if(l1 != null) l1 = l1.next;
             if(l2 != null) l2 = l2.next;
         }
-        
         return l3.next;
     }
 }
