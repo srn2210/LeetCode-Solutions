@@ -9,45 +9,37 @@
  * }
  */
 class Solution {
+    int add(ListNode a, ListNode b, int carry) {
+        int val1 = 0;
+        int val2 = 0;
+        if(a != null) {
+            val1 = a.val;
+        }
+        if(b != null) {
+            val2 = b.val;
+        }
+        return val1+val2+carry;
+    }
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int prev=0, temp = 0;
         ListNode l3 = new ListNode();
-        ListNode n = new ListNode();
-        l3 = n;
+        ListNode n = l3;
         while(l1 != null || l2 !=null || prev != 0){
-            if((l1 == null && l2 == null) && prev !=0){
-                n.val = 1;
-                break;
+            n.next = new ListNode();
+            n = n.next;
+            temp = add(l1, l2, prev);
+            if(temp > 9) {
+                prev = temp / 10;
+                temp = temp % 10;
             }
-            if(l1 != null && l2 != null){
-             temp = l1.val + l2.val;   
-            }
-            else if(l1 == null && l2 != null){
-                temp = l2.val;
-            }
-            else if(l1 != null && l2 == null){
-                temp = l1.val;
-            }
-            n.val = temp;
-            if(prev == 1){
-                n.val = n.val + 1;
+            else {
                 prev = 0;
             }
-            if(n.val > 9){
-                n.val = n.val % 10;
-                prev++;
-            }
-            if(l1 != null){
-             l1 = l1.next;   
-            }
-            if(l2 != null){
-             l2 = l2.next;   
-            }
-            if(prev != 0 || l1 != null || l2 != null){
-             n.next = new ListNode();   
-            }
-            n = n.next;
+            n.val = temp;
+            if(l1 != null) l1 = l1.next;
+            if(l2 != null) l2 = l2.next;
         }
-        return l3;
+        
+        return l3.next;
     }
 }
