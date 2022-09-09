@@ -1,13 +1,7 @@
 class Solution {
     int add(ListNode a, ListNode b, int carry) {
-        int val1 = 0;
-        int val2 = 0;
-        if(a != null) {
-            val1 = a.val;
-        }
-        if(b != null) {
-            val2 = b.val;
-        }
+        int val1 = a == null ? 0 : a.val;
+        int val2 = b == null ? 0 : b.val;
         return val1+val2+carry;
     }
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
