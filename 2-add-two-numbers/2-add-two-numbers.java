@@ -3,7 +3,7 @@ class Solution {
         int prev = 0, temp = 0;
         ListNode l3 = new ListNode();
         ListNode n = l3;
-        while(l1 != null || l2 !=null || prev != 0){
+        while(l1 != null || l2 != null || prev != 0){
             n.next = new ListNode();
             n = n.next;
             int val1 = l1 == null ? 0 : l1.val;
