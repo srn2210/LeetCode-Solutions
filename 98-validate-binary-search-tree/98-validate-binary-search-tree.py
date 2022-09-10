@@ -6,9 +6,7 @@ class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         arr = []
         self.recurse(root, arr)
-        prev = arr[0]
         for i in range(1, len(arr)):
-            if prev >= arr[i]:
+            if arr[i-1] >= arr[i]:
                 return False
-            prev = arr[i]
         return True
