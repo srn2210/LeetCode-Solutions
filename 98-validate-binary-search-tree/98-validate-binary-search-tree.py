@@ -1,10 +1,8 @@
 class Solution:
     def recurse(self, root : Optional[TreeNode], arr : List[int]):
-        if root == None:
-            return
-        self.recurse(root.left, arr)
+        if root.left != None: self.recurse(root.left, arr)
         arr.append(root.val)
-        self.recurse(root.right, arr)
+        if root.right != None: self.recurse(root.right, arr)
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         arr = []
         self.recurse(root, arr)
