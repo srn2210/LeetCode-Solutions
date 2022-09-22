@@ -1,5 +1,5 @@
 class Solution {
-    boolean flag = true;
+    boolean flag;
     void dfs(TreeNode node, Stack<Integer> list) {
         if(node.left != null) dfs(node.left, list);
         if(!list.isEmpty()) {
@@ -9,6 +9,7 @@ class Solution {
         if(node.right != null) dfs(node.right, list);
     }
     public boolean isValidBST(TreeNode root) {
+        flag = true;
         Stack<Integer> list = new Stack();
         dfs(root, list);
         return flag;
