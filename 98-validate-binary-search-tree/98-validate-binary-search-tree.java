@@ -1,15 +1,15 @@
 class Solution {
     boolean flag = true;
-    void dfs(TreeNode node, ArrayList<Integer> list) {
+    void dfs(TreeNode node, Stack<Integer> list) {
         if(node.left != null) dfs(node.left, list);
-        if(list.size() != 0) {
-            if(list.get(list.size()-1) >= node.val) flag = false;
+        if(!list.isEmpty()) {
+            if(list.peek() >= node.val) flag = false;
         }
-        list.add(node.val);
+        list.push(node.val);
         if(node.right != null) dfs(node.right, list);
     }
     public boolean isValidBST(TreeNode root) {
-        ArrayList<Integer> list = new ArrayList();
+        Stack<Integer> list = new Stack();
         dfs(root, list);
         return flag;
     }
