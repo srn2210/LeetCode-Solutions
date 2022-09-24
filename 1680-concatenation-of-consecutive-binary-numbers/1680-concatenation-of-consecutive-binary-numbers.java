@@ -1,12 +1,15 @@
-class Solution {
+class Solution {    
     public int concatenatedBinary(int n) {
-        int mod = (int)(1e9 + 7);
-        long ans = 0;
-        int bin = 0;
-        for(int i=1; i<=n; i++) {
-            if((i & (i-1)) == 0) bin++;
-            ans = ((ans << bin) + i) % mod;
+        final long modulo = (long) (1e9 + 7);
+        long result = 0;
+        for (int i = 1; i <= n; i++) {
+            int temp = i;
+            while (temp > 0) {
+                temp /= 2;
+                result *= 2;
+            }
+            result = (result | i) % modulo;
         }
-        return (int) ans;
+        return (int) result;
     }
 }
