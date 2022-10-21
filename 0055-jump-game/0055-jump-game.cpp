@@ -6,7 +6,6 @@ public:
         
         bool dp[len];
         memset(dp, false, sizeof(dp));
-        //for(int j=0; j<len; j++) dp[j] = false;
         dp[len-1] = true;
         int last = len-1;
         int i = last;
