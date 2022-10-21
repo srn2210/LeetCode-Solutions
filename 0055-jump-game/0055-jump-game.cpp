@@ -2,8 +2,6 @@ class Solution {
 public:
     bool canJump(vector<int>& nums) {
         int len = nums.size();
-        if(len == 1) return true;
-        
         bool dp[len];
         memset(dp, false, sizeof(dp));
         dp[len-1] = true;
