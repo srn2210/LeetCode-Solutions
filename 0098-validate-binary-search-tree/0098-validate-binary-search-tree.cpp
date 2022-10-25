@@ -1,7 +1,7 @@
 class Solution {
 public:
     void dfs(TreeNode *root, vector<int> &arr) {
-        if(root == nullptr) return;
+        if(!root) return;
         dfs(root->left, arr);
         arr.push_back(root->val);
         dfs(root->right, arr);
