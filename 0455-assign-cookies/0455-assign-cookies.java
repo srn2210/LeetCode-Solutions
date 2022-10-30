@@ -11,9 +11,7 @@ class Solution {
                 i--;
                 j--;
             }
-            else if(g[i] > s[j]) {
-                i--;
-            }
+            else i--;
         }
         return count;
     }
