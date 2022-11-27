@@ -9,7 +9,7 @@ class Solution {
                 if(d <= Integer.MIN_VALUE || d >= Integer.MAX_VALUE) continue;
                 int diff = (int) d;
                 int t1 = dp[i].getOrDefault(diff, 0);               // for repeated numbers; eg : 7, 7, 7
-                int t2 = dp[j].getOrDefault(diff, 0);               // j is loops through all values < i because of subsequnces 
+                int t2 = dp[j].getOrDefault(diff, 0);               // j loops through all values < i because of subsequnces 
                 dp[i].put(diff, t1 + t2 + 1);                       // 1 is ignored in ans because that is a two element subsequence
                 ans += t2;                                          // only t2 needs to be added as t1 is just for updating dp
             }
