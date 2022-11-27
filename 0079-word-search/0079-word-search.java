@@ -6,7 +6,7 @@ class Solution {
         for(int[] dir:directions) {
             int x = dir[0] + i;
             int y = dir[1] + j;
-            if(x < 0 || y < 0 || x >= board.length || y >= board[0].length || vis[x][y] || (s+1 < word.length() && board[x][y] != word.charAt(s+1))) continue;
+            if(x < 0 || y < 0 || x >= board.length || y >= board[0].length || vis[x][y] || board[x][y] != word.charAt(s+1)) continue;
             else {
                 if(dfs(board, word, x, y, s+1, vis)) return true;
             }
