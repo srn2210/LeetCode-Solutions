@@ -2,7 +2,6 @@ class Solution {
     int[][] directions = {{1,0}, {0,1}, {-1,0}, {0,-1}};
     boolean dfs(char[][] board, String word, int i, int j, int s, boolean[][] vis) {
         if(s == word.length()-1) return true;
-        //if(board[i][j] != word.charAt(s)) return false;
         vis[i][j] = true;
         if(board[i][j] == word.charAt(s)) {
             for(int[] dir:directions) {
@@ -11,7 +10,7 @@ class Solution {
                 if(x < 0 || y < 0 || x >= board.length || y >= board[0].length || vis[x][y] || (s+1 < word.length() && board[x][y] != word.charAt(s+1))) continue;
                 else {
                     if(dfs(board, word, x, y, s+1, vis)) return true;
-                    vis[x][y] = false;
+                    //vis[x][y] = false;
                 }
             }
         }
