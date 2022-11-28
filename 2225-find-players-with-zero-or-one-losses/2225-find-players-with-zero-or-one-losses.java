@@ -1,7 +1,7 @@
 class Solution {
     public List<List<Integer>> findWinners(int[][] matches) {
-        Set<Integer> won = new HashSet<>();
-        Set<Integer> loss = new HashSet<>();
+        Set<Integer> won = new TreeSet<>();
+        Set<Integer> loss = new TreeSet<>();
         Set<Integer> more = new HashSet<>();
         List<List<Integer>> res = new ArrayList<>();
         for(int[] arr : matches) {
@@ -19,8 +19,8 @@ class Solution {
         }
         res.add(new ArrayList<>(won));
         res.add(new ArrayList<>(loss));
-        Collections.sort(res.get(0));
-        Collections.sort(res.get(1));
+        //Collections.sort(res.get(0));
+        //Collections.sort(res.get(1));
         return res;
     }
 }
