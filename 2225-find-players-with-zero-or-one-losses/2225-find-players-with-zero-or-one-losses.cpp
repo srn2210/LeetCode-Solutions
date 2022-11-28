@@ -5,7 +5,7 @@ public:
         unordered_set<int> loss;
         unordered_set<int> more;
         vector<vector<int>> res;
-        for(auto& arr : matches) {
+        for(auto arr : matches) {
             if(loss.count(arr[1]) || more.count(arr[1]) ) {
                 loss.erase(arr[1]);
                 more.insert(arr[1]);
