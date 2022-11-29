@@ -1,6 +1,6 @@
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        ans = -10001
+        ans = -inf
         curr = 0
         for num in nums :
             curr += num
