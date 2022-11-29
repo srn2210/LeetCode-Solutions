@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        int ans = INT_MIN;
+        int ans = -10001;
         int curr = 0;
         for(int num : nums) {
             curr += num;
