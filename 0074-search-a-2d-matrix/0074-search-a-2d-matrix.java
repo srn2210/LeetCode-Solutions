@@ -4,7 +4,7 @@ class Solution {
         int n = matrix[0].length;
         int[] t = new int[n];
         t[n-1] = target;
-        int ans = Arrays.binarySearch(matrix, t, Comparator.comparingInt(j -> j[n-1]));
+        int ans = Arrays.binarySearch(matrix, t, (a,b) -> a[n-1] - b[n-1]);
         if(ans >= 0) return true;
         else {
             ans = -ans - 1;
