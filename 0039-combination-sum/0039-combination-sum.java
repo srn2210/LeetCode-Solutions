@@ -1,11 +1,11 @@
 class Solution {
     void backtrack(int curr, Set<List<Integer>> res, int j, List<Integer> temp, int[] arr, int target) {
         if(curr > target) return;
-        if(curr == target) {
+        else if(curr == target) {
             res.add(new ArrayList<>(temp));
             return;
         }
-        if(curr < target) {
+        else {
             for(int i=j; i<arr.length; i++) {
                 curr += arr[i];
                 temp.add(arr[i]);
