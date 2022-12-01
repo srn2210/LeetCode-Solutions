@@ -30,6 +30,5 @@ class Solution {
                 return ans < 0 ? -1 : ans;
             }
         }
-        //return a1 < 0 ? a2 < 0 ? -1 : a2 : a1;
     }
 }
