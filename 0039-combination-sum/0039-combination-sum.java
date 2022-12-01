@@ -3,9 +3,6 @@ class Solution {
         if(curr > target) return;
         if(curr == target) {
             res.add(new ArrayList<>(temp));
-            //System.out.println(res);
-            //curr -= temp.get(temp.size()-1);
-            //temp.remove(temp.size()-1);
         }
         if(curr < target) {
             for(int i=j; i<arr.length; i++) {
@@ -22,7 +19,6 @@ class Solution {
         List<Integer> temp = new ArrayList<>();
         int curr = 0;
         for(int i=0; i<candidates.length; i++) {
-            //curr = candidates[i];
             backtrack(curr, res, i, temp, candidates, target);
         }
         return new ArrayList<>(res);
