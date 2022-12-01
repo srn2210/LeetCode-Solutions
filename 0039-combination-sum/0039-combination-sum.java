@@ -17,9 +17,8 @@ class Solution {
     }
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         Set<List<Integer>> res = new HashSet<>();
-        List<Integer> temp = new ArrayList<>();
         int curr = 0;
-        backtrack(curr, res, 0, temp, candidates, target);
+        backtrack(curr, res, 0, new ArrayList<>(), candidates, target);
         return new ArrayList<>(res);
     }
 }
