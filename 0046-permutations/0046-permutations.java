@@ -7,11 +7,10 @@ class Solution {
     private void backtrack(List<List<Integer>> list, Set<Integer> tempList, int [] nums){
         if(tempList.size() == nums.length){
             list.add(new ArrayList<>(tempList));
-        } 
+        }
         else{
-            for(int i:nums){ 
-                if(tempList.contains(i)) 
-                    continue;
+            for(int i:nums){
+                if(tempList.contains(i)) continue;
                 tempList.add(i);
                 backtrack(list, tempList, nums);
                 tempList.remove(i);
