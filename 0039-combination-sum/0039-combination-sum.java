@@ -21,6 +21,6 @@ class Solution {
         Arrays.sort(candidates);
         int curr = 0;
         backtrack(curr, res, 0, new ArrayList<>(), candidates, target);
-        return new ArrayList<>(res);
+        return res;
     }
 }
