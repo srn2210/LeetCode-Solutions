@@ -2,25 +2,23 @@ class Solution {
     public int myAtoi(String s) {
         long ans = 0;
         boolean sign = true;
-        int flag = 0;
+        boolean flag = false;
         for(char ch : s.toCharArray()) {
-            if(flag == 2) break;
             if(ch == ' ') {
-                if(flag == 1) break;
+                if(flag) break;
                 continue;
             }
             else if(ch == '-') {
-                if(flag == 1) break;
-                flag = 1;
+                if(flag) break;
+                flag = true;
                 sign = false;
             }
             else if(ch == '+') {
-                if(flag == 1) break;
-                flag = 1;
-                continue;
+                if(flag) break;
+                flag = true;
             }
             else if(ch >= '0' && ch <= '9') {
-                flag = 1;
+                flag = true;
                 if(sign) {
                     ans = (ans * 10) + (ch - '0');
                     if(ans > Integer.MAX_VALUE) {
