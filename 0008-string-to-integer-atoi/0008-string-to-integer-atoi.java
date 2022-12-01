@@ -6,7 +6,7 @@ class Solution {
         for(char ch : s.toCharArray()) {
             if(flag == 2) break;
             if(ch == ' ') {
-                if(flag == 1) flag = 2;
+                if(flag == 1) break;
                 continue;
             }
             else if(ch == '-') {
