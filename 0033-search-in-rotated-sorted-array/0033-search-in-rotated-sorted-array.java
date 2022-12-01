@@ -16,8 +16,20 @@ class Solution {
                 lo = mid+1;
             }
         }
-        int a1 = Arrays.binarySearch(nums, 0, pivot, target);
-        int a2 = Arrays.binarySearch(nums, pivot, nums.length, target);
-        return a1 < 0 ? a2 < 0 ? -1 : a2 : a1;
+        if(pivot == 0) {
+            int ans = Arrays.binarySearch(nums, target);
+            return ans < 0 ? -1 : ans;
+        }
+        else {
+            if(nums[0] <= target && target <= nums[pivot-1]) {
+                int ans = Arrays.binarySearch(nums, 0, pivot, target);
+                return ans < 0 ? -1 : ans;
+            }
+            else{
+                int ans = Arrays.binarySearch(nums, pivot, nums.length, target);
+                return ans < 0 ? -1 : ans;
+            }
+        }
+        //return a1 < 0 ? a2 < 0 ? -1 : a2 : a1;
     }
 }
