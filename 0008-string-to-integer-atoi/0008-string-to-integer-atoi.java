@@ -37,12 +37,10 @@ class Solution {
                 }
             }
             else {
-                flag = 2;
+                //flag = 2;
                 break;
             }
         }
-        //ans *= sign;
-        
         return (int) ans;
     }
 }
