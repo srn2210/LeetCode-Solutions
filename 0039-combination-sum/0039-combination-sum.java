@@ -3,6 +3,7 @@ class Solution {
         if(curr > target) return;
         if(curr == target) {
             res.add(new ArrayList<>(temp));
+            return;
         }
         if(curr < target) {
             for(int i=j; i<arr.length; i++) {
@@ -18,9 +19,7 @@ class Solution {
         Set<List<Integer>> res = new HashSet<>();
         List<Integer> temp = new ArrayList<>();
         int curr = 0;
-        for(int i=0; i<candidates.length; i++) {
-            backtrack(curr, res, i, temp, candidates, target);
-        }
+        backtrack(curr, res, 0, temp, candidates, target);
         return new ArrayList<>(res);
     }
 }
