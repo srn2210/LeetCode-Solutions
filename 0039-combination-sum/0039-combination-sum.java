@@ -7,7 +7,7 @@ class Solution {
         }
         if(curr < target) {
             for(int i=j; i<arr.length; i++) {
-                if(arr[i] > target) return;
+                if(curr + arr[i] > target) return;
                 curr += arr[i];
                 temp.add(arr[i]);
                 backtrack(curr, res, i, temp, arr, target);
