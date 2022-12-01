@@ -20,7 +20,7 @@ class Solution {
         List<List<Integer>> res = new ArrayList<>();
         Arrays.sort(candidates);
         int curr = 0;
-        backtrack(curr, res, 0, new ArrayList<>(), candidates, target);
+        backtrack(curr, res, 0, new LinkedList<>(), candidates, target);
         return res;
     }
 }
