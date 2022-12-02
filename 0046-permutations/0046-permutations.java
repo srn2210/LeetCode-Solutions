@@ -6,11 +6,8 @@ class Solution {
     }
     private void backtrack(int index,int[] nums,List<List<Integer>> ans){
         if(index==nums.length){
-		// new list to store the data and copy to the ans 
             List<Integer> ds = new ArrayList<>();
-            
             for(int i=0;i<nums.length;i++) ds.add(nums[i]);
-            
             ans.add(ds);
             return;
         }
