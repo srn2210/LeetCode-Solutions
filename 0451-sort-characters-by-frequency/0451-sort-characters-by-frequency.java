@@ -4,7 +4,6 @@ class Solution {
         for(int i=0; i<128; i++) {
             arr[i][0] = i;
         }
-        //System.out.println((int)'A' +" "+ (int)'0');
         for(char ch : s.toCharArray()) {
             arr[ch - '0'][1] += 1;
         }
@@ -12,8 +11,9 @@ class Solution {
         StringBuilder res = new StringBuilder();
         for(int i=0; i<128; i++) {
             if(arr[i][1] == 0) break;
+            char ch = (char)(arr[i][0] + '0');
             for(int j=0; j<arr[i][1]; j++) {
-                res.append((char)(arr[i][0] + '0'));
+                res.append(ch);
             }
         }
         return res.toString();
