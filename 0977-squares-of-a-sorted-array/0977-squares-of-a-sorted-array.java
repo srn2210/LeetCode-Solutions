@@ -16,7 +16,7 @@ class Solution {
                 i++;
                 left--;
             }
-            else if(Math.abs(nums[right]) < Math.abs(nums[left])) {
+            else if(nums[right] < -nums[left]) {
                 res[i] = nums[right] * nums[right];
                 i++;
                 right++;
