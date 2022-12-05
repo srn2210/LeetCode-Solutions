@@ -32,7 +32,6 @@ public:
         else {
             curr->next = list2;
         }
-        ListNode *ans = head->next;
-        return ans;
+        return head->next;
     }
 };
