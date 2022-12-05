@@ -16,9 +16,6 @@ class Solution:
                 while curr and curr.val == val:
                     curr = curr.next
                 prev.next = curr
-                prev = curr
-                if curr: curr = curr.next
-                continue
             prev = curr
-            curr = curr.next
+            if curr: curr = curr.next
         return head
