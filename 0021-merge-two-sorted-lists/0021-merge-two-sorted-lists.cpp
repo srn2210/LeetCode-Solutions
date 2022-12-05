@@ -31,6 +31,8 @@ public:
         else {
             curr->next = list2;
         }
-        return head->next;
+        ListNode *ans = head->next;
+        delete head;
+        return ans;
     }
 };
