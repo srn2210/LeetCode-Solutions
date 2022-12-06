@@ -7,7 +7,7 @@ class Solution:
         res = 0
         for i in range(len(nums)):
             curr += nums[i]
-            a = (curr//(i+1))
+            a = curr//(i+1)
             b = 0
             if i != len(nums)-1:
                 b = (asum-curr)//(len(nums)-i-1)
