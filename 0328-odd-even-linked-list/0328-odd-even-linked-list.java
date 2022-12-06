@@ -20,14 +20,13 @@ class Solution {
             if(flag) {
                 odd.next = curr;
                 odd = odd.next;
-                flag = !flag;
             }
             else{
                 even.next = curr;
                 even = even.next;
-                flag = !flag;
             }
             curr = curr.next;
+            flag = !flag;
         }
         oddHead = oddHead.next;
         evenHead = evenHead.next;
