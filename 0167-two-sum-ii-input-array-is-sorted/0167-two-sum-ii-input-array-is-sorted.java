@@ -1,8 +1,11 @@
 class Solution {
     public int[] twoSum(int[] numbers, int target) {
-        for(int i=0; i<numbers.length-1; i++) {
-            int ans = Arrays.binarySearch(numbers, i+1, numbers.length, target - numbers[i]);
-            if(ans > 0) return new int[]{i+1, ans+1};
+        int i=0;
+        int j=numbers.length-1;
+        while(i<j) {
+            if(numbers[i] + numbers[j] == target) return new int[]{i+1, j+1};
+            else if(numbers[i] + numbers[j] < target) i++;
+            else j--;
         }
         return new int[]{-1,-1};
     }
