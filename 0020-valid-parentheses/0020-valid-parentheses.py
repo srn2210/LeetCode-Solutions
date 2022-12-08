@@ -6,4 +6,4 @@ class Solution:
             elif st and st[-1] == '[' and ch == ']': st.pop()
             elif st and st[-1] == '{' and ch == '}': st.pop()
             else: st.append(ch)
-        return True if len(st) == 0 else False
+        return len(st) == 0
