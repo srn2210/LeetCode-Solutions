@@ -23,7 +23,7 @@ public:
                 TreeNode* t = q.front();
                 q.pop();
                 if(t == nullptr) continue;
-                if(t != nullptr) temp.push_back(t->val);
+                temp.push_back(t->val);
                 if(t->left) q.push(t->left);
                 if(t->right) q.push(t->right);
             }
