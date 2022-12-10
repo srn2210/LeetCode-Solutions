@@ -7,7 +7,7 @@
 class Solution:
     def dfs(self, n1: Optional[TreeNode], n2: Optional[TreeNode]) -> bool:
         if not n1 and not n2: return True
-        if not n1 and n2 or n1 and not n2: return False
+        if not n1 or not n2: return False
         if n1.val != n2.val: return False
         return self.dfs(n1.left, n2.right) and self.dfs(n1.right, n2.left)
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
