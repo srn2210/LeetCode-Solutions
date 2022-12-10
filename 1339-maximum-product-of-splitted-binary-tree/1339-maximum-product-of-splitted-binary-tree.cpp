@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    long ans;
+    long ans = 0;
     long dfs(TreeNode* node) {
         if(node == nullptr) return 0;
         long sum = 0;
@@ -30,7 +30,6 @@ public:
         return sum;
     }
     int maxProduct(TreeNode* root) {
-        ans = 0;
         long sum = dfs(root);
         dfs(root, sum);
         ans %= 1000000007;
