@@ -11,9 +11,9 @@
  */
 class Solution {
 public:
-    long long dfs(TreeNode* node, vector<long long>& arr) {
+    long dfs(TreeNode* node, vector<long>& arr) {
         if(node == nullptr) return 0;
-        long long sum = 0;
+        long sum = 0;
         sum += dfs(node->left, arr);
         sum += dfs(node->right, arr);
         sum += node->val;
@@ -21,10 +21,10 @@ public:
         return sum;
     }
     int maxProduct(TreeNode* root) {
-        vector<long long> arr;
+        vector<long> arr;
         dfs(root, arr);
         int n = arr.size();
-        long long prod = 1;
+        long prod = 1;
         for(int i=0; i<n-1; i++) {
             prod = max(prod, arr[i] * (arr[n-1] - arr[i]));
         }
