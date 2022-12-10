@@ -11,24 +11,29 @@
  */
 class Solution {
 public:
-    long dfs(TreeNode* node, vector<long>& arr) {
+    long ans;
+    long dfs(TreeNode* node) {
         if(node == nullptr) return 0;
         long sum = 0;
-        sum += dfs(node->left, arr);
-        sum += dfs(node->right, arr);
+        sum += dfs(node->left);
         sum += node->val;
-        arr.push_back(sum);
+        sum += dfs(node->right);
+        return sum;
+    }
+    long dfs(TreeNode* node, long total) {
+        if(node == nullptr) return 0;
+        long sum = 0;
+        sum += dfs(node->left, total);
+        sum += dfs(node->right, total);
+        sum += node->val;
+        ans = max(ans, sum * (total - sum));
         return sum;
     }
     int maxProduct(TreeNode* root) {
-        vector<long> arr;
-        dfs(root, arr);
-        int n = arr.size();
-        long prod = 1;
-        for(int i=0; i<n-1; i++) {
-            prod = max(prod, arr[i] * (arr[n-1] - arr[i]));
-        }
-        prod %= 1000000007;
-        return (int) prod;
+        ans = 0;
+        long sum = dfs(root);
+        dfs(root, sum);
+        ans %= 1000000007;
+        return (int) ans;
     }
 };
