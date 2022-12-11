@@ -7,35 +7,16 @@ class Solution {
     public void sortColors(int[] nums) {
         int left = 0;
         int right = nums.length - 1;
-        while(left < right) {
-            if(nums[right] == 2) {
-                right--;
-                continue;
+        int mid = 0;
+        while(mid <= right) {
+            if(nums[mid] == 2) {
+                swap(nums, mid, right--);
             }
-            else if(nums[left] == 0) {
-                left++;
-                continue;
-            }
-            else {
-                swap(nums, left, right);
-                if(nums[right] == 2) right--;
-                if(nums[left] != 2) left++;
-            }
-        }
-        left = 0;
-        while(left < right) {
-            if(nums[right] == 2) {
-                right--;
-                continue;
-            }
-            else if(nums[left] == 0) {
-                left++;
-                continue;
+            else if(nums[mid] == 0) {
+                swap(nums, mid++, left++);
             }
             else {
-                swap(nums, left, right);
-                if(nums[right] != 0) right--;
-                if(nums[left] == 0) left++;
+                swap(nums, left, mid++);
             }
         }
     }
