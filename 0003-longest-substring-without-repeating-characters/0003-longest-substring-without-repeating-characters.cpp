@@ -1,17 +1,18 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        unordered_set<char> set;
+        int set[128];
+        memset(set, 0, sizeof(set));
         int left = 0;
         int right = 0;
         int ans = 0;
         while(right < s.size()) {
-            if(!set.count(s[right])) {
+            if(!set[s[right]]) {
                 ans = max(ans, right-left+1);
-                set.insert(s[right++]);
+                set[s[right++]]++;
             }
             else {
-                set.erase(s[left++]);
+                set[s[left++]]--;
             }
         }
         return ans;
