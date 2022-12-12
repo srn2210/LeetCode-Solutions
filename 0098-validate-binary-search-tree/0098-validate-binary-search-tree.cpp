@@ -2,9 +2,7 @@ class Solution {
 public:
     bool dfs(TreeNode *root, long max, long min) {
         if(!root) return true;
-        //if(!) return false;
         if(root->val >= max || root->val <= min) return false;
-        //if(!) return false;
         return dfs(root->left, root->val, min) && dfs(root->right, max, root->val);
     }
     bool isValidBST(TreeNode* root) {
