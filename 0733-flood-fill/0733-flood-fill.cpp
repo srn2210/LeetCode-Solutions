@@ -10,7 +10,7 @@ public:
         while(!queue.empty()) {
             int size = queue.size();
             while(size--) {
-                auto arr = queue.front();
+                array<int, 2> arr = queue.front();
                 queue.pop();
                 for(auto dir : directions) {
                     int x = dir[0] + arr[0];
