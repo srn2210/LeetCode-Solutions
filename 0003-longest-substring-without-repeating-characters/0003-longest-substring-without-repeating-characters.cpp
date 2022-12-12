@@ -6,7 +6,7 @@ public:
         int right = 0;
         int ans = 0;
         while(right < s.size()) {
-            if(set.find(s[right]) == set.end()) {
+            if(!set.count(s[right])) {
                 ans = max(ans, right-left+1);
                 set.insert(s[right++]);
             }
