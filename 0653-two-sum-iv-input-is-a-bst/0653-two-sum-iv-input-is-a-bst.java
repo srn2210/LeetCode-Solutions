@@ -24,9 +24,9 @@ class Solution {
     }
     boolean dfs(TreeNode root, TreeNode node, int target) {
         if(node == null) return false;
-        if(find(root, node, target - node.val)) return true;
         if(dfs(root, node.left, target)) return true;
         if(dfs(root, node.right, target)) return true;
+        if(find(root, node, target - node.val)) return true;
         return false;
     }
     public boolean findTarget(TreeNode root, int k) {
