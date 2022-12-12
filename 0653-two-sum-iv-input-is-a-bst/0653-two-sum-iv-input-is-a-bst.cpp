@@ -11,11 +11,12 @@
  */
 class Solution {
 public:
-    /*bool find(TreeNode* root, TreeNode* node, int k) {
-        if(!root || root == node) return false;
-        if(node->val == k) return true;
-        else if(node->val < k) return find(root->right, k);
-        else return find(root->left, k);
+    bool find(TreeNode* root, TreeNode* node, int k) {
+        if(!root) return false;
+        if(root->val < k) return find(root->right, node, k);
+        if(root->val > k) return find(root->left, node, k);
+        if(root == node) return false;
+        if(root->val == k) return true;
         return false;
     }
     bool dfs(TreeNode* root, TreeNode* node, int k) {
@@ -28,8 +29,8 @@ public:
     }
     bool findTarget(TreeNode* root, int k) {
         return dfs(root, root, k);
-    }*/
-    void dfs(TreeNode* node, unordered_map<int, int>& map) {
+    }
+    /*void dfs(TreeNode* node, unordered_map<int, int>& map) {
         if(!node) return;
         map[node->val]++;
         dfs(node->left, map);
@@ -49,5 +50,5 @@ public:
         unordered_map<int, int> map;
         dfs(root, map);
         return dfs2(root, map, k);
-    }
+    }*/
 };
