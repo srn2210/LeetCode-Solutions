@@ -25,7 +25,7 @@ public:
                 else {
                     res[x][y] = 1 + res[arr.first][arr.second];
                     queue.push(make_pair(x, y));
-                    if(res[arr.first][arr.second] == 0) vis[x][y] = true;
+                    if(res[arr.first][arr.second] == 0) vis[x][y];
                 }
             }
         }
