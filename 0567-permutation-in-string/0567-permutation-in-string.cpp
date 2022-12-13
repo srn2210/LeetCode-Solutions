@@ -3,7 +3,7 @@ public:
     bool checkInclusion(string s1, string s2) {
         int map[26];
         memset(map, 0, sizeof(map));
-        for(auto ch : s1) map[ch - 'a']++;
+        for(char ch : s1) map[ch - 'a']++;
         int left = 0;
         int right = 0;
         while(right < s2.length()) {
