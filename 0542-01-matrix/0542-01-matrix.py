@@ -9,15 +9,13 @@ class Solution:
         for i in range(m):
             for j in range(n):
                 if mat[i][j] == 0: continue
-                t = mat[i][j]
-                if j-1 >= 0: mat[i][j] = min(t, mat[i][j-1] + 1)
+                if j-1 >= 0: mat[i][j] = min(mat[i][j], mat[i][j-1] + 1)
                 if i-1 >= 0: mat[i][j] = min(mat[i][j], mat[i-1][j] + 1)
         
         for i in reversed(range(m)):
             for j in reversed(range(n)):
                 if mat[i][j] == 0: continue
-                t = mat[i][j]
-                if j+1 < n: mat[i][j] = min(t, mat[i][j+1] + 1)
+                if j+1 < n: mat[i][j] = min(mat[i][j], mat[i][j+1] + 1)
                 if i+1 < m: mat[i][j] = min(mat[i][j], mat[i+1][j] + 1)
         
         return mat
