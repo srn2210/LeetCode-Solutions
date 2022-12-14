@@ -13,8 +13,8 @@ class Solution {
 public:
     TreeNode* mergeTrees(TreeNode* root1, TreeNode* root2) {
         if(!root1 && !root2) return nullptr;
-        else if(!root1 && root2 != nullptr) return root2;
-        else if(root1 != nullptr && !root2) return root1;
+        else if(!root1 && root2) return root2;
+        else if(root1 && !root2) return root1;
         else {
             root1->val = root1->val + root2->val;
             root1->left = mergeTrees(root1->left, root2->left);
