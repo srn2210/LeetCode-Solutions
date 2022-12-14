@@ -10,5 +10,5 @@ class Solution:
         dp[index] = max(self.helper(nums, dp, index-1), nums[index] + self.helper(nums, dp, index-2))
         return dp[index]        
     def rob(self, nums: List[int]) -> int:
-        dp = [-1 for i in range(len(nums)+1)]
+        dp = [-1 for i in range(len(nums))]
         return self.helper(nums, dp, len(nums)-1)
