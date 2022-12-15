@@ -13,7 +13,7 @@ class NumArray {
     void update1(int i, int val) {
         while(i <= arr.length) {
             bit[i] += val;
-            i += (i & -i);
+            i += i & -i;
         }
     }
     
@@ -21,7 +21,7 @@ class NumArray {
         int ans = 0;
         while(i > 0) {
             ans += bit[i];
-            i -= (i & -i);
+            i -= i & -i;
         }
         return ans;
     }
