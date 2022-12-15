@@ -9,12 +9,10 @@ class Node:
 """
 
 class Solution:
-    def dfs(self, node: 'Optional[Node]') -> 'Optional[Node]':
-        if not node: return node
-        if node.left: node.left.next = node.right
-        if node.right and node.next: node.right.next = node.next.left
-        self.dfs(node.left)
-        self.dfs(node.right)
-        return node
     def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
-        return self.dfs(root)
+        if not root: return root
+        if root.left: root.left.next = root.right
+        if root.right and root.next: root.right.next = root.next.left
+        self.connect(root.left)
+        self.connect(root.right)
+        return root
