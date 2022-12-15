@@ -23,13 +23,13 @@ class Node {
 
 class Solution {
     public Node connect(Node root) {
+        if(root == null) return root;
         Queue<Node> queue = new LinkedList<>();
         queue.offer(root);
         while(!queue.isEmpty()) {
             int size = queue.size();
             while(size-- > 0) {
                 Node temp = queue.poll();
-                if(temp == null) continue;
                 if(size != 0) temp.next = queue.peek();
                 if(temp.left != null) queue.offer(temp.left);
                 if(temp.right != null) queue.offer(temp.right);
