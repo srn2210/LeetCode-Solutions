@@ -9,16 +9,12 @@ class Node:
 """
 
 class Solution:
+    def dfs(self, node: 'Optional[Node]') -> 'Optional[Node]':
+        if not node: return node
+        if node.left: node.left.next = node.right
+        if node.right and node.next: node.right.next = node.next.left
+        self.dfs(node.left)
+        self.dfs(node.right)
+        return node
     def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
-        if not root: return root
-        q = deque()
-        q.append(root)
-        while q:
-            size = len(q)
-            while size:
-                size -= 1
-                temp = q.popleft()
-                if size: temp.next = q[0]
-                if temp.left: q.append(temp.left)
-                if temp.right: q.append(temp.right)
-        return root
+        return self.dfs(root)
