@@ -1,38 +1,53 @@
 class NumArray {
-    int[] arr;
-    int[] bit;
+    class SegmentTree {
+        int[] seg;
+        int length;
+        SegmentTree(int[] arr) {
+            length = 4 * arr.length;
+            seg = new int[length];
+            buildTree(arr, 0, 0, arr.length-1);
+        }
+        void buildTree(int[] arr, int i, int lo, int hi) {
+            if(lo == hi) {
+                seg[i] = arr[lo];
+                return;
+            }
+            int mid = (hi + lo) / 2;
+            buildTree(arr, (2 * i) + 1, lo, mid);
+            buildTree(arr, (2 * i) + 2, mid + 1, hi);
+            seg[i] = seg[(2 * i) + 1] + seg[(2 * i) + 2];
+        }
+        int sum(int l, int r, int i, int segl, int segr) {
+            if(l > segr || r < segl) return 0;
+            if(l <= segl && r >= segr) return seg[i];
+            int mid = (segl + segr) / 2;
+            int left = sum(l, r, (2 * i) + 1, segl, mid);
+            int right = sum(l, r, (2 * i) + 2, mid + 1, segr);
+            return left + right;
+        }
+        int update(int l, int r, int i, int segl, int segr, int val) {
+            if(l > segr || r < segl) return seg[i];
+            if(segl == segr && segl == l) return seg[i] = val;
+            int mid = (segl + segr) / 2;
+            int left = update(l, r, (2 * i) + 1, segl, mid, val);
+            int right = update(l, r, (2 * i) + 2, mid + 1, segr, val);
+            return seg[i] = left + right;
+        }
+    }
+    SegmentTree tree;
+    int n;
     public NumArray(int[] nums) {
-        arr = new int[nums.length];
-        bit = new int[nums.length+1];
-        for(int i=0; i<nums.length; i++) arr[i] = nums[i];
-        for(int i=1; i<= nums.length; i++) {
-            update1(i, nums[i-1]);
-        }
-    }
-    
-    void update1(int i, int val) {
-        while(i <= arr.length) {
-            bit[i] += val;
-            i += i & -i;
-        }
-    }
-    
-    int sum(int i) {
-        int ans = 0;
-        while(i > 0) {
-            ans += bit[i];
-            i -= i & -i;
-        }
-        return ans;
+        n = nums.length;
+        tree = new SegmentTree(nums);
     }
     
     public void update(int index, int val) {
-        update1(index+1, val - arr[index]);
-        arr[index] = val;
+        tree.update(index, index, 0, 0, n-1, val);
+        return;
     }
     
     public int sumRange(int left, int right) {
-        return sum(right+1) - sum(left);
+        return tree.sum(left, right, 0, 0, n-1);
     }
 }
 
