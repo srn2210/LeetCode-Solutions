@@ -3,12 +3,12 @@ public:
     void backtrack(string s, vector<string>& res, int j) {
         res.push_back(s);
         for(int i=j; i<s.size(); i++) {
-            if(s[i] <= 'z' && s[i] >= 'a') {
+            if(s[i] >= 'a' && s[i] <= 'z') {
                 s[i] -= 32;
                 backtrack(s, res, i+1);
                 s[i] += 32;
             }
-            else if(s[i] <= 'Z' && s[i] >= 'A') {
+            else if(s[i] >= 'A' && s[i] <= 'Z') {
                 s[i] += 32;
                 backtrack(s, res, i+1);
                 s[i] -= 32;
