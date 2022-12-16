@@ -1,53 +1,41 @@
 class NumArray {
-    class SegmentTree {
-        int[] seg;
+    class FenwickTree {
+        int[] tree;
         int length;
-        SegmentTree(int[] arr) {
-            length = 4 * arr.length;
-            seg = new int[length];
-            buildTree(arr, 0, 0, arr.length-1);
+        FenwickTree(int[] arr) {
+            length = arr.length + 1;
+            tree = new int[length];
+            for(int i=1; i<length; i++)
+                update(i, arr[i-1]);
         }
-        void buildTree(int[] arr, int i, int lo, int hi) {
-            if(lo == hi) {
-                seg[i] = arr[lo];
-                return;
+        void update(int i, int val) {
+            for(int j=i; j<length; j += j & -j) {
+                tree[j] += val;
             }
-            int mid = (hi + lo) / 2;
-            buildTree(arr, (2 * i) + 1, lo, mid);
-            buildTree(arr, (2 * i) + 2, mid + 1, hi);
-            seg[i] = seg[(2 * i) + 1] + seg[(2 * i) + 2];
         }
-        int sum(int l, int r, int i, int segl, int segr) {
-            if(l > segr || r < segl) return 0;
-            if(l <= segl && r >= segr) return seg[i];
-            int mid = (segl + segr) / 2;
-            int left = sum(l, r, (2 * i) + 1, segl, mid);
-            int right = sum(l, r, (2 * i) + 2, mid + 1, segr);
-            return left + right;
-        }
-        int update(int l, int r, int i, int segl, int segr, int val) {
-            if(l > segr || r < segl) return seg[i];
-            if(segl == segr && segl == l) return seg[i] = val;
-            int mid = (segl + segr) / 2;
-            int left = update(l, r, (2 * i) + 1, segl, mid, val);
-            int right = update(l, r, (2 * i) + 2, mid + 1, segr, val);
-            return seg[i] = left + right;
+        int sum(int i) {
+            int ans = 0;
+            for(int j=i; j>0; j -= j & -j) {
+                ans += tree[j];
+            }
+            return ans;
         }
     }
-    SegmentTree tree;
-    int n;
+    FenwickTree tree;
+    int[] og;
     public NumArray(int[] nums) {
-        n = nums.length;
-        tree = new SegmentTree(nums);
+        og = nums;
+        tree = new FenwickTree(nums);
     }
     
     public void update(int index, int val) {
-        tree.update(index, index, 0, 0, n-1, val);
+        tree.update(index+1, val - og[index]);
+        og[index] = val;
         return;
     }
     
     public int sumRange(int left, int right) {
-        return tree.sum(left, right, 0, 0, n-1);
+        return tree.sum(right+1) - tree.sum(left);
     }
 }
 
