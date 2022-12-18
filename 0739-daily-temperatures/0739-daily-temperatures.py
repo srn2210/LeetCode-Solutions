@@ -3,13 +3,13 @@ class Solution:
         st = deque()
         res = [0 for i in range(len(temperatures))]
         for i in range(len(temperatures)):
-            if st and st[-1][0] >= temperatures[i]:
-                st.append([temperatures[i], i])
+            if st and temperatures[st[-1]] >= temperatures[i]:
+                st.append(i)
             elif st:
-                while st and st[-1][0] < temperatures[i]:
-                    temp = st.pop()
-                    res[temp[1]] = i - temp[1]
-                st.append([temperatures[i], i])
+                while st and temperatures[st[-1]] < temperatures[i]:
+                    res[st[-1]] = i - st[-1]
+                    st.pop()
+                st.append(i)
             else:
-                st.append([temperatures[i], i])
+                st.append(i)
         return res
