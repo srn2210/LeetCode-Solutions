@@ -20,6 +20,7 @@ class Solution {
         void union(int i, int j) {
             int root1 = find(i);
             int root2 = find(j);
+            if(root1 == root2) return;
             if(sz[root1] < sz[root2]) {
                 arr[root1] = arr[root2];
                 sz[root2] += sz[root1];
