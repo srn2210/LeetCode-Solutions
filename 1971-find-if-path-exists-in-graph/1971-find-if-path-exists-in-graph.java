@@ -2,9 +2,9 @@ class Solution {
     boolean dfs(List<Integer>[] adj, int src, int dest, Set<Integer> map) {
         if(src == dest) return true;
         map.add(src);
-        for(int i=0; i<adj[src].size(); i++) {
-            if(map.contains(adj[src].get(i))) continue;
-            if(dfs(adj, adj[src].get(i), dest, map)) return true;
+        for(int i : adj[src]) {
+            if(i == dest) return true;
+            if(!map.contains(i) && dfs(adj, i, dest, map)) return true;
         }
         return false;
     }
