@@ -1,11 +1,12 @@
 class TimeMap {
     Map<String, TreeMap<Integer, String>> map;
+    TreeMap<Integer, String> temp;
     public TimeMap() {
         map = new HashMap<>();
     }
     
     public void set(String key, String value, int timestamp) {
-        TreeMap<Integer, String> temp = map.getOrDefault(key, null);
+        temp = map.getOrDefault(key, null);
         if(temp != null) {
             temp.put(timestamp, value);
         }
@@ -17,7 +18,7 @@ class TimeMap {
     }
     
     public String get(String key, int timestamp) {
-        TreeMap<Integer, String> temp = map.getOrDefault(key, null);
+        temp = map.getOrDefault(key, null);
         if(temp != null) {
             Integer k = temp.floorKey(timestamp);
             if(k != null) return temp.get(k);
