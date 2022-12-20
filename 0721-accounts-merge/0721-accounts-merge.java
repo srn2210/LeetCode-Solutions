@@ -46,8 +46,7 @@ class Solution {
         }
         List<List<String>> res = new ArrayList<>();
         for(int i : obj.arr) {
-            List<String> temp = new ArrayList<>();
-            map2.put(obj.find(i), temp);
+            map2.put(obj.find(i), new ArrayList<>());
         }
         for(Map.Entry<String, Integer> entry : map.entrySet()) {
             int index = entry.getValue();
