@@ -21,7 +21,6 @@ class TimeMap {
         if(temp != null) {
             Integer k = temp.floorKey(timestamp);
             if(k != null) return temp.get(k);
-            return "";
         }
         return "";
     }
