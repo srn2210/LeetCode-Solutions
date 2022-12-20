@@ -55,7 +55,6 @@ class Solution {
         }
         for(Map.Entry<Integer, List<String>> entry : map2.entrySet()) {
             res.add(entry.getValue());
-            //Collections.sort(res.get(res.size()-1));
             res.get(res.size()-1).add(0, accounts.get(entry.getKey()).get(0));
         }
         return res;
