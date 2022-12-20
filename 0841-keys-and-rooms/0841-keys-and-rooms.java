@@ -14,8 +14,7 @@ class Solution {
             }
             vis[t] = true;
         }
-        boolean ans = true;
-        for(boolean b : vis) ans &= b;
-        return ans;
+        for(boolean b : vis) if(!b) return false;
+        return true;
     }
 }
