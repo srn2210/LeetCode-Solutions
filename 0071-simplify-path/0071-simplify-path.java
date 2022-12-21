@@ -13,8 +13,10 @@ class Solution {
                 continue;
             }
             else if(s.equals(".")) continue;
-            res.append(s);
-            res.append('/');
+            else {
+                res.append(s);
+                res.append('/');
+            }
         }
         if(res.length() > 1) res.deleteCharAt(res.length()-1);
         return res.toString();
