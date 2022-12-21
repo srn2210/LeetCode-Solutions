@@ -1,18 +1,31 @@
 class Solution {
-    boolean dfs(Map<Integer, List<Integer>> map, int src, int col, int[] color) {
-        if(!map.containsKey(src)) return true;
-        color[src] = col;
-        List<Integer> list = map.get(src);
-        for(int i : list) {
-            if(color[src] == color[i]) return false;
-            if(color[i] == -1 && !dfs(map, i, 1 - col, color)) return false;
+    boolean dfs(Map<Integer, List<Integer>> map, int src, int col, Set<Integer> set1, Set<Integer> set2) {
+        if(!map.containsKey(src)) {
+            set1.add(src);
+            return true;
+        }
+        if(col == 0) set1.add(src);
+        if(col == 1) set2.add(src);
+        if(set1.contains(src)) {
+            List<Integer> list = map.get(src);
+            for(int i : list) {
+                if(set1.contains(i)) return false;
+                if(!set2.contains(i) && !dfs(map, i, 1-col, set1, set2)) return false;
+            }
+        }
+        if(set2.contains(src)) {
+            List<Integer> list = map.get(src);
+            for(int i : list) {
+                if(set2.contains(i)) return false;
+                if(!set1.contains(i) && !dfs(map, i, 1-col, set1, set2)) return false;
+            }
         }
         return true;
     }
     public boolean possibleBipartition(int n, int[][] dislikes) {
         Map<Integer, List<Integer>> map = new HashMap<>();
-        int[] color = new int[n+1];
-        Arrays.fill(color, -1);
+        Set<Integer> set1 = new HashSet<>();
+        Set<Integer> set2 = new HashSet<>();
         for(int[] i : dislikes) {
             if(!map.containsKey(i[0])) {
                 map.put(i[0], new ArrayList<>());
@@ -26,8 +39,8 @@ class Solution {
             temp.add(i[0]);
         }
         for(int j=1; j<=n; j++) {
-            if(color[j] == -1) {
-                if(!dfs(map, j, 0, color)) return false;
+            if(!set1.contains(j) && !set2.contains(j)) {
+                if(!dfs(map, j, 0, set1, set2)) return false;
             }
         }
         return true;
