@@ -1,29 +1,38 @@
 class Solution {
-    boolean dfs(Map<Integer, List<Integer>> map, int src, int col, Set<Integer> set1, Set<Integer> set2) {
-        if(!map.containsKey(src)) {
-            set1.add(src);
-            return true;
-        }
-        if(col == 0) set1.add(src);
-        if(col == 1) set2.add(src);
-        if(set1.contains(src)) {
-            for(int i : map.get(src)) {
-                if(set1.contains(i)) return false;
-                if(!set2.contains(i) && !dfs(map, i, 1-col, set1, set2)) return false;
+    class UnionFind {
+        int[] arr;
+        int[] size;
+        UnionFind(int n) {
+            arr = new int[n];
+            size = new int[n];
+            for(int i=0; i<n; i++) {
+                arr[i] = i;
+                size[i] = 1;
             }
         }
-        if(set2.contains(src)) {
-            for(int i : map.get(src)) {
-                if(set2.contains(i)) return false;
-                if(!set1.contains(i) && !dfs(map, i, 1-col, set1, set2)) return false;
+        int find(int i) {
+            if(i == arr[i]) return i;
+            return arr[i] = find(arr[i]);
+        }
+        boolean isConnected(int i, int j) {
+            return find(i) == find(j);
+        }
+        void union(int i, int j) {
+            int x = find(i);
+            int y = find(j);
+            if(size[x] < size[y]) {
+                arr[x] = arr[y];
+                size[y] += size[x];
+            }
+            else {
+                arr[y] = arr[x];
+                size[x] += size[y];
             }
         }
-        return true;
     }
     public boolean possibleBipartition(int n, int[][] dislikes) {
         Map<Integer, List<Integer>> map = new HashMap<>();
-        Set<Integer> set1 = new HashSet<>();
-        Set<Integer> set2 = new HashSet<>();
+        UnionFind obj = new UnionFind(n+1);
         for(int[] i : dislikes) {
             if(!map.containsKey(i[0])) {
                 map.put(i[0], new ArrayList<>());
@@ -36,9 +45,11 @@ class Solution {
             temp = map.get(i[1]);
             temp.add(i[0]);
         }
-        for(int j=1; j<=n; j++) {
-            if(!set1.contains(j) && !set2.contains(j)) {
-                if(!dfs(map, j, 0, set1, set2)) return false;
+        for(int i=1; i<=n; i++) {
+            if(map.get(i) == null) continue;
+            for(int j : map.get(i)) {
+                if(obj.find(i) == obj.find(j)) return false;
+                obj.union(map.get(i).get(0), j);
             }
         }
         return true;
