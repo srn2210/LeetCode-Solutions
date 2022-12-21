@@ -31,17 +31,12 @@ class Solution {
         }
     }
     public boolean possibleBipartition(int n, int[][] dislikes) {
-        Map<Integer, List<Integer>> map = new HashMap<>();
+        List<List<Integer>> map = new ArrayList<>();
+        for(int i=0; i<=n; i++) map.add(new ArrayList<>());
         UnionFind obj = new UnionFind(n+1);
         for(int[] i : dislikes) {
-            if(!map.containsKey(i[0])) {
-                map.put(i[0], new ArrayList<>());
-            }
             List<Integer> temp = map.get(i[0]);
             temp.add(i[1]);
-            if(!map.containsKey(i[1])) {
-                map.put(i[1], new ArrayList<>());
-            }
             temp = map.get(i[1]);
             temp.add(i[0]);
         }
