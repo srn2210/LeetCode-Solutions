@@ -35,10 +35,8 @@ class Solution {
         for(int i=0; i<=n; i++) map.add(new ArrayList<>());
         UnionFind obj = new UnionFind(n+1);
         for(int[] i : dislikes) {
-            List<Integer> temp = map.get(i[0]);
-            temp.add(i[1]);
-            temp = map.get(i[1]);
-            temp.add(i[0]);
+            map.get(i[0]).add(i[1]);
+            map.get(i[1]).add(i[0]);
         }
         for(int i=1; i<=n; i++) {
             if(map.get(i) == null) continue;
