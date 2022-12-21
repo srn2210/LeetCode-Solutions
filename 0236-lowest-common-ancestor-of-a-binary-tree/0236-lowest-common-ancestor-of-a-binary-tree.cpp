@@ -10,15 +10,15 @@
 class Solution {
 public:
     TreeNode* ans = nullptr;
-    bool flag = true;
+    //bool flag = true;
     bool dfs(TreeNode* root, TreeNode* p, TreeNode* q) {
         if(root == nullptr) return false;
         bool left = dfs(root->left, p, q);
         bool right = dfs(root->right, p, q);
-        if(((left && right) || (left && (root == p || root == q)) || (right && (root == p || root == q))) && flag) {
-            cout<<root->val<<endl;
+        if(((left && right) || (left && (root == p || root == q)) || (right && (root == p || root == q))) ) {
+            //cout<<root->val<<endl;
             ans = root;
-            flag = false;
+            //flag = false;
         }
         if(root == p || root == q) {
             return true;
