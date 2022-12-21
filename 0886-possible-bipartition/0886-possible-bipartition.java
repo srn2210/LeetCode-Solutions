@@ -7,15 +7,13 @@ class Solution {
         if(col == 0) set1.add(src);
         if(col == 1) set2.add(src);
         if(set1.contains(src)) {
-            List<Integer> list = map.get(src);
-            for(int i : list) {
+            for(int i : map.get(src)) {
                 if(set1.contains(i)) return false;
                 if(!set2.contains(i) && !dfs(map, i, 1-col, set1, set2)) return false;
             }
         }
         if(set2.contains(src)) {
-            List<Integer> list = map.get(src);
-            for(int i : list) {
+            for(int i : map.get(src)) {
                 if(set2.contains(i)) return false;
                 if(!set1.contains(i) && !dfs(map, i, 1-col, set1, set2)) return false;
             }
