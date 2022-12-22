@@ -1,7 +1,7 @@
 class Solution {
-    int tsize(int src, int[] arr, Map<Integer, Set<Integer>> list, int[] sizes, int root) {
+    int tsize(int src, int[] arr, List<Set<Integer>> list, int[] sizes, int root) {
         if(sizes[src] != 0) return -1;
-        if(!list.containsKey(src) || list.get(src).size() == 0) return 0;
+        if(list.get(src).size() == 0) return 0;
         int sz = 0;
         for(int i : list.get(src)) {
             if(i != root) {
@@ -12,7 +12,7 @@ class Solution {
         sizes[src] = sz;
         return sz;
     }
-    void dfs(int src, int[] arr, Map<Integer, Set<Integer>> list, int n, int root, int[] sizes) {
+    void dfs(int src, int[] arr, List<Set<Integer>> list, int n, int root, int[] sizes) {
         if(arr[src] != 0) return;
         int in = sizes[src] + 1;
         int out = n - in;
@@ -25,18 +25,17 @@ class Solution {
         return;
     }
     public int[] sumOfDistancesInTree(int n, int[][] edges) {
-        Map<Integer, Set<Integer>> list = new HashMap<>();
+        List<Set<Integer>> list = new ArrayList<>();
         int[] arr = new int[n];
         int[] sizes = new int[n];
+        for(int i=0; i<n; i++) list.add(new HashSet<>());
         for(int[] edge : edges) {
-            if(!list.containsKey(edge[0])) list.put(edge[0], new HashSet<>());
-            if(!list.containsKey(edge[1])) list.put(edge[1], new HashSet<>());
             list.get(edge[0]).add(edge[1]);
             list.get(edge[1]).add(edge[0]);
         }
         tsize(0, arr, list, sizes, -1);
         Queue<Integer> queue = new LinkedList<>();
-        if(list.containsKey(0)) for(int l : list.get(0)) queue.offer(l);
+        for(int l : list.get(0)) queue.offer(l);
         int cnt = 1;
         Set<Integer> set = new HashSet<>();
         set.add(0);
@@ -52,10 +51,8 @@ class Solution {
             }
             cnt++;
         }
-        if(list.containsKey(0)) {
-            for(int l : list.get(0)) {
-                dfs(l, arr, list, n, 0, sizes);
-            }
+        for(int l : list.get(0)) {
+            dfs(l, arr, list, n, 0, sizes);
         }
         return arr;
     }
