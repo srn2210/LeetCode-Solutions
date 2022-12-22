@@ -1,10 +1,7 @@
 class Solution {
     int tsize(int src, int[] arr, Map<Integer, List<Integer>> list, Map<Integer, List<Integer>> size, Set<Integer> set, int[] sizes) {
         if(set.contains(src)) return -1;
-        if(!list.containsKey(src) || list.get(src).size() == 0) {
-            //size.get(src).add(0);
-            return 0;
-        }
+        if(!list.containsKey(src) || list.get(src).size() == 0) return 0;
         set.add(src);
         int sz = 0;
         for(int i=0; i<list.get(src).size(); i++) {
@@ -16,12 +13,6 @@ class Solution {
         return sz;
     }
     void dfs(int src, int[] arr, Map<Integer, List<Integer>> list, Map<Integer, List<Integer>> size, int n, int root, Set<Integer> set, int[] sizes) {
-        /*if(list.get(src).size() == 0) {
-            int out = n - size.get(src).get(size.get(src).size() - 1);
-            int in = size.get(src).get(size.get(src).size() - 1);
-            return;
-        }*/
-        //int out = size.get(root).get(size.get(root).size()-1) - size.get(src).get(size.get(src).size()-1);
         if(set.contains(src)) return;
         set.add(src);
         int in = sizes[src] + 1;
@@ -38,10 +29,6 @@ class Solution {
         Set<Integer> set = new HashSet<>();
         int[] arr = new int[n];
         int[] sizes = new int[n];
-        /*for(int i=0; i<n; i++) {
-            list.add(new ArrayList<>());
-            size.add(new ArrayList<>());
-        }*/
         for(int[] edge : edges) {
             if(!list.containsKey(edge[0])) list.put(edge[0], new ArrayList<>());
             if(!list.containsKey(edge[1])) list.put(edge[1], new ArrayList<>());
@@ -50,7 +37,6 @@ class Solution {
             list.get(edge[0]).add(edge[1]);
             list.get(edge[1]).add(edge[0]);
         }
-        //int root = 0;
         tsize(0, arr, list, size, set, sizes);
         set.clear();
         Queue<Integer> queue = new LinkedList<>();
