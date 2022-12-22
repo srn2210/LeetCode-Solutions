@@ -1,21 +1,21 @@
 class Solution {
-    int tsize(int src, int[] arr, List<List<Integer>> list, List<List<Integer>> size, Set<Integer> set) {
+    int tsize(int src, int[] arr, Map<Integer, List<Integer>> list, Map<Integer, List<Integer>> size, Set<Integer> set, int[] sizes) {
         if(set.contains(src)) return -1;
-        if(list.get(src).size() == 0) {
-            size.get(src).add(0);
+        if(!list.containsKey(src) || list.get(src).size() == 0) {
+            //size.get(src).add(0);
             return 0;
         }
         set.add(src);
         int sz = 0;
         for(int i=0; i<list.get(src).size(); i++) {
-            int t = 1 + tsize(list.get(src).get(i), arr, list, size, set);
+            int t = 1 + tsize(list.get(src).get(i), arr, list, size, set, sizes);
             sz += t;
             size.get(src).add(t);
         }
-        size.get(src).add(sz);
+        sizes[src] = sz;
         return sz;
     }
-    void dfs(int src, int[] arr, List<List<Integer>> list, List<List<Integer>> size, int n, int root, Set<Integer> set) {
+    void dfs(int src, int[] arr, Map<Integer, List<Integer>> list, Map<Integer, List<Integer>> size, int n, int root, Set<Integer> set, int[] sizes) {
         /*if(list.get(src).size() == 0) {
             int out = n - size.get(src).get(size.get(src).size() - 1);
             int in = size.get(src).get(size.get(src).size() - 1);
@@ -24,40 +24,42 @@ class Solution {
         //int out = size.get(root).get(size.get(root).size()-1) - size.get(src).get(size.get(src).size()-1);
         if(set.contains(src)) return;
         set.add(src);
-        int in = size.get(src).get(size.get(src).size() - 1) + 1;
+        int in = sizes[src] + 1;
         int out = n - in;
         arr[src] = arr[root] - in + out;
         for(int i=0; i<list.get(src).size(); i++) {
-            dfs(list.get(src).get(i), arr, list, size, n, src, set);
+            dfs(list.get(src).get(i), arr, list, size, n, src, set, sizes);
         }
         return;
     }
     public int[] sumOfDistancesInTree(int n, int[][] edges) {
-        List<List<Integer>> list = new ArrayList<>();
-        List<List<Integer>> size = new ArrayList<>();
+        Map<Integer, List<Integer>> list = new HashMap<>();
+        Map<Integer, List<Integer>> size = new HashMap<>();
         Set<Integer> set = new HashSet<>();
         int[] arr = new int[n];
-        for(int i=0; i<n; i++) {
+        int[] sizes = new int[n];
+        /*for(int i=0; i<n; i++) {
             list.add(new ArrayList<>());
             size.add(new ArrayList<>());
-            //set.add(i);
-        }
+        }*/
         for(int[] edge : edges) {
+            if(!list.containsKey(edge[0])) list.put(edge[0], new ArrayList<>());
+            if(!list.containsKey(edge[1])) list.put(edge[1], new ArrayList<>());
+            if(!size.containsKey(edge[0])) size.put(edge[0], new ArrayList<>());
+            if(!size.containsKey(edge[1])) size.put(edge[1], new ArrayList<>());
             list.get(edge[0]).add(edge[1]);
             list.get(edge[1]).add(edge[0]);
-            //set.remove(edge[1]);
         }
-        int root = 0;
-        tsize(root, arr, list, size, set);
+        //int root = 0;
+        tsize(0, arr, list, size, set, sizes);
         set.clear();
-        //System.out.println(size);
         Queue<Integer> queue = new LinkedList<>();
-        for(int l : list.get(root)) queue.offer(l);
+        if(list.containsKey(0)) for(int l : list.get(0)) queue.offer(l);
         int cnt = 1;
-        set.add(root);
+        set.add(0);
         while(!queue.isEmpty()) {
             int len = queue.size();
-            arr[root] += len * cnt;
+            arr[0] += len * cnt;
             while(len-- > 0) {
                 int s = queue.poll();
                 set.add(s);
@@ -68,11 +70,12 @@ class Solution {
             cnt++;
         }
         set.clear();
-        set.add(root);
-        for(int l : list.get(root)) {
-            dfs(l, arr, list, size, n, root, set);
+        set.add(0);
+        if(list.containsKey(0)) {
+            for(int l : list.get(0)) {
+                dfs(l, arr, list, size, n, 0, set, sizes);
+            }
         }
-        //System.out.println(arr[root]);
         return arr;
     }
 }
