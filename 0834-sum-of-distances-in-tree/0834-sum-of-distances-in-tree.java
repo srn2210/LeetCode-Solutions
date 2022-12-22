@@ -1,6 +1,6 @@
 class Solution {
     int tsize(int src, int[] arr, List<Set<Integer>> list, int[] sizes, int root) {
-        if(sizes[src] != 0) return -1;
+        //if(sizes[src] != 0) return -1;
         if(list.get(src).size() == 0) return 0;
         int sz = 0;
         for(int i : list.get(src)) {
@@ -13,7 +13,7 @@ class Solution {
         return sz;
     }
     void dfs(int src, int[] arr, List<Set<Integer>> list, int n, int root, int[] sizes) {
-        if(arr[src] != 0) return;
+        //if(arr[src] != 0) return;
         int in = sizes[src] + 1;
         int out = n - in;
         arr[src] = arr[root] - in + out;
