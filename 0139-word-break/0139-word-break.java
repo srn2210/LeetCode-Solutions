@@ -15,9 +15,9 @@ class Solution {
                 return end;
             }
         }
-        Node root = new Node();
+        Node root;
         Trie() {
-            
+            root = new Node();
         }
         void insertStr(String s) {
             Node node = root;
@@ -42,7 +42,6 @@ class Solution {
                 if(node.isEnd()) {
                     if(i == s.length()-1) return true;
                     st.add(i);
-                    //System.out.println()
                 }
                 if(i == s.length()-1 && !st.isEmpty()) {
                     node = dict.root;
