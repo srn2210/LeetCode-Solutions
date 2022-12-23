@@ -9,7 +9,7 @@ public:
                 if(dp[j]) continue;
                 string t = s.substr(i, j-i+1);
                 if(set.find(t) != set.end()) {
-                    if(i-1 >= 0 && dp[i-1]) dp[j] = true;
+                    if(i-1 >= 0 and dp[i-1]) dp[j] = true;
                     else if(i == 0) dp[j] = true;
                 }
             }
