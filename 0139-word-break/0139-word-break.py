@@ -1,7 +1,6 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         book = set(wordDict)
-        #for word in wordDict: book.add(word)
         dp = [False for i in range(len(s))]
         for i in range(len(s)):
             for j in range(i, len(s)):
