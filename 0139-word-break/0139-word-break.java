@@ -34,26 +34,26 @@ class Solution {
             dict.insertStr(ss);
         }
         Trie.Node node = dict.root;
-        Set<Integer> st = new LinkedHashSet<>();
+        Set<Integer> set = new LinkedHashSet<>();
         for(int i=0; i<s.length(); i++) {
             char ch = s.charAt(i);
             if(node.arr[ch-'a'] != null) {
                 node = node.arr[ch-'a'];
                 if(node.isEnd()) {
                     if(i == s.length()-1) return true;
-                    st.add(i);
+                    set.add(i);
                 }
-                if(i == s.length()-1 && !st.isEmpty()) {
+                if(i == s.length()-1 && !set.isEmpty()) {
                     node = dict.root;
-                    i = st.iterator().next();
-                    st.remove(st.iterator().next());
+                    i = set.iterator().next();
+                    set.remove(set.iterator().next());
                 }
                 else if(i == s.length()-1) return false;
             }
-            else if(!st.isEmpty()) {
+            else if(!set.isEmpty()) {
                 node = dict.root;
-                i = st.iterator().next();
-                st.remove(st.iterator().next());
+                i = set.iterator().next();
+                set.remove(set.iterator().next());
             }
             else return false;
         }
