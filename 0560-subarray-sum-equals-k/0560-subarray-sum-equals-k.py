@@ -1,6 +1,6 @@
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
-        ref = defaultdict()
+        ref = {}
         ref[0] = 1
         total = 0
         count = 0
