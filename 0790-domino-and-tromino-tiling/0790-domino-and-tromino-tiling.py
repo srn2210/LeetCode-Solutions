@@ -15,7 +15,7 @@ class Solution:
         else:
             ans += self.solve(n, x+2, y+1, dp)
             ans += self.solve(n, x+2, y, dp)
-        dp[x][y] = ans % 1000000007
+        dp[x][y] = ans % int(1e9+7)
         return dp[x][y]
     def numTilings(self, n: int) -> int:
         dp = [[-1 for i in range(n+1)] for j in range(n+1)]
