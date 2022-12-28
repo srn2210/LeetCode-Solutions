@@ -6,7 +6,7 @@ class Solution {
         }
         while(k-- > 0) {
             int t = pq.poll();
-            pq.add(t - (int)Math.floor(t/2));
+            pq.add(t - t/2);
         }
         int ans = 0;
         while(!pq.isEmpty()) {
