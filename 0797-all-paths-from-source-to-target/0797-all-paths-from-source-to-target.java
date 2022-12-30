@@ -14,9 +14,9 @@ class Solution {
     }
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
         List<List<Integer>> res = new ArrayList<>();
-        for(int i=0; i<graph[0].length; i++) {
-            dfs(graph[0][i], graph, new ArrayList<>(List.of(0, graph[0][i])), res, graph.length-1);
-        }
+        List<Integer> list = new ArrayList<>();
+        list.add(0);
+        dfs(0, graph, list, res, graph.length-1);
         return res;
     }
 }
