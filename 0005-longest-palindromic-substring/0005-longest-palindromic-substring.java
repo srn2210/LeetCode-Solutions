@@ -8,19 +8,16 @@ class Solution {
             return dp[i][j] = true;
         }
         if(dp[i][j] != null) return dp[i][j];
-        boolean one = solve(s, dp, i+1, j-1) && s.charAt(i) == s.charAt(j);
-        boolean two = solve(s, dp, i, j-1) && s.charAt(i) == s.charAt(j);
-        boolean three = solve(s, dp, i+1, j) && s.charAt(i) == s.charAt(j);
+        boolean one = dp[i][j] = solve(s, dp, i+1, j-1) && s.charAt(i) == s.charAt(j);
+        boolean two = dp[i][j-1] = solve(s, dp, i, j-1);
+        boolean three = dp[i+1][j] = solve(s, dp, i+1, j);
         if(one && j-i+1 > ans.length()) ans = s.substring(i, j+1);
         if(two && j-i > ans.length()) {
             ans = s.substring(i, j);
-            dp[i][j-1] = true;
         }
         if(three && j-i > ans.length()) {
             ans = s.substring(i+1, j);
-            dp[i+1][j] = true;
         }
-        dp[i][j] = one;
         return dp[i][j];
     }
     public String longestPalindrome(String s) {
