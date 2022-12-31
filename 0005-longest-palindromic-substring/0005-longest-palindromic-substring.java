@@ -1,41 +1,25 @@
 class Solution {
+    String ans;
+    boolean solve(String s, Boolean[][] dp, int i, int j) {
+        if(i > j) return dp[i][j] = false;
+        if(i == j) return dp[i][j] = true;
+        if(i+1 == j && s.charAt(i) == s.charAt(j)) {
+            if(j-i+1 > ans.length()) ans = s.substring(i, j+1);
+            return dp[i][j] = true;
+        }
+        if(dp[i][j] != null) return dp[i][j];
+        boolean one = solve(s, dp, i+1, j-1) && s.charAt(i) == s.charAt(j);
+        boolean two = solve(s, dp, i, j-1);
+        boolean three = solve(s, dp, i+1, j);
+        if(one && j-i+1 > ans.length()) ans = s.substring(i, j+1);
+        if(two && j-i > ans.length()) ans = s.substring(i, j);
+        if(three && j-i > ans.length()) ans = s.substring(i+1, j+1);
+        return dp[i][j] = one;
+    }
     public String longestPalindrome(String s) {
-        String ans = String.valueOf(s.charAt(0));
-        for(int i=0; i<s.length(); i++) {
-            int j = i-1;
-            int k = i+1;
-            StringBuilder str = new StringBuilder();
-            str.append(s.charAt(i));            
-            while(j >= 0 && k < s.length()) {
-                if(s.charAt(j) == s.charAt(k)) {
-                    str.append(s.charAt(k));
-                    str.insert(0, s.charAt(j));
-                    if(str.length() > ans.length()) {
-                        ans = str.toString();
-                    }
-                    j--;
-                    k++;
-                }
-                else break;
-            }
-        }
-        for(int i=0; i<s.length(); i++) {
-            int k = i;
-            int j = i-1;
-            StringBuilder str = new StringBuilder();
-            while(j >= 0 && k < s.length()) {
-                if(s.charAt(k) == s.charAt(j)) {
-                    str.append(s.charAt(k));
-                    str.insert(0, s.charAt(j));
-                    if(str.length() > ans.length()) {
-                        ans = str.toString();
-                    }
-                    j--;
-                    k++;
-                }
-                else break;
-            }
-        }
+        ans = String.valueOf(s.charAt(0));
+        Boolean[][] dp = new Boolean[s.length()][s.length()];
+        solve(s, dp, 0, s.length()-1);
         return ans;
     }
 }
