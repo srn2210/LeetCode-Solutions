@@ -10,8 +10,7 @@ class Solution {
                 pq.add(avail.poll());
             }
             if(!pq.isEmpty()) {
-                w += pq.peek()[1];
-                pq.poll();
+                w += pq.poll()[1];
             }
         }
         return w;
