@@ -40,7 +40,6 @@ class RangeFreqQuery {
     public RangeFreqQuery(int[] arr) {
         len = arr.length-1;
         obj = new SegmentTree(arr);
-        //System.out.println(Arrays.toString(obj.seg));
     }
     
     public int query(int left, int right, int value) {
