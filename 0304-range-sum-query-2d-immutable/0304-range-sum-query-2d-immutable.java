@@ -18,7 +18,6 @@ class NumMatrix {
                 presum[i][j] = matrix[i][j] + presum[i-1][j] + presum[i][j-1] - presum[i-1][j-1];
             }
         }
-        //for(int[] i : presum) System.out.println(Arrays.toString(i));
     }
     
     public int sumRegion(int row1, int col1, int row2, int col2) {
