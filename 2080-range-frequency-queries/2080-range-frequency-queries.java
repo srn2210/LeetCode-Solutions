@@ -2,24 +2,21 @@ class RangeFreqQuery {
     
     class SegmentTree {
         Map<Integer, Integer>[] seg;
-        int[] arr;
-        SegmentTree(int[] arrcpy) {
-            arr = new int[arrcpy.length];
-            System.arraycopy(arrcpy, 0, arr, 0, arr.length);
+        SegmentTree(int[] arr) {
             seg = new Map[4 * arr.length];
             for(int i=0; i<seg.length; i++) {
                 seg[i] = new HashMap<>();
             }
-            buildTree(0, 0, arrcpy.length-1);
+            buildTree(0, 0, arr.length-1, arr);
         }
-        void buildTree(int idx, int left, int right) {
+        void buildTree(int idx, int left, int right, int[] arr) {
             if(left == right) {
                 seg[idx].put(arr[left], seg[idx].getOrDefault(arr[left], 0) + 1);
                 return;
             }
             int mid = left + (right - left) / 2;
-            buildTree(2 * idx + 1, left, mid);
-            buildTree(2 * idx + 2, mid + 1, right);
+            buildTree(2 * idx + 1, left, mid, arr);
+            buildTree(2 * idx + 2, mid + 1, right, arr);
             for(Map.Entry<Integer, Integer> entry : seg[2 * idx + 1].entrySet()) {
                 seg[idx].put(entry.getKey(), seg[idx].getOrDefault(entry.getKey(), 0) + entry.getValue());
             }
