@@ -1,6 +1,6 @@
 class RangeFreqQuery:
-    arr1 = []
-    m = dict()
+    #arr1 = []
+    #m = dict()
     def __init__(self, arr: List[int]):
         self.arr1 = arr
         self.m = dict()
@@ -13,7 +13,7 @@ class RangeFreqQuery:
         if value not in self.m: return 0
         one = self.bSearch(0, len(self.m[value])-1, self.m[value], left)
         two = self.bSearch(0, len(self.m[value])-1, self.m[value], right)
-        if one < 0 and two < 0 and one == two: return 0
+        #if one < 0 and two < 0 and one == two: return 0
         one = -one-1 if one < 0 else one
         two = -two-2 if two < 0 else two
         return two - one + 1
