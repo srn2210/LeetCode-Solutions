@@ -11,8 +11,6 @@ class Solution:
             for j in range(m+1, len(matrix)-m):
                 res.append(matrix[j][len(matrix[0])-n-1])
             
-            #print(res)
-            
             if m != len(matrix)-m-1:
                 for j in reversed(range(n, len(matrix[0])-n-1)):
                     res.append(matrix[len(matrix)-m-1][j])
