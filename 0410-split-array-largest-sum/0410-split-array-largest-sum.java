@@ -1,8 +1,6 @@
 class Solution {
     int solve(int[] curr, int idx, int[] nums, int k, int[][] dp) {
-        if(k == 1) {
-            return /*dp[idx][k] = */curr[nums.length] - curr[idx];
-        }
+        if(k == 1) return curr[nums.length] - curr[idx];
         if(dp[idx][k] != Integer.MAX_VALUE) return dp[idx][k];
         int ans = Integer.MAX_VALUE;
         int sum = 0;
