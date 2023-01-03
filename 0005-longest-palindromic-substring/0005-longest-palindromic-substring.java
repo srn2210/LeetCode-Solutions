@@ -12,8 +12,8 @@ class Solution {
         dp[i][j-1] = solve(s, dp, i, j-1);
         dp[i+1][j] = solve(s, dp, i+1, j);
         if(dp[i][j] && j-i+1 > ans.length()) ans = s.substring(i, j+1);
-        if(dp[i][j-1] && j-i > ans.length()) ans = s.substring(i, j);
-        if(dp[i+1][j] && j-i > ans.length()) ans = s.substring(i+1, j);
+        //if(dp[i][j-1] && j-i > ans.length()) ans = s.substring(i, j);
+        //if(dp[i+1][j] && j-i > ans.length()) ans = s.substring(i+1, j);
         return dp[i][j];
     }
     public String longestPalindrome(String s) {
