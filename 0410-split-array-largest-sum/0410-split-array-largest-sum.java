@@ -11,7 +11,6 @@ class Solution {
         return dp[idx][k] = ans;
     }
     public int splitArray(int[] nums, int k) {
-        int sum = 0;
         int[][] dp = new int[nums.length][k+1];
         for(int[] i:dp) Arrays.fill(i, Integer.MAX_VALUE);
         int[] presum = new int[nums.length+1];
