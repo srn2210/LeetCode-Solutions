@@ -8,7 +8,7 @@ class Solution:
             else:
                 arr[num] += 1
         ans = 0
-        for i in range(n, -1, -1):
+        for i in reversed(range(n+1)):
             ans += arr[i]
             if ans >= i:
                 return i
