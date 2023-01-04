@@ -17,8 +17,8 @@ class Solution {
             map.put(task, map.getOrDefault(task, 0) + 1);
         }
         int ans = 0;
-        for(Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            int temp = solve(entry.getValue(), dp);
+        for(int entry : map.values()) {
+            int temp = solve(entry, dp);
             if(temp == -1) return -1;
             ans += temp;
         }
