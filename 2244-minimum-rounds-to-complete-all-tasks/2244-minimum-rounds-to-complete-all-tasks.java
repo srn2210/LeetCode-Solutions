@@ -7,7 +7,6 @@ class Solution {
         return dp[task];
     }
     public int minimumRounds(int[] tasks) {
-        //Arrays.sort(tasks);
         int[] dp = new int[100001];
         dp[1] = -1;
         dp[2] = 1;
