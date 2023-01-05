@@ -14,9 +14,8 @@ public:
     int idx = 0;
     TreeNode* solve(vector<int>& arr, unordered_map<int, int>& map, int lo, int hi) {
         if(idx >= arr.size() || lo > hi) return nullptr;
-        int t = arr[idx];
+        int t = arr[idx++];
         TreeNode* node = new TreeNode(t);
-        idx++;
         node->left = solve(arr, map, lo, map[t]-1);
         node->right = solve(arr, map, map[t]+1, hi);
         return node;
