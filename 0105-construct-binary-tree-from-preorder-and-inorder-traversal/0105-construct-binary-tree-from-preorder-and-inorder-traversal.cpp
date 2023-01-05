@@ -21,7 +21,6 @@ public:
         idx++;
         node->left = solve(arr, map, lo, map[t]-1);
         node->right = solve(arr, map, map[t]+1, hi);
-        
         return node;
     }
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
