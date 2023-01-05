@@ -1,5 +1,7 @@
 class Solution {
-    int binarySearch(int[] arr, List<int[]> list, int hi, int k) {
+    int binarySearch(List<int[]> list, int k) {
+        int[] arr = list.get(list.size()-1);
+        int hi = list.size()-2;
         int lo = 0;
         int ans = Integer.MAX_VALUE;
         while(lo <= hi) {
@@ -29,7 +31,7 @@ class Solution {
                 }
                 list.add(new int[]{sum, i+1});
             }
-            res = Math.min(res, binarySearch(list.get(list.size()-1), list, list.size()-2, k));
+            res = Math.min(res, binarySearch(list, k));
             if(res == 1) return res;
         }
         return res == Integer.MAX_VALUE ? -1 : res;
