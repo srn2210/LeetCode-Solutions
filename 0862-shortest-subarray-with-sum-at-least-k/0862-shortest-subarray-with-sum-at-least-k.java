@@ -30,6 +30,7 @@ class Solution {
                 list.add(new int[]{sum, i+1});
             }
             res = Math.min(res, binarySearch(list.get(list.size()-1), list, list.size()-2, k));
+            if(res == 1) return res;
         }
         return res == Integer.MAX_VALUE ? -1 : res;
     }
