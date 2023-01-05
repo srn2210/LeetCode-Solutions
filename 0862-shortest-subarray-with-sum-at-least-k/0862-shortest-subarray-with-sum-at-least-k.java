@@ -22,15 +22,10 @@ class Solution {
         for(int i=0; i<nums.length; i++) {
             sum += nums[i];
             if(sum < 0) sum = 0;
-            if(sum >= list.get(list.size()-1)[0]) {
-                list.add(new int[]{sum, i+1});
+            while(list.get(list.size()-1)[0] > sum) {
+                list.remove(list.size()-1);
             }
-            else {
-                while(list.get(list.size()-1)[0] > sum) {
-                    list.remove(list.size()-1);
-                }
-                list.add(new int[]{sum, i+1});
-            }
+            list.add(new int[]{sum, i+1});
             res = Math.min(res, binarySearch(list, k));
             if(res == 1) return res;
         }
