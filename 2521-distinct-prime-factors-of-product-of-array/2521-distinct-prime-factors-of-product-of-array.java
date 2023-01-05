@@ -21,7 +21,7 @@ class Solution {
             int k = i;
             while(k != 1) {
                 set.add(spf[k]);
-                k = k / spf[k];
+                k /= spf[k];
             }
         }
         return set.size();
