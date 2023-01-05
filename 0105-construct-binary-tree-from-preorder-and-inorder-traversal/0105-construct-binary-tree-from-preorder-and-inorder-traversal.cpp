@@ -13,9 +13,7 @@ class Solution {
 public:
     int idx = 0;
     TreeNode* solve(vector<int>& arr, unordered_map<int, int>& map, int lo, int hi) {
-        if(idx >= arr.size() || lo > hi) {
-            return nullptr;
-        }
+        if(idx >= arr.size() || lo > hi) return nullptr;
         int t = arr[idx];
         TreeNode* node = new TreeNode(t);
         idx++;
