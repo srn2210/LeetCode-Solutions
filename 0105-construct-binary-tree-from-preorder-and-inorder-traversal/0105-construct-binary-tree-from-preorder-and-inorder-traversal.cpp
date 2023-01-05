@@ -16,8 +16,8 @@ public:
         if(idx >= arr.size() || lo > hi) {
             return nullptr;
         }
-        TreeNode* node = new TreeNode(arr[idx]);
         int t = arr[idx];
+        TreeNode* node = new TreeNode(t);
         idx++;
         node->left = solve(arr, map, lo, map[t]-1);
         node->right = solve(arr, map, map[t]+1, hi);
