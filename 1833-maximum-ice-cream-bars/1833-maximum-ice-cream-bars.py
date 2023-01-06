@@ -10,7 +10,6 @@ class Solution:
                 coins -= i * freq[i]
                 ans += freq[i]
             elif coins >= i:
-                #print(i, " ", coins, " ", coins // i)
                 ans += coins // i
                 coins -= (coins // i) * i
             else: break
