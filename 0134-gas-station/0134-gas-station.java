@@ -1,6 +1,6 @@
 class Solution {
     public int canCompleteCircuit(int[] gas, int[] cost) {
-        int[] arr = new int[gas.length];
+        /*int[] arr = new int[gas.length];
         int sum = 0;
         sum = gas[0] - cost[0];
         for(int i=1; i<arr.length; i++) {
@@ -16,6 +16,18 @@ class Solution {
                 ans = i;
             }
         }
-        return ans;
+        return ans;*/
+        //int[] arr = new int[gas.length];
+        int pre = gas[gas.length-1] - cost[cost.length-1];
+        int ans = gas.length-1;
+        int max = pre;
+        for(int i=gas.length-2; i>=0; i--) {
+            pre = pre + gas[i] - cost[i];
+            if(pre >= max) {
+                max = pre;
+                ans = i;
+            }
+        }
+        return pre < 0 ? -1 : ans;
     }
 }
