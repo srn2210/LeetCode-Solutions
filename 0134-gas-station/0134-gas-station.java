@@ -5,7 +5,6 @@ class Solution {
         sum = gas[0] - cost[0];
         for(int i=1; i<arr.length; i++) {
             arr[i] = arr[i-1] + gas[i-1] - cost[i-1];
-            //sum += arr[i];
             sum += gas[i] - cost[i];
         }
         if(sum < 0) return -1;
