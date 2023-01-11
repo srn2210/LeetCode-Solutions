@@ -1,6 +1,5 @@
 class Solution {
     int dfs(List<Integer>[] adj, List<Boolean> check, int start, boolean[] visited) {
-        if(adj[start].size() == 0) return check.get(start) ? 2 : 0;
         int ans = 0;
         for(int i : adj[start]) {
             if(!visited[i]) {
