@@ -23,8 +23,7 @@ class Solution {
             adj[edge[0]].add(edge[1]);
             adj[edge[1]].add(edge[0]);
         }
-        int[] alpha = new int[26];
-        dfs(labels, adj, alpha, 0, -1);
+        dfs(labels, adj, new int[26], 0, -1);
         return ans;
     }
 }
