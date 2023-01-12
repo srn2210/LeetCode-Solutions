@@ -5,12 +5,11 @@ class Solution {
             if(i != prev) {
                 int[] temp = dfs(labels, adj, new int[26], i, start);
                 for(int j=0; j<26; j++) {
-                    alpha[j] = alpha[j] + temp[j];
+                    alpha[j] += temp[j];
                 }
             }
         }
-        alpha[labels.charAt(start)-'a']++;
-        ans[start] += alpha[labels.charAt(start)-'a'];
+        ans[start] += ++alpha[labels.charAt(start)-'a'];
         return alpha;
     }
     public int[] countSubTrees(int n, int[][] edges, String labels) {
