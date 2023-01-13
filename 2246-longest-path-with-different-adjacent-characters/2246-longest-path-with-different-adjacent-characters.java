@@ -7,11 +7,10 @@ class Solution {
         for(int i : adj.get(idx)) {
             int t = dfs(adj, parent, s, i);
             if(s.charAt(i) != s.charAt(idx) && t > x) {
-                if(x > y) y = x;
+                y = x;
                 x = t;
             }
             else if(s.charAt(i) != s.charAt(idx) && t > y) {
-                //if(y > x) x = y;
                 y = t;
             }
         }
