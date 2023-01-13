@@ -1,17 +1,15 @@
 class Solution {
     void backtrack(List<String> ans, Map<Integer, List<Character>> map, String digits, int idx, StringBuilder sb) {
         if(sb.length() == digits.length()) {
-            //System.out.println(sb.toString());
             ans.add(sb.toString());
             return;
         }
         else {
-            //System.out.println(map.get(Character.getNumericValue(digits.charAt(idx))));
             List<Character> temp = map.get(Character.getNumericValue(digits.charAt(idx)));
             for(int i=0; i<temp.size(); i++) {
                 sb.append(temp.get(i));
                 backtrack(ans, map, digits, idx+1, sb);
-                sb.deleteCharAt(sb.length()-1);
+                sb.delete(sb.length()-1, sb.length());
             }
         }
     }
