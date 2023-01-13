@@ -5,7 +5,6 @@ class Solution {
         int x = 0;
         int y = 0;
         for(int i : adj[idx]) {
-            //if(i == prev) continue;
             int t = dfs(adj, parent, s, i);
             if(s.charAt(i) != s.charAt(idx) && t > x) {
                 if(x > y) y = x;
@@ -21,14 +20,8 @@ class Solution {
     }
     public int longestPath(int[] parent, String s) {
         List<Integer> adj[] = new List[parent.length];
-        for(int i=0; i<parent.length; i++) {
-            adj[i] = new ArrayList<>();
-        }
-        for(int i=1; i<parent.length; i++) {
-            adj[parent[i]].add(i);
-            //adj[i].add(parent[i]);
-        }
-        //System.out.println(Arrays.toString(adj));
+        for(int i=0; i<parent.length; i++) adj[i] = new ArrayList<>();
+        for(int i=1; i<parent.length; i++) adj[parent[i]].add(i);
         dfs(adj, parent, s, 0);
         return ans;
     }
