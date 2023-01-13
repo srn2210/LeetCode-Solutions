@@ -11,12 +11,12 @@ class Solution {
                 x = t;
             }
             else if(s.charAt(i) != s.charAt(idx) && t > y) {
-                if(y > x) x = y;
+                //if(y > x) x = y;
                 y = t;
             }
         }
         ans = Math.max(ans, x + y + 1);
-        return Math.max(x, y) + 1;
+        return x + 1;
     }
     public int longestPath(int[] parent, String s) {
         Map<Integer, List<Integer>> adj = new HashMap<>();
