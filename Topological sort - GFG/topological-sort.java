@@ -80,8 +80,7 @@ class Solution
         }
         int j=0;
         while(!stack.isEmpty()) {
-            res[j] = stack.pop();
-            j++;
+            res[j++] = stack.pop();
         }
         return res;
     }
