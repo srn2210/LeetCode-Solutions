@@ -40,9 +40,9 @@ class Solution {
             valToNode.computeIfAbsent(vals[i], a -> new ArrayList<>()).add(i);
         }
         int ans = 0;
-        for(Map.Entry<Integer, List<Integer>> entry : valToNode.entrySet()) {
-            int key = entry.getKey();
-            List<Integer> value = entry.getValue();
+        for(List<Integer> value : valToNode.values()) {
+            //int key = entry.getKey();
+            //List<Integer> value = entry.getValue();
             for(int nodes : value) {
                 if(!map.containsKey(nodes)) continue;
                 for(int node : map.get(nodes)) {
