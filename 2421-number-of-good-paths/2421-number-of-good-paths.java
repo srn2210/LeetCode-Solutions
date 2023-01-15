@@ -40,8 +40,10 @@ class Solution {
             valToNode.computeIfAbsent(vals[i], a -> new ArrayList<>()).add(i);
         }
         int ans = 0;
-        for(int key : valToNode.keySet()) {
-            for(int nodes : valToNode.get(key)) {
+        for(Map.Entry<Integer, List<Integer>> entry : valToNode.entrySet()) {
+            int key = entry.getKey();
+            List<Integer> value = entry.getValue();
+            for(int nodes : value) {
                 if(!map.containsKey(nodes)) continue;
                 for(int node : map.get(nodes)) {
                     if(vals[nodes] >= vals[node]) {
@@ -50,7 +52,7 @@ class Solution {
                 }
             }
             Map<Integer, Integer> temp = new HashMap<>();
-            for(int node : valToNode.get(key)) {
+            for(int node : value) {
                 temp.put(obj.find(node), temp.getOrDefault(obj.find(node), 0) + 1);
             }
             for(int val : temp.values()) {
