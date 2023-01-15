@@ -41,8 +41,6 @@ class Solution {
         }
         int ans = 0;
         for(List<Integer> value : valToNode.values()) {
-            //int key = entry.getKey();
-            //List<Integer> value = entry.getValue();
             for(int nodes : value) {
                 if(!map.containsKey(nodes)) continue;
                 for(int node : map.get(nodes)) {
