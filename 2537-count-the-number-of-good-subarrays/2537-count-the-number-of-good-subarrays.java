@@ -5,7 +5,7 @@ class Solution {
     }
     public long countGood(int[] nums, int k) {
         Map<Integer, Integer> map = new HashMap<>();
-        Set<Integer> set = new HashSet<>();
+        //Set<Integer> set = new HashSet<>();
         int hi = 0;
         int lo = 0;
         long curr = 0;
@@ -15,7 +15,7 @@ class Solution {
                 map.put(nums[hi], map.getOrDefault(nums[hi], 0) + 1);
                 if(map.get(nums[hi]) >= 2) {
                     curr += (sum(map.get(nums[hi])) - sum(map.get(nums[hi])-1));
-                    set.add(nums[hi]);
+                    //set.add(nums[hi]);
                 }
                 hi++;
             }
@@ -27,7 +27,7 @@ class Solution {
                     curr = curr - sum(map.get(nums[lo])) + sum(map.get(nums[lo])-1);
                 }
                 map.put(nums[lo], map.get(nums[lo])-1);
-                if(map.get(nums[lo]) == 1) set.remove(nums[lo]);
+                //if(map.get(nums[lo]) == 1) set.remove(nums[lo]);
                 lo++;
             }
         }
