@@ -26,13 +26,10 @@ class Solution:
         for edge in edges:
             adj[edge[0]].append(edge[1])
             adj[edge[1]].append(edge[0])
-        m1 = dict()
+        m1 = defaultdict(list)
         ans = 0
         for i in range(len(vals)):
-            if vals[i] not in m1:
-                m1[vals[i]] = [i]
-            else:
-                m1[vals[i]].append(i)
+            m1[vals[i]].append(i)
         for i, val in sorted(m1.items()):
             for node in val:
                 for neighbours in adj[node]:
