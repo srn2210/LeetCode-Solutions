@@ -1,7 +1,5 @@
 class Solution:
     class UnionFind:
-        arr = []
-        size = []
         def __init__(self, n: int):
             self.arr = []
             self.size = []
