@@ -3,14 +3,12 @@ public:
     bool dfs(vector<vector<char>>& board, string word, int idx, int row, int col) {
         if(idx == word.size()) return true;
         if(row >= board.size() || row < 0 || col < 0 || col >= board[0].size() || word[idx] != board[row][col]) return false;
-        if(word[idx] == board[row][col]) {
-            board[row][col] = '.';
-            if(dfs(board, word, idx + 1, row+1, col)) return true;
-            if(dfs(board, word, idx + 1, row, col+1)) return true;
-            if(dfs(board, word, idx + 1, row-1, col)) return true;
-            if(dfs(board, word, idx + 1, row, col-1)) return true;
-            board[row][col] = word[idx];
-        }
+        board[row][col] = '.';
+        if(dfs(board, word, idx + 1, row+1, col)) return true;
+        if(dfs(board, word, idx + 1, row, col+1)) return true;
+        if(dfs(board, word, idx + 1, row-1, col)) return true;
+        if(dfs(board, word, idx + 1, row, col-1)) return true;
+        board[row][col] = word[idx];
         return false;
     }
     bool exist(vector<vector<char>>& board, string word) {
