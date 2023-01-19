@@ -8,7 +8,7 @@ public:
         for(int num : nums) {
             sum += num;
             count += map[sum - k];
-            map[sum] = map[sum] + 1;
+            map[sum]++;
         }
         return count;
     }
