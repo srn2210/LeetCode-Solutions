@@ -8,8 +8,7 @@ class Solution {
             arr[(sum % k + k) % k]++;
         }
         for(int i=1; i<k; i++) {
-            int t = arr[i];
-            ans += t * (t - 1) / 2;
+            ans += arr[i] * (arr[i] - 1) / 2;
         }
         ans += arr[0] * (arr[0] + 1) / 2;
         return ans;
