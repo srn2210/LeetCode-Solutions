@@ -8,12 +8,9 @@ class Solution {
         return true;
     }
     void backtrack(List<String> ans, int cnt, StringBuilder curr, int idx) {
-        if(cnt == 3) {
-            if(isValid(curr)) {
-                ans.add(curr.toString());
-                return;
-            }
-            else return;
+        if(cnt == 3 && isValid(curr)) {
+            ans.add(curr.toString());
+            return;
         }
         else if(cnt < 3) {
             for(int i=idx; i<curr.length(); i++) {
