@@ -15,7 +15,8 @@ class Solution {
                 num += Character.getNumericValue(s.charAt(i));
                 curr.append(s.charAt(i));
             }
-            if(num <= 255 && isValid(curr)) {
+            if(num > 255) return;
+            if(isValid(curr)) {
                 ans.add(curr.toString());
                 return;
             }
