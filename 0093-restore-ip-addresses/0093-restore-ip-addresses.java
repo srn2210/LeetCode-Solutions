@@ -9,7 +9,7 @@ class Solution {
     }
     void backtrack(List<String> ans, int cnt, String s, StringBuilder curr, int idx) {
         if(cnt == 3 ) {
-            curr.append(s.substring(idx));
+            for(int i=idx; i<s.length(); i++) curr.append(s.charAt(i));
             if(isValid(curr)) {
                 ans.add(curr.toString());
                 return;
