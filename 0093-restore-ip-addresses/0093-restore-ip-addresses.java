@@ -9,8 +9,13 @@ class Solution {
     }
     void backtrack(List<String> ans, int cnt, String s, StringBuilder curr, int idx) {
         if(cnt == 3 ) {
-            for(int i=idx; i<s.length(); i++) curr.append(s.charAt(i));
-            if(isValid(curr)) {
+            int num = 0;
+            for(int i=idx; i<s.length(); i++) {
+                num *= 10;
+                num += Character.getNumericValue(s.charAt(i));
+                curr.append(s.charAt(i));
+            }
+            if(num <= 255 && isValid(curr)) {
                 ans.add(curr.toString());
                 return;
             }
