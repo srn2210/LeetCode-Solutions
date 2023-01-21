@@ -31,8 +31,8 @@ class Solution {
                 t *= 3;
                 if(s.length() - i - 1 > 0 && s.length() - i - 1 <= t) {
                     if(num > 255) return;
+                    int l = curr.length();
                     curr.append('.');
-                    int l = curr.length() - 1;
                     backtrack(ans, cnt + 1, s, curr, i+1);
                     while(curr.length() > l) curr.deleteCharAt(curr.length()-1);
                 }
