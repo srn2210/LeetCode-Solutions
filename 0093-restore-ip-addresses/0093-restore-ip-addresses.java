@@ -17,9 +17,13 @@ class Solution {
         }
         else if(cnt < 3) {
             for(int i=idx; i<curr.length(); i++) {
-                curr.insert(i+1, '.');
-                backtrack(ans, cnt + 1, curr, i+2);
-                curr.deleteCharAt(i+1);
+                int t = 4 - cnt + 1;
+                t *= 3;
+                if(curr.length() - i - 1 <= t) {
+                    curr.insert(i+1, '.');
+                    backtrack(ans, cnt + 1, curr, i+2);
+                    curr.deleteCharAt(i+1);
+                }
             }
         }
         else return;
