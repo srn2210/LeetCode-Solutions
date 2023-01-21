@@ -16,11 +16,15 @@ class Solution {
             }
         }
         else if(cnt < 3) {
+            int num = 0;
             for(int i=idx; i<s.length(); i++) {
                 curr.append(s.charAt(i));
+                num *= 10;
+                num += Character.getNumericValue(s.charAt(i));
                 int t = 4 - cnt - 1;
                 t *= 3;
                 if(s.length() - i - 1 > 0 && s.length() - i - 1 <= t) {
+                    if(num > 255) return;
                     curr.append('.');
                     int l = curr.length() - 1;
                     backtrack(ans, cnt + 1, s, curr, i+1);
