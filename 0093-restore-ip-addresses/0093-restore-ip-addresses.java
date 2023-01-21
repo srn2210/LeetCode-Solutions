@@ -14,7 +14,7 @@ class Solution {
         }
         else if(cnt < 3) {
             for(int i=idx; i<curr.length(); i++) {
-                int t = 4 - cnt + 1;
+                int t = 4 - cnt - 1;
                 t *= 3;
                 if(curr.length() - i - 1 <= t) {
                     curr.insert(i+1, '.');
