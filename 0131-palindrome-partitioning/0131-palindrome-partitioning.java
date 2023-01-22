@@ -14,9 +14,7 @@ class Solution {
         }
         else {
             for(int i=idx; i<s.length(); i++) {
-                if(dp[idx][i] == null) {
-                    continue;
-                }
+                if(dp[idx][i] == null) continue;
                 curr.add(dp[idx][i]);
                 backtrack(ans, s, dp, curr, i+1);
                 curr.remove(curr.size()-1);
@@ -33,12 +31,6 @@ class Solution {
                 if(check(sb)) dp[i][j] = sb.toString();
             }
         }
-        /*for(String[] ss : dp) {
-            for(String sss : ss) {
-                System.out.print(sss + "     ");
-            }
-            System.out.println();
-        }*/
         List<List<String>> ans = new ArrayList<>();
         backtrack(ans, s, dp, new ArrayList<>(), 0);
         return ans;
