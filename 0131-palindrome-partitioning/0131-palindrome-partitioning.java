@@ -24,8 +24,9 @@ class Solution {
     public List<List<String>> partition(String s) {
         int n = s.length();
         String[][] dp = new String[n][n];
+        StringBuilder sb;
         for(int i=0; i<n; i++) {
-            StringBuilder sb = new StringBuilder();
+            sb = new StringBuilder();
             for(int j=i; j<n; j++) {
                 sb.append(s.charAt(j));
                 if(check(sb)) dp[i][j] = sb.toString();
