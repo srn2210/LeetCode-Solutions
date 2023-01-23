@@ -29,8 +29,7 @@ public:
         vector<int> ans;
         for(int i=nums.size()-1; i>=0; i--) {
             int x = nums[i] + 100001;
-            int t = query(x-1);
-            ans.push_back(t);
+            ans.push_back(query(x-1));
             update(x);
         }
         reverse(ans);
