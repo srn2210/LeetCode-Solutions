@@ -21,12 +21,13 @@ class Solution {
         int ans = 0;
         while(!queue.isEmpty()) {
             int size = queue.size();
+            ans++;
             while(size-- > 0) {
                 int x = queue.poll();
                 for(int i=1; i<=6; i++) {
                     int t = x + i;
                     if(t > n * n) continue;
-                    else if((map[t] != -1 && map[t] == n * n) || t == n * n) return ans + 1;
+                    else if((map[t] != -1 && map[t] == n * n) || t == n * n) return ans;
                     else if(map[t] != 0) {
                         if(map[t] != -1) queue.add(map[t]);
                         else queue.add(t);
@@ -34,7 +35,6 @@ class Solution {
                     }
                 }
             }
-            ans++;
         }
         return -1;
     }
