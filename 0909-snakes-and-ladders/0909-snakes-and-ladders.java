@@ -26,9 +26,8 @@ class Solution {
                 for(int i=1; i<=6; i++) {
                     int t = x + i;
                     if(t > n * n) continue;
-                    if(map[t] != -1 && map[t] == n * n) return ans + 1;
-                    if(t == n * n) return ans + 1;
-                    if(map[t] != 0) {
+                    else if((map[t] != -1 && map[t] == n * n) || t == n * n) return ans + 1;
+                    else if(map[t] != 0) {
                         if(map[t] != -1) queue.add(map[t]);
                         else queue.add(t);
                         map[t] = 0;
