@@ -18,7 +18,6 @@ class Solution {
         }
         Queue<Integer> queue = new LinkedList<>();
         queue.add(1);
-        Set<Integer> set = new HashSet<>();
         int ans = 0;
         while(!queue.isEmpty()) {
             int size = queue.size();
@@ -29,10 +28,10 @@ class Solution {
                     if(t > n * n) continue;
                     if(map[t] != -1 && map[t] == n * n) return ans + 1;
                     if(t == n * n) return ans + 1;
-                    if(!set.contains(t)) {
-                        set.add(t);
+                    if(map[t] != 0) {
                         if(map[t] != -1) queue.add(map[t]);
                         else queue.add(t);
+                        map[t] = 0;
                     }
                 }
             }
