@@ -3,7 +3,7 @@ class Solution {
         if(idx == s.length()) return true;
         if(dp[idx] != null) return dp[idx];
         for(int i=idx; i<s.length(); i++) {
-            String t = s.substring(idx, i+1);
+            var t = s.substring(idx, i+1);                              // can be improved further by precalculating all substrings
             if(set.contains(t) && solve(s, set, dp, i+1)) return dp[i] = true;
         }
         return dp[idx] = false;
