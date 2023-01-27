@@ -73,11 +73,13 @@ class Solution
                 int[] p = pq.poll();
                 int dist = p[0];
                 int node = p[1];
-                for(List<Integer> l : adj.get(node)) {
-                    if(l.get(1) + dist >= cost[l.get(0)]) continue;
+                for(List<Integer> neighbour : adj.get(node)) {
+                    int dest = neighbour.get(0);
+                    int edgeCost = neighbour.get(1);
+                    if(edgeCost + dist >= cost[dest]) continue;
                     else {
-                        cost[l.get(0)] = l.get(1) + dist;
-                        pq.add(new int[]{cost[l.get(0)], l.get(0)});
+                        cost[dest] = edgeCost + dist;
+                        pq.add(new int[]{cost[dest], dest});
                     }
                 }
             }
