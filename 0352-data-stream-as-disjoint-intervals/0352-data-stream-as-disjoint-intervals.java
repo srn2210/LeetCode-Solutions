@@ -5,8 +5,8 @@ class SummaryRanges {
     }
     
     public void addNum(int value) {
-        Integer floor = map.floorKey(value);
-        Integer ceil = map.ceilingKey(value);
+        var floor = map.floorKey(value);
+        var ceil = map.ceilingKey(value);
         if(floor != null & ceil != null && map.get(floor) >= value - 1 && ceil == value + 1) {
             int hi = map.get(ceil);
             map.remove(ceil);
