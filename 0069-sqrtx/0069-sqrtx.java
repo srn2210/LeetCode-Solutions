@@ -9,6 +9,6 @@ class Solution {
             else if(ans < x) lo = mid + 1;
             else hi = mid - 1;
         }
-        return lo - 1;
+        return hi;
     }
 }
