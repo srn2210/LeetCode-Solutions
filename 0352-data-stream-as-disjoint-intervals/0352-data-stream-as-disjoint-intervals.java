@@ -7,43 +7,18 @@ class SummaryRanges {
     public void addNum(int value) {
         Integer floor = map.floorKey(value);
         Integer ceil = map.ceilingKey(value);
-        if(floor != null & ceil != null) {
-            int lo = map.get(floor);
-            if(lo >= value - 1 && ceil == value + 1) {
-                int hi = map.get(ceil);
-                map.remove(ceil);
-                map.put(floor, Math.max(hi, value));
-            }
-            else if(lo >= value - 1) {
-                map.put(floor, Math.max(lo, value));
-            }
-            else if(ceil == value + 1) {
-                int hi = map.get(ceil);
-                map.remove(ceil);
-                map.put(value, Math.max(hi,value));
-            }
-            else {
-                map.put(value, value);
-            }
+        if(floor != null & ceil != null && map.get(floor) >= value - 1 && ceil == value + 1) {
+            int hi = map.get(ceil);
+            map.remove(ceil);
+            map.put(floor, Math.max(hi, value));
         }
-        else if(floor != null) {
-            int lo = map.get(floor);
-            if(lo >= value - 1) {
-                map.put(floor, Math.max(lo, value));
-            }
-            else {
-                map.put(value, value);
-            }
+        else if(floor != null && map.get(floor) >= value - 1) {
+            map.put(floor, Math.max(map.get(floor), value));
         }
-        else if(ceil != null) {
-            if(ceil == value + 1) {
-                int hi = map.get(ceil);
-                map.remove(ceil);
-                map.put(value, Math.max(hi,value));
-            }
-            else {
-                map.put(value, value);
-            }
+        else if(ceil != null && ceil == value + 1) {
+            int hi = map.get(ceil);
+            map.remove(ceil);
+            map.put(value, Math.max(hi,value));
         }
         else {
             map.put(value, value);
