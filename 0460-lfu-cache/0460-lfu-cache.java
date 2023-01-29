@@ -17,13 +17,7 @@ class LFUCache {
             tmap.get(k).remove(key);
             if(tmap.get(k).size() == 0) tmap.remove(k);
             hmap.put(key, k+1);
-            if(tmap.containsKey(k+1)) {
-                tmap.get(k+1).add(key);
-            }
-            else {
-                tmap.put(k+1, new LinkedHashSet<>());
-                tmap.get(k+1).add(key);
-            }
+            tmap.computeIfAbsent(k+1, a -> new LinkedHashSet<>()).add(key);
             return vmap.get(key);
         }
         else return -1;
@@ -37,24 +31,12 @@ class LFUCache {
             tmap.get(k).remove(key);
             if(tmap.get(k).size() == 0) tmap.remove(k);
             hmap.put(key, k+1);
-            if(tmap.containsKey(k+1)) {
-                tmap.get(k+1).add(key);
-            }
-            else {
-                tmap.put(k+1, new LinkedHashSet<>());
-                tmap.get(k+1).add(key);
-            }
+            tmap.computeIfAbsent(k+1, a -> new LinkedHashSet<>()).add(key);
         }
         else if(hmap.size() < cap) {
             vmap.put(key, value);
             hmap.put(key, 1);
-            if(tmap.containsKey(1)) {
-                tmap.get(1).add(key);
-            }
-            else {
-                tmap.put(1, new LinkedHashSet<>());
-                tmap.get(1).add(key);
-            }
+            tmap.computeIfAbsent(1, a -> new LinkedHashSet<>()).add(key);
         }
         else {
             int k = tmap.ceilingKey(-1);
@@ -65,13 +47,7 @@ class LFUCache {
             vmap.remove(v);
             vmap.put(key, value);
             hmap.put(key, 1);
-            if(tmap.containsKey(1)) {
-                tmap.get(1).add(key);
-            }
-            else {
-                tmap.put(1, new LinkedHashSet<>());
-                tmap.get(1).add(key);
-            }
+            tmap.computeIfAbsent(1, a -> new LinkedHashSet<>()).add(key);
         }
     }
 }
