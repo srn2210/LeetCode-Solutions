@@ -1,5 +1,4 @@
 class Solution {
-    //int ans;
     int solve(int[] stones, int max, Map<Integer, Integer>[] dp, int idx, int[] suff) {
         if(idx == stones.length) return max;
         if(dp[idx].containsKey(max)) return dp[idx].get(max);
@@ -7,11 +6,9 @@ class Solution {
         if(stones[idx] - max <= suff[idx]) ans = Math.min(ans, solve(stones, max - stones[idx], dp, idx + 1, suff));
         ans = Math.min(ans, solve(stones, max + stones[idx], dp, idx + 1, suff));
         dp[idx].put(max, ans);
-        //this.ans = Math.min(this.ans, ans);
         return ans;
     }
     public int lastStoneWeightII(int[] stones) {
-        //ans = Integer.MAX_VALUE;
         int[] suff = new int[stones.length];
         for(int i=stones.length-2; i>=0; i--) suff[i] = suff[i+1] + stones[i+1];
         Map<Integer, Integer>[] dp = new Map[stones.length];
