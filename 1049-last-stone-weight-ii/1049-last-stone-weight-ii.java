@@ -1,20 +1,22 @@
 class Solution {
     int ans;
-    int solve(int[] stones, int max, Map<Integer, Integer>[] dp, int idx) {
+    int solve(int[] stones, int max, Map<Integer, Integer>[] dp, int idx, int[] suff) {
         if(idx == stones.length) return max;
         if(dp[idx].containsKey(max)) return dp[idx].get(max);
-        int ans1 = solve(stones, max - stones[idx], dp, idx + 1);
-        int ans2 = solve(stones, max + stones[idx], dp, idx + 1);
-        dp[idx].put(max, Math.min(ans1, ans2));
-        if(ans1 >= 0) this.ans = Math.min(this.ans, ans1);
-        if(ans2 >= 0) this.ans = Math.min(this.ans, ans2);
-        return Math.min(ans1, ans2);
+        int ans = Integer.MAX_VALUE;
+        if(stones[idx] - max <= suff[idx]) ans = Math.min(ans, solve(stones, max - stones[idx], dp, idx + 1, suff));
+        ans = Math.min(ans, solve(stones, max + stones[idx], dp, idx + 1, suff));
+        dp[idx].put(max, ans);
+        this.ans = Math.min(this.ans, ans);
+        return ans;
     }
     public int lastStoneWeightII(int[] stones) {
         ans = Integer.MAX_VALUE;
+        int[] suff = new int[stones.length];
+        for(int i=stones.length-2; i>=0; i--) suff[i] = suff[i+1] + stones[i+1];
         Map<Integer, Integer>[] dp = new Map[stones.length];
         for(int i=0; i<dp.length; i++) dp[i] = new HashMap<>();
-        solve(stones, 0, dp, 0);
+        solve(stones, 0, dp, 0, suff);
         return ans;
     }
 }
