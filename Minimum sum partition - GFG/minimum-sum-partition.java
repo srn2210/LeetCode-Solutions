@@ -27,13 +27,13 @@ class GfG
 
 class Solution
 {
-    int solve(int[] arr, int n, int[][] dp, int target, int idx, int sum) {
-        if(idx == n) return Math.abs(sum - (2 * target));
-        if(dp[idx][target] != -1) return dp[idx][target];
+    int solve(int[] arr, int n, int[][] dp, int sum, int idx, int total) {
+        if(idx == n) return Math.abs(total - (2 * sum));
+        if(dp[idx][sum] != -1) return dp[idx][sum];
         int ans = Integer.MAX_VALUE;
-        ans = Math.min(ans, solve(arr, n, dp, target + arr[idx], idx + 1, sum));
-        ans = Math.min(ans, solve(arr, n, dp, target, idx + 1, sum));
-        return dp[idx][target] = ans;
+        ans = Math.min(ans, solve(arr, n, dp, sum + arr[idx], idx + 1, total));
+        ans = Math.min(ans, solve(arr, n, dp, sum, idx + 1, total));
+        return dp[idx][sum] = ans;
     }
 
 	public int minDifference(int arr[], int n) 
