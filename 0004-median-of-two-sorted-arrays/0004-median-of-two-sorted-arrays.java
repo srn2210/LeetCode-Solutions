@@ -39,7 +39,6 @@ class Solution {
             int h = pos.getValue() < 0 ? -pos.getValue()-1 : pos.getValue();
             var m1 = mid + l;
             var m2 = mid + h;
-            //System.out.println(m1 + "  " + m2);
             if(m1 <= target && m2 >= target) return num;
             else if(m2 < target) lo = mid + 1;
             else hi = mid - 1;
@@ -54,7 +53,6 @@ class Solution {
             int h = pos.getValue() < 0 ? -pos.getValue()-1 : pos.getValue();
             var m1 = mid + l;
             var m2 = mid + h;
-            //System.out.println("!! " + m1 + "  " + m2);
             if(m1 <= target && m2 >= target) return num;
             else if(m2 < target) lo = mid + 1;
             else hi = mid - 1;
