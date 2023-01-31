@@ -7,6 +7,7 @@ class Solution {
         }
         Arrays.sort(arr, (a,b) -> Integer.compare(a[0], b[0]) == 0 ? Integer.compare(a[1], b[1]) : Integer.compare(a[0], b[0]));
         int[] dp = new int[scores.length];
+        int ans = Integer.MIN_VALUE;
         for(int i=0; i<scores.length; i++) {
             int max = Integer.MIN_VALUE;
             for(int j=i-1; j>=0; j--) {
@@ -15,9 +16,8 @@ class Solution {
             }
             max = max == Integer.MIN_VALUE ? 0 : max;
             dp[i] = arr[i][0] + max;
+            ans = Math.max(ans, dp[i]);
         }
-        int ans = Integer.MIN_VALUE;
-        for(int i : dp) ans = Math.max(ans, i);
         return ans;
     }
 }
