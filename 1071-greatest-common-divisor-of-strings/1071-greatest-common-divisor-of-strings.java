@@ -13,12 +13,9 @@ class Solution {
     }
     public String gcdOfStrings(String str1, String str2) {
         String a = str1.length() < str2.length() ? str1 : str2;
-        Set<String> set = new HashSet<>();
-        for(int i=0; i<a.length(); i++) {
-            set.add(a.substring(0, i+1));
-        }
         String ans = "";
-        for(String s : set) {
+        for(int i=0; i<a.length(); i++) {
+            String s = a.substring(0, i+1);
             if(check(s, str1) && check(s, str2) && s.length() > ans.length()) ans = s;
         }
         return ans;
