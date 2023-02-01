@@ -13,9 +13,9 @@ class Solution {
     }
     int gcd(int s1, int s2) {
         if(s2 > s1) return gcd(s2, s1);
-        if(s1 == 0) return s2;
+        else if(s1 == 0) return s2;
         else if(s2 == 0) return s1;
-        return gcd(s1-s2, s2);
+        else return gcd(s1-s2, s2);
     }
     public String gcdOfStrings(String str1, String str2) {
         int hcf = gcd(str1.length(), str2.length());
