@@ -11,13 +11,16 @@ class Solution {
         }
         return s1 == sz1 && s2 == sz1;
     }
+    int gcd(int s1, int s2) {
+        if(s2 > s1) return gcd(s2, s1);
+        if(s1 == 0) return s2;
+        else if(s2 == 0) return s1;
+        return gcd(s1-s2, s2);
+    }
     public String gcdOfStrings(String str1, String str2) {
-        String a = str1.length() < str2.length() ? str1 : str2;
-        String ans = "";
-        for(int i=0; i<a.length(); i++) {
-            String s = a.substring(0, i+1);
-            if(check(s, str1) && check(s, str2) && s.length() > ans.length()) ans = s;
-        }
-        return ans;
+        int hcf = gcd(str1.length(), str2.length());
+        String ans = str1.substring(0, hcf);
+        if(check(ans, str1) && check(ans, str2)) return ans;
+        return "";
     }
 }
