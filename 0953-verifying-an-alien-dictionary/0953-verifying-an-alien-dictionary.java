@@ -11,10 +11,8 @@ class Solution {
         int[] map = new int[26];
         int k = 0;
         for(char ch : order.toCharArray()) map[ch-'a'] = k++;
-        for(int i=0; i<words.length; i++) {
-            for(int j=i+1; j<words.length; j++) {
-                if(!check(words[i], words[j], map)) return false;
-            }
+        for(int i=0; i<words.length-1; i++) {
+            if(!check(words[i], words[i+1], map)) return false;
         }
         return true;
     }
