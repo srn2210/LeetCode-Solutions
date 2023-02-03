@@ -3,7 +3,6 @@ class Solution {
         if(numRows == 1) return s;
         StringBuilder[] list = new StringBuilder[numRows+1];
         for(int i=0; i<=numRows; i++) list[i] = new StringBuilder();
-        //list[1].append(s.charAt(0));
         int n = 1;
         boolean sign = false;
         for(int i=0; i<s.length(); i++) {
