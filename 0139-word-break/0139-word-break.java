@@ -19,7 +19,7 @@ class Solution {
         Trie() {
             root = new Node();
         }
-        void insertStr(String s) {
+        void insert(String s) {
             Node node = root;
             for(char ch : s.toCharArray()) {
                 if(node.arr[ch-'a'] == null) node.arr[ch-'a'] = new Node();
@@ -31,7 +31,7 @@ class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
         Trie dict = new Trie();
         for(String ss : wordDict) {
-            dict.insertStr(ss);
+            dict.insert(ss);
         }
         Trie.Node node = dict.root;
         Set<Integer> set = new LinkedHashSet<>();
