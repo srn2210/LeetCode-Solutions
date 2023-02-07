@@ -6,10 +6,10 @@ class Solution {
             if(map.containsKey(fruits[right])) {
                 map.put(fruits[right], map.get(fruits[right]) + 1);
             }
-            else if(!map.containsKey(fruits[right]) && map.size() < 2) {
+            else if(map.size() < 2) {
                 map.put(fruits[right], 1);
             }
-            else if(!map.containsKey(fruits[right]) && map.size() == 2) {
+            else if(map.size() == 2) {
                 while(left < right) {
                     map.put(fruits[left], map.get(fruits[left])-1);
                     if(map.get(fruits[left]) == 0) {
