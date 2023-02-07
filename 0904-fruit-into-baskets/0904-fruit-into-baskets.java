@@ -10,7 +10,6 @@ class Solution {
                 map.put(fruits[right], 1);
             }
             else if(!map.containsKey(fruits[right]) && map.size() == 2) {
-                //ans = Math.max(ans, right-left+1);
                 while(left < right) {
                     map.put(fruits[left], map.get(fruits[left])-1);
                     if(map.get(fruits[left]) == 0) {
