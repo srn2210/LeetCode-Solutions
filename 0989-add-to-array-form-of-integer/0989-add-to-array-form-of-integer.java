@@ -1,13 +1,4 @@
 class Solution {
-    void reverse(List<Integer> ans) {
-        int l = 0;
-        int r = ans.size()-1;
-        while(l < r) {
-            var t = ans.get(l);
-            ans.set(l++, ans.get(r));
-            ans.set(r--, t);
-        }
-    }
     public List<Integer> addToArrayForm(int[] num, int k) {
         var ans = new ArrayList<Integer>();
         int carry = 0;
@@ -24,7 +15,7 @@ class Solution {
             carry = t/10;
         }
         if(carry != 0) ans.add(carry);
-        reverse(ans);
+        Collections.reverse(ans);
         return ans;
     }
 }
