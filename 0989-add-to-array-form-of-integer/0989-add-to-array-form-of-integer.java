@@ -15,7 +15,6 @@ class Solution {
             carry = t/10;
         }
         if(carry != 0) ans.addFirst(carry);
-        //Collections.reverse(ans);
         return ans;
     }
 }
