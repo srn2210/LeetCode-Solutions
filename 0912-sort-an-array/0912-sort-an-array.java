@@ -7,6 +7,7 @@ class Solution {
     void sort(int[] nums, int left, int right) {
         if(left >= right) return;
         int pivot = (int)(Math.random()*(right-left+1))+left;
+        
         int piv = nums[pivot];
         swap(pivot, right, nums);
         int l = left;
@@ -19,6 +20,7 @@ class Solution {
             }
         }
         swap(l, right, nums);
+        
         sort(nums, left, l-1);
         sort(nums, l+1, right);
     }
