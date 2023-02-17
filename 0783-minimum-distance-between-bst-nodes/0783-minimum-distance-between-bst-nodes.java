@@ -23,7 +23,6 @@ class Solution {
         if(node.right != null) t2 = dfs(node.right);
         if(t1 != null) left = Math.max(left, t1.getValue());
         if(t2 != null) right = Math.min(right, t2.getKey());
-        //System.out.println(node.val + "  " + left + "  " + right);
         left = left == Integer.MIN_VALUE ? Integer.MAX_VALUE : left;
         ans = Math.min(ans, Math.min(Math.abs(left-node.val), Math.abs(right-node.val)));
         int a1 = node.val, a2 = node.val;
