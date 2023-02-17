@@ -22,7 +22,7 @@ class Solution {
     }
     void partition(int[] nums, int left, int right) {
         if(left >= right) return;
-        int mid = left + (right - left) / 2;
+        int mid = (int)(Math.random()*(right-left+1))+left;
         sort(nums, left, right, mid);
     }
     public int[] sortArray(int[] nums) {
