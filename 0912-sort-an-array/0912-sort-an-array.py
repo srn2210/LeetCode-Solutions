@@ -9,9 +9,8 @@ class Solution:
             maxi = max(maxi, num)
         ind = 0
         for i in range(mini, maxi+1):
-            if i in hmap:
-                while hmap[i]:
-                    nums[ind] = i
-                    hmap[i] -= 1
-                    ind += 1
+            while hmap[i]:
+                nums[ind] = i
+                hmap[i] -= 1
+                ind += 1
         return nums
