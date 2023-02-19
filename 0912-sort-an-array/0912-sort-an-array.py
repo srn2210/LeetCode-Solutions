@@ -1,5 +1,6 @@
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
+        # counting sort
         hmap = defaultdict(int)
         mini = 1e9
         maxi = -1e9
