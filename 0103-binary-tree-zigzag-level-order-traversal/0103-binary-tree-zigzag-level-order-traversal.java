@@ -18,7 +18,7 @@ class Solution {
         var ans = new ArrayList<List<Integer>>();
         var queue = new LinkedList<TreeNode>();
         if(root != null) queue.add(root);
-        boolean rev = false;
+        var rev = false;
         while(!queue.isEmpty()) {
             int size = queue.size();
             var list = new ArrayList<Integer>();
