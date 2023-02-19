@@ -7,19 +7,11 @@ public:
         int r = mid;
         left = mid+1;
         while(l <= r && left <= right) {
-            if(aux[l] < aux[left]) {
-                nums[i++] = aux[l++];
-            }
-            else {
-                nums[i++] = aux[left++];
-            }
+            if(aux[l] < aux[left]) nums[i++] = aux[l++];
+            else nums[i++] = aux[left++];
         }
-        if(l <= r) {
-            while(l <= r) nums[i++] = aux[l++];
-        }
-        if(left <= right) {
-            while(left <= right) nums[i++] = aux[left++];
-        }
+        if(l <= r) while(l <= r) nums[i++] = aux[l++];
+        if(left <= right) while(left <= right) nums[i++] = aux[left++];
     }
     void sort(vector<int>& nums, vector<int>& aux, int left, int right) {
         if(left >= right) return;
