@@ -15,7 +15,7 @@ class Solution {
         map.put(900, "CM");
         map.put(1000, "M");
         int t = 1;
-        var res = new LinkedList<String>();
+        var res = new StringBuilder();
         while(num != 0) {
             int temp = num % 10;
             temp *= t;
@@ -27,19 +27,17 @@ class Solution {
             if(!map.containsKey(temp)) {
                 while(!map.containsKey(temp)) {
                     temp -= t;
-                    res.addFirst(map.get(t));
+                    res.insert(0, map.get(t));
                 }
-                res.addFirst(map.get(temp));
+                res.insert(0, map.get(temp));
                 num /= 10;
                 t *= 10;
                 continue;
             }
-            res.addFirst(map.get(temp));
+            res.insert(0, map.get(temp));
             num /= 10;
             t *= 10;
         }
-        var ans = new StringBuilder();
-        for(String s : res) ans.append(s);
-        return ans.toString();
+        return res.toString();
     }
 }
