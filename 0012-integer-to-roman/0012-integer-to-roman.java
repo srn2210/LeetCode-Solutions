@@ -9,14 +9,11 @@ class Solution {
         var res = new StringBuilder();
         while(num != 0) {
             int temp = (num % 10) * t;
-            if(map.containsKey(temp)) res.insert(0, map.get(temp));
-            else {
-                while(!map.containsKey(temp)) {
-                    temp -= t;
-                    res.insert(0, map.get(t));
-                }
-                res.insert(0, map.get(temp));
+            while(!map.containsKey(temp)) {
+                temp -= t;
+                res.insert(0, map.get(t));
             }
+            res.insert(0, map.get(temp));
             num /= 10;
             t *= 10;
         }
