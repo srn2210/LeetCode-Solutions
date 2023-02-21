@@ -15,9 +15,8 @@ class Solution {
                 ans++;
                 t--;
             }
-            while(!remove.isEmpty()) pq.add(remove.poll());
-            if(pq.isEmpty()) break;
-            ans += t;
+            for(var ch : remove) pq.add(ch);
+            ans += pq.isEmpty() ? 0 : t;
         }
         return ans;
     }
