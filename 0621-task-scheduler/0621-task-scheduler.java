@@ -7,7 +7,7 @@ class Solution {
         int ans = 0;
         while(!pq.isEmpty()) {
             int t = n+1;
-            var remove = new LinkedList<Character>();
+            var remove = new ArrayList<Character>();
             while(t > 0 && !pq.isEmpty()) {
                 var p = pq.poll();
                 map[p-'A']--;
