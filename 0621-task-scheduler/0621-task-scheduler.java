@@ -11,11 +11,11 @@ class Solution {
             while(t > 0 && !pq.isEmpty()) {
                 var p = pq.poll();
                 map[p-'A']--;
-                remove.add(p);
+                if(map[p-'A'] != 0) remove.add(p);
                 ans++;
                 t--;
             }
-            for(var ch : remove) if(map[ch-'A'] > 0) pq.add(ch);
+            while(!remove.isEmpty()) pq.add(remove.poll());
             if(pq.isEmpty()) break;
             ans += t;
         }
