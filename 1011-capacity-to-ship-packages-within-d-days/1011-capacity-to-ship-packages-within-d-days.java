@@ -2,13 +2,13 @@ class Solution {
     boolean check(int mid, int[] weights, int days) {
         int curr = 0;
         int ans = 1;
-        for(int i=0; i<weights.length; i++) {
-            if(curr + weights[i] > mid) {
+        for(int weight : weights) {
+            if(curr + weight > mid) {
                 ans++;
-                curr = weights[i];
+                curr = weight;
             }
             else {
-                curr += weights[i];
+                curr += weight;
             }
         }
         return ans <= days;
