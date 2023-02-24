@@ -1,20 +1,39 @@
 class Solution {
     public int minimumDeviation(int[] nums) {
-        int n = nums.length;
-        var pq = new PriorityQueue<Long>(n, Collections.reverseOrder());
-        long[] arr = new long[n];
-        long min = Integer.MAX_VALUE;
-        for(int i=0; i<n; i++) {
-            arr[i] = nums[i] % 2 == 0 ? nums[i] : (long)nums[i] * 2;
-            min = Math.min(min, arr[i]);
-            pq.add(arr[i]);
+        var set = new TreeSet<Long>();
+        for(int i : nums) set.add((long)i);
+        int ans = Integer.MAX_VALUE;
+        while(set.first() % 2 != 0) {
+            var min = set.first();
+            var max = set.last();
+            ans = Math.min(ans, (int)(max-min));
+            set.remove(min);
+            set.add(min*2);
         }
-        long ans = Integer.MAX_VALUE;
-        while(pq.peek() % 2 == 0) {
-            ans = Math.min(ans, pq.peek() - min);
-            min = Math.min(min, pq.peek()/2);
-            pq.add(pq.poll() / 2);
+        while(set.last() % 2 == 0) {
+            var min = set.first();
+            var max = set.last();
+            ans = Math.min(ans, (int)(max-min));
+            set.remove(max);
+            set.add(max/2);
         }
-        return Math.min((int)ans, (int)(pq.peek()-min));
+        ans = Math.min(ans, (int)(set.last()-set.first()));
+        set = new TreeSet<Long>();
+        for(int i : nums) set.add((long)i);
+        while(set.last() % 2 == 0) {
+            var min = set.first();
+            var max = set.last();
+            ans = Math.min(ans, (int)(max-min));
+            set.remove(max);
+            set.add(max/2);
+        }
+        while(set.first() % 2 != 0) {
+            var min = set.first();
+            var max = set.last();
+            ans = Math.min(ans, (int)(max-min));
+            set.remove(min);
+            set.add(min*2);
+        }
+        return Math.min(ans, (int)(set.last()-set.first()));
     }
 }
