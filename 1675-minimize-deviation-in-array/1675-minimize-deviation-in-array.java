@@ -9,7 +9,6 @@ class Solution {
             min = Math.min(min, arr[i]);
             pq.add(arr[i]);
         }
-        System.out.println(Arrays.toString(arr));
         long ans = Integer.MAX_VALUE;
         while(pq.peek() % 2 == 0) {
             ans = Math.min(ans, pq.peek() - min);
