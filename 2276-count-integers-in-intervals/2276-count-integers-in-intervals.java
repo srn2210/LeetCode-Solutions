@@ -6,7 +6,7 @@ class CountIntervals {
         count = 0;
     }
     
-    Pair<Integer, Integer> merge(int left, int right) {
+    public void add(int left, int right) {
         var t = map.floorEntry(left);
         if(t != null && left <= t.getValue()) {
             left = Math.min(left, t.getKey());
@@ -21,13 +21,8 @@ class CountIntervals {
             count -= t.getValue() - t.getKey() + 1;
             t = map.ceilingEntry(left);
         }
-        return new Pair(left, right);
-    }
-    
-    public void add(int left, int right) {
-        var p = merge(left, right);
-        map.put(p.getKey(), p.getValue());
-        count += p.getValue() - p.getKey() + 1;
+        map.put(left, right);
+        count += right - left + 1;
     }
     
     public int count() {
