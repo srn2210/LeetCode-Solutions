@@ -8,9 +8,9 @@ class Solution {
             ans = solve(w1, w2, i+1, j+1, dp, m, n);
         }
         else {
-            int a = solve(w1, w2, i+1, j+1, dp, m, n) + 1;
-            int b = solve(w1, w2, i+1, j, dp, m, n) + 1;
-            ans = Math.min(Math.min(a,b), solve(w1, w2, i, j+1, dp, m, n)+1);
+            int a = solve(w1, w2, i+1, j+1, dp, m, n);
+            int b = solve(w1, w2, i+1, j, dp, m, n);
+            ans = Math.min(Math.min(a,b), solve(w1, w2, i, j+1, dp, m, n)) + 1;
         }
         return dp[i][j] = ans;
     }
