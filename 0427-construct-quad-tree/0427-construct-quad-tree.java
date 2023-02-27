@@ -52,10 +52,10 @@ class Solution {
                 if(grid[i][j] == 1) one = true;
                 else if(grid[i][j] == 0) zero = true;
                 if(one && zero) {
-                    node.topLeft = construct(grid, rowStart, rowStart + ((rowEnd-rowStart)/2), colStart, colStart + (colEnd-colStart)/2, new Node());
-                    node.topRight = construct(grid, rowStart, rowStart + ((rowEnd-rowStart)/2), colStart + ((colEnd-colStart)/2), colEnd, new Node());
-                    node.bottomLeft = construct(grid, rowStart + ((rowEnd-rowStart)/2), rowEnd, colStart, colStart + ((colEnd-colStart)/2), new Node());
-                    node.bottomRight = construct(grid, rowStart + ((rowEnd-rowStart)/2), rowEnd, colStart + ((colEnd-colStart)/2), colEnd, new Node());
+                    node.topLeft = construct(grid, rowStart, rowStart + (rowEnd-rowStart)/2, colStart, colStart + (colEnd-colStart)/2, new Node());
+                    node.topRight = construct(grid, rowStart, rowStart + (rowEnd-rowStart)/2, colStart + (colEnd-colStart)/2, colEnd, new Node());
+                    node.bottomLeft = construct(grid, rowStart + (rowEnd-rowStart)/2, rowEnd, colStart, colStart + (colEnd-colStart)/2, new Node());
+                    node.bottomRight = construct(grid, rowStart + (rowEnd-rowStart)/2, rowEnd, colStart + (colEnd-colStart)/2, colEnd, new Node());
                     return node;
                 }
             }
