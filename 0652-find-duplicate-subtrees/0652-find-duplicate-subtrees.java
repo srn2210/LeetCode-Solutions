@@ -16,7 +16,7 @@
 class Solution {
     List<TreeNode> ans;
     StringBuilder dfs(TreeNode node, Map<String, Integer> map) {
-        if(node == null) return new StringBuilder("#");
+        if(node == null) return new StringBuilder('#');
         StringBuilder t = new StringBuilder();
         t.append(node.val).append(',');
         t.append(dfs(node.left, map)).append(',');
