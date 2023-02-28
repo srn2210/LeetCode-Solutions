@@ -14,27 +14,22 @@
  * }
  */
 class Solution {
-    public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
-        List<TreeNode> res = new LinkedList<>();
-        traverse(root, new HashMap<>(), new HashMap<>(), res);
-        return res;
+    List<TreeNode> ans;
+    StringBuilder dfs(TreeNode node, Map<String, Integer> map) {
+        if(node == null) return new StringBuilder('#');
+        StringBuilder t = new StringBuilder();
+        t.append(node.val).append(',');
+        t.append(dfs(node.left, map)).append(',');
+        t.append(dfs(node.right, map));
+        String s = t.toString();
+        map.put(s, map.getOrDefault(s,0)+1);
+        if(map.get(s) == 2) ans.add(node);
+        return t;
     }
-
-    public int traverse(TreeNode node, Map<String, Integer> tripletToID,
-            Map<Integer, Integer> cnt, List<TreeNode> res) {
-        if (node == null) {
-            return 0;
-        }
-        String triplet = traverse(node.left, tripletToID, cnt, res) + "," + node.val +
-                "," + traverse(node.right, tripletToID, cnt, res);
-        if (!tripletToID.containsKey(triplet)) {
-            tripletToID.put(triplet, tripletToID.size() + 1);
-        }
-        int id = tripletToID.get(triplet);
-        cnt.put(id, cnt.getOrDefault(id, 0) + 1);
-        if (cnt.get(id) == 2) {
-            res.add(node);
-        }
-        return id;
+    public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
+        ans = new LinkedList<>();
+        var map = new HashMap<String, Integer>();
+        dfs(root, map);
+        return ans;
     }
 }
