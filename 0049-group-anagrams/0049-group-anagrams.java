@@ -22,7 +22,7 @@ class Solution {
         Map<String, List<String>> map = new HashMap<>();
         for(var s : strs) {
             int[] a = new int[26];
-            for(char ch : s.toCharArray()) a[ch-'a']++;
+            for(int i=0; i<s.length(); i++) a[s.charAt(i)-'a']++;
             map.computeIfAbsent(Arrays.toString(a), arr -> new ArrayList<>()).add(s);
         }
         return new ArrayList<>(map.values());
