@@ -6,7 +6,7 @@ class Solution {
             for(char ch : s.toCharArray()) a[ch-'a']++;
             StringBuilder sb = new StringBuilder();
             for(int i=0; i<26; i++) {
-                sb.append(',');
+                sb.append('#');
                 sb.append(a[i]);
             }
             map.computeIfAbsent(sb.toString(), arr -> new ArrayList<>()).add(s);
