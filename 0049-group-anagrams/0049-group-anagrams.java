@@ -25,8 +25,6 @@ class Solution {
             for(char ch : s.toCharArray()) a[ch-'a']++;
             map.computeIfAbsent(Arrays.toString(a), arr -> new ArrayList<>()).add(s);
         }
-        List<List<String>> ans = new ArrayList<>();
-        for(var entry : map.entrySet()) ans.add(entry.getValue());
-        return ans;
+        return new ArrayList<>(map.values());
     }
 }
