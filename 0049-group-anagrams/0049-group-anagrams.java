@@ -19,12 +19,13 @@ class Solution {
         }
         Arrays.sort(arr, (a,b) -> Integer.compare(a[0].length(), b[0].length()));
         for(int i=0; i<arr.length; i++) System.out.println(Arrays.toString(arr[i]));*/
-        Map<String, List<String>> map = new HashMap<>();
+        Map<Set<Map.Entry<Character, Integer>>, List<String>> map = new HashMap<>();
         for(var s : strs) {
-            int[] a = new int[26];
-            for(int i=0; i<s.length(); i++) a[s.charAt(i)-'a']++;
-            map.computeIfAbsent(Arrays.toString(a), arr -> new ArrayList<>()).add(s);
+            Map<Character, Integer> m = new HashMap<>();
+            for(char ch : s.toCharArray()) m.put(ch, m.getOrDefault(ch, 0) + 1);
+            map.computeIfAbsent(m.entrySet(), arr -> new ArrayList<>()).add(s);
         }
+        //System.out.println(map.entrySet());
         return new ArrayList<>(map.values());
     }
 }
