@@ -1,6 +1,5 @@
 class Solution {
     public int compress(char[] chars) {
-        //if(chars.length == 1) return 1;
         int left = 0;
         int right = 1;
         char prev = chars[0];
