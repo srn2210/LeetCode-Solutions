@@ -14,8 +14,8 @@ class Solution {
             min = Math.min(min, i);
             max = Math.max(max, i);
         }
-        long l = 1;
-        long r = (long)max * totalTrips;
+        long l = (long)min;
+        long r = (long)min * totalTrips;
         while(l <= r) {
             long mid = l + (r-l) / 2;
             if(check(mid, time, totalTrips)) {
