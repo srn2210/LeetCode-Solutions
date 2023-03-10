@@ -9,20 +9,20 @@
  * }
  */
 class Solution {
-    List<Integer> map;
+    List<ListNode> map;
     Random obj;
     public Solution(ListNode head) {
         map = new ArrayList<>();
         var temp = head;
         obj = new Random();
         while(temp != null) {
-            map.add(temp.val);
+            map.add(temp);
             temp = temp.next;
         }
     }
     
     public int getRandom() {
-        return map.get(obj.nextInt(map.size()));
+        return map.get(obj.nextInt(map.size())).val;
     }
 }
 
