@@ -30,7 +30,6 @@ class Solution {
         var slow = head;
         var fast = head;
         ListNode prev = null;
-        //System.out.println(head.val);
         while(fast != null && fast.next != null) {
             prev = slow;
             slow = slow.next;
