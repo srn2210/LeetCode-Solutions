@@ -11,11 +11,10 @@ class Solution:
             if left.val <= right.val:
                 dummy.next = left
                 left = left.next
-                dummy = dummy.next
             else:
                 dummy.next = right
                 right = right.next
-                dummy = dummy.next
+            dummy = dummy.next
         if left != None:
             dummy.next = left
         if right != None:
