@@ -15,13 +15,10 @@
  */
 class Solution {
     int dfs(TreeNode node, int sum) {
-        //if((node.left == null && node.right != null) || (node.left != null && node.right == null)) return 0;
         if(node.left == null && node.right == null) return (sum * 10) + node.val;
-        sum *= 10;
-        sum += node.val;
         int left = 0, right = 0;
-        if(node.left != null) left = dfs(node.left, sum);
-        if(node.right != null) right = dfs(node.right, sum);
+        if(node.left != null) left = dfs(node.left, sum * 10 + node.val);
+        if(node.right != null) right = dfs(node.right, sum * 10 + node.val);
         return left + right;
     }
     public int sumNumbers(TreeNode root) {
