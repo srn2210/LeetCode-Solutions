@@ -16,16 +16,13 @@ class BrowserHistory {
         }
     }
     DLinkedList curr;
-    DLinkedList end;
     public BrowserHistory(String homepage) {
         curr = new DLinkedList(homepage, null);
-        end = curr;
     }
     
     public void visit(String url) {
         curr.next = new DLinkedList(url, curr);
         curr = curr.next;
-        end = curr;
     }
     
     public String back(int steps) {
