@@ -1,36 +1,36 @@
 class BrowserHistory {
-    List<String> history;
-    int curr;
-    int end;
+    ArrayList<String> visitedURLs;
+    int currURL, lastURL;
+
     public BrowserHistory(String homepage) {
-        history = new ArrayList<>();
-        history.add(homepage);
-        curr = 0;
-        end = curr;
+        // 'homepage' is the first visited URL.
+        visitedURLs = new ArrayList<String>(Arrays.asList(homepage));
+        currURL = 0; 
+        lastURL = 0;
     }
     
     public void visit(String url) {
-        if(curr + 1 == history.size()) history.add(url);
-        else history.set(curr + 1, url);
-        curr++;
-        end = curr;
+        currURL += 1;
+        if (visitedURLs.size() > currURL) {
+            // We have enough space in our array to overwrite an old 'url' entry with new one.
+            visitedURLs.set(currURL, url);
+        } else {
+            // We have to insert a new 'url' entry at the end.
+            visitedURLs.add(url);
+        }
+        // This 'url' will be last URL if we try to go forward.
+        lastURL = currURL;
     }
     
     public String back(int steps) {
-        curr = steps > curr ? 0 : curr - steps;
-        return history.get(curr);
+        // Move 'currURL' pointer in left direction.
+        currURL = Math.max(0, currURL - steps);
+        return visitedURLs.get(currURL);
     }
     
     public String forward(int steps) {
-        curr = curr + steps >= end ? end : curr + steps;
-        return history.get(curr);
+        // Move 'currURL' pointer in right direction.
+        currURL = Math.min(lastURL, currURL + steps);
+        return visitedURLs.get(currURL);
     }
 }
-
-/**
- * Your BrowserHistory object will be instantiated and called as such:
- * BrowserHistory obj = new BrowserHistory(homepage);
- * obj.visit(url);
- * String param_2 = obj.back(steps);
- * String param_3 = obj.forward(steps);
- */
