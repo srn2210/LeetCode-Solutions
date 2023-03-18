@@ -1,44 +1,29 @@
 class BrowserHistory {
-    class DLinkedList {
-        String val;
-        DLinkedList next;
-        DLinkedList prev;
-        DLinkedList(String init, DLinkedList p) {
-            this.val = init;
-            this.next = null;
-            this.prev = p;
-        }
-        String get() {
-            return this.val;
-        }
-        void set(String url) {
-            this.val = url;
-        }
-    }
-    DLinkedList curr;
+    List<String> history;
+    int curr;
+    int end;
     public BrowserHistory(String homepage) {
-        curr = new DLinkedList(homepage, null);
+        history = new ArrayList<>();
+        history.add(homepage);
+        curr = 0;
+        end = curr;
     }
     
     public void visit(String url) {
-        curr.next = new DLinkedList(url, curr);
-        curr = curr.next;
+        if(curr + 1 == history.size()) history.add(url);
+        else history.set(curr + 1, url);
+        curr++;
+        end = curr;
     }
     
     public String back(int steps) {
-        for(int i=0; i<steps; i++) {
-            if(curr.prev == null) break;
-            curr = curr.prev;
-        }
-        return curr.get();
+        curr = steps > curr ? 0 : curr - steps;
+        return history.get(curr);
     }
     
     public String forward(int steps) {
-        for(int i=0; i<steps; i++) {
-            if(curr.next == null) break;
-            curr = curr.next;
-        }
-        return curr.get();
+        curr = curr + steps >= end ? end : curr + steps;
+        return history.get(curr);
     }
 }
 
