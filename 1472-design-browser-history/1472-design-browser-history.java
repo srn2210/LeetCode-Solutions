@@ -1,33 +1,47 @@
 class BrowserHistory {
-    Stack<String> history;
-    Stack<String> forward;
+    class DLinkedList {
+        String val;
+        DLinkedList next;
+        DLinkedList prev;
+        DLinkedList(String init, DLinkedList p) {
+            this.val = init;
+            this.next = null;
+            this.prev = p;
+        }
+        String get() {
+            return this.val;
+        }
+        void set(String url) {
+            this.val = url;
+        }
+    }
+    DLinkedList curr;
+    DLinkedList end;
     public BrowserHistory(String homepage) {
-        history = new Stack<>();
-        history.push(homepage);
-        forward = new Stack<>();
-        //curr = 0;
-        //end = 0;
+        curr = new DLinkedList(homepage, null);
+        end = curr;
     }
     
     public void visit(String url) {
-        history.push(url);
-        forward = new Stack<>();
+        curr.next = new DLinkedList(url, curr);
+        curr = curr.next;
+        end = curr;
     }
     
     public String back(int steps) {
         for(int i=0; i<steps; i++) {
-            if(history.size() == 1) break;
-            forward.push(history.pop());
+            if(curr.prev == null) break;
+            curr = curr.prev;
         }
-        return history.peek();
+        return curr.get();
     }
     
     public String forward(int steps) {
         for(int i=0; i<steps; i++) {
-            if(forward.isEmpty()) break;
-            history.push(forward.pop());
+            if(curr.next == null) break;
+            curr = curr.next;
         }
-        return history.peek();
+        return curr.get();
     }
 }
 
