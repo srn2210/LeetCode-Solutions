@@ -48,6 +48,7 @@ class WordDictionary {
         if(word.length() == i) {
             return node.isEnd();
         }
+        if(node.isEmpty()) return false;
         if(word.charAt(i) == '.') {
             var itr = node.iterator();
             for(var it : itr) {
