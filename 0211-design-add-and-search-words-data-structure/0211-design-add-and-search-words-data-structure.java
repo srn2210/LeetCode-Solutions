@@ -53,9 +53,7 @@ class WordDictionary {
                 if(node.containsKey(idx) && search(word, i+1, node.get(idx))) return true;
             }
         }
-        else {
-            if(node.containsKey(word.charAt(i)) && search(word, i+1, node.get(word.charAt(i)))) return true;
-        }
+        else if(node.containsKey(word.charAt(i)) && search(word, i+1, node.get(word.charAt(i)))) return true;
         return false;
     }
     
