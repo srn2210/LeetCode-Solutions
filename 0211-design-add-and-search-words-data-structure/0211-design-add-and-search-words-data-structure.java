@@ -66,13 +66,11 @@ class WordDictionary {
         for(int i=0; i<word.length(); i++) {
             char ch = word.charAt(i);
             if(ch == '.') {
-                if(search(word, i, node)) return true;
-                else return false;
+                return search(word, i, node);
             }
             else {
                 if(!node.containsKey(ch)) return false;
                 node = node.get(ch);
-                //if(i == word.length()-1) return node.isEnd();
             }
         }
         return node.isEnd();
