@@ -6,11 +6,14 @@ class WordDictionary {
             map = new TrieNode[26];
             isEnd = false;
         }
-        /*Set<Map.Entry<Character, TrieNode>> iterator() {
-            return map.entrySet();
-        }*/
         TrieNode get(char ch) {
             return map[ch-'a'];
+        }
+        TrieNode get(int i) {
+            return map[i];
+        }
+        boolean containsKey(int i) {
+            return map[i] != null;
         }
         boolean containsKey(char ch) {
             return map[ch-'a'] != null;
@@ -24,9 +27,6 @@ class WordDictionary {
         boolean isEnd() {
             return isEnd;
         }
-        /*boolean isEmpty() {
-            return map.isEmpty();
-        }*/
     }
     
     TrieNode root;
@@ -48,11 +48,9 @@ class WordDictionary {
         if(word.length() == i) {
             return node.isEnd();
         }
-        //if(node.isEmpty()) return false;
         if(word.charAt(i) == '.') {
-            //var itr = node.iterator();
             for(int idx=0; idx<26; idx++) {
-                if(node.map[idx] != null && search(word, i+1, node.map[idx])) return true;
+                if(node.containsKey(idx) && search(word, i+1, node.get(idx))) return true;
             }
         }
         else {
