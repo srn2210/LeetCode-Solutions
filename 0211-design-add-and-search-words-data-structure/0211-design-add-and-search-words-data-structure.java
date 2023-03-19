@@ -6,27 +6,13 @@ class WordDictionary {
             map = new TrieNode[26];
             isEnd = false;
         }
-        TrieNode get(char ch) {
-            return map[ch-'a'];
-        }
-        TrieNode get(int i) {
-            return map[i];
-        }
-        boolean containsKey(int i) {
-            return map[i] != null;
-        }
-        boolean containsKey(char ch) {
-            return map[ch-'a'] != null;
-        }
-        void add(char ch) {
-            map[ch-'a'] = new TrieNode();
-        }
-        void setEnd() {
-            isEnd = true;
-        }
-        boolean isEnd() {
-            return isEnd;
-        }
+        TrieNode get(char ch) {return map[ch-'a'];}
+        TrieNode get(int i) {return map[i];}
+        boolean containsKey(int i) {return map[i] != null;}
+        boolean containsKey(char ch) {return map[ch-'a'] != null;}
+        void add(char ch) {map[ch-'a'] = new TrieNode();}
+        void setEnd() {isEnd = true;}
+        boolean isEnd() {return isEnd;}
     }
     
     TrieNode root;
