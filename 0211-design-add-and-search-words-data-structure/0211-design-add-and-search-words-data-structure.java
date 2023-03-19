@@ -57,22 +57,10 @@ class WordDictionary {
         else {
             if(node.containsKey(word.charAt(i)) && search(word, i+1, node.get(word.charAt(i)))) return true;
         }
-        
         return false;
     }
     
     public boolean search(String word) {
-        /*var node = root;
-        for(int i=0; i<word.length(); i++) {
-            char ch = word.charAt(i);
-            if(ch == '.') {
-                return search(word, i, node);
-            }
-            else {
-                if(!node.containsKey(ch)) return false;
-                node = node.get(ch);
-            }
-        }*/
         return search(word, 0, root);
     }
 }
