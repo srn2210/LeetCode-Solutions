@@ -62,7 +62,7 @@ class WordDictionary {
     }
     
     public boolean search(String word) {
-        var node = root;
+        /*var node = root;
         for(int i=0; i<word.length(); i++) {
             char ch = word.charAt(i);
             if(ch == '.') {
@@ -72,8 +72,8 @@ class WordDictionary {
                 if(!node.containsKey(ch)) return false;
                 node = node.get(ch);
             }
-        }
-        return node.isEnd();
+        }*/
+        return search(word, 0, root);
     }
 }
 
