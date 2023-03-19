@@ -72,10 +72,10 @@ class WordDictionary {
             else {
                 if(!node.containsKey(ch)) return false;
                 node = node.get(ch);
-                if(i == word.length()-1) return node.isEnd();
+                //if(i == word.length()-1) return node.isEnd();
             }
         }
-        return false;
+        return node.isEnd();
     }
 }
 
