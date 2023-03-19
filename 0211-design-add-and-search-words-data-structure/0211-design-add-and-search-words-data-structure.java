@@ -44,7 +44,7 @@ class WordDictionary {
         node.setEnd();
     }
     
-    boolean search(String word, int i, TrieNode node) {
+    private boolean search(String word, int i, TrieNode node) {
         if(word.length() == i) {
             return node.isEnd();
         }
