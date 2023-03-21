@@ -5,9 +5,7 @@ class Solution {
         long ans = 0;
         while(r < nums.length) {
             if(nums[r] == 0) r++;
-            else {
-                l = ++r;
-            }
+            else l = ++r;
             ans += r-l;
         }
         return ans;
