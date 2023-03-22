@@ -35,13 +35,9 @@ class Solution {
     }
     public int minScore(int n, int[][] roads) {
         UnionFind uf = new UnionFind(n);
-        for(var road : roads) {
-            uf.union(road[0], road[1]);
-        }
+        for(var road : roads) uf.union(road[0], road[1]);
         int ans = Integer.MAX_VALUE;
-        for(var road : roads) {
-            if(uf.isConnected(road[0], 1)) ans = Math.min(ans, road[2]);
-        }
+        for(var road : roads) if(uf.isConnected(road[0], 1)) ans = Math.min(ans, road[2]);
         return ans;
     }
 }
