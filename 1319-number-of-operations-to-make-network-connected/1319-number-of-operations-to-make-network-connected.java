@@ -41,9 +41,9 @@ class Solution {
             else uf.union(conn[0], conn[1]);
         }
         int main = 0;
-        for(int i=0; i<n; i++) {
+        /*for(int i=0; i<n; i++) {
             if(uf.sz[uf.find(i)] > uf.sz[uf.find(main)]) main = i;
-        }
+        }*/
         int ans = 0;
         for(int i=0; i<n; i++) {
             if(!uf.isConnected(i, main) && unusedConnection > 0) {
