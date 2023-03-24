@@ -1,9 +1,12 @@
 class Solution {
     public int minReorder(int n, int[][] connections) {
-        var map = new HashMap<Integer, List<List<Integer>>>();
+        var map = new ArrayList<List<List<Integer>>>();
+        for(int i=0; i<n; i++) {
+            map.add(new ArrayList<>());
+        }
         for(var conn : connections) {
-            map.computeIfAbsent(conn[0], a -> new ArrayList<>()).add(List.of(conn[1], 0));
-            map.computeIfAbsent(conn[1], a -> new ArrayList<>()).add(List.of(conn[0], 1));
+            map.get(conn[0]).add(List.of(conn[1], 0));
+            map.get(conn[1]).add(List.of(conn[0], 1));
         }
         int ans = 0;
         var queue = new LinkedList<Integer>();
