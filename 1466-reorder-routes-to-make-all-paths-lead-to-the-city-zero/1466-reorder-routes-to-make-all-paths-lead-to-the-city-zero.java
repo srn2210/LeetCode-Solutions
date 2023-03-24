@@ -18,7 +18,7 @@ class Solution {
             for(var l : t) {
                 if(!visited[l.get(0)]) {
                     if(l.get(1) == 0) ans++;
-                    if(!visited[l.get(0)]) queue.add(l.get(0));
+                    queue.add(l.get(0));
                 }
             }
         }
