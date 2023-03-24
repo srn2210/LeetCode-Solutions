@@ -13,9 +13,10 @@ class Solution {
             visited[queue.peek()] = true;
             var t = map.get(queue.poll());
             for(var l : t) {
-                if(visited[l.get(0)]) continue;
-                if(l.get(1) == 0) ans++;
-                queue.add(l.get(0));
+                if(!visited[l.get(0)]) {
+                    if(l.get(1) == 0) ans++;
+                    if(!visited[l.get(0)]) queue.add(l.get(0));
+                }
             }
         }
         return ans;
