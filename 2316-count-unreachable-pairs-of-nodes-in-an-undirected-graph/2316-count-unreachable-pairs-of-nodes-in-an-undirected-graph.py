@@ -1,6 +1,6 @@
 class Solution:
     def countPairs(self, n: int, edges: List[List[int]]) -> int:
-        adj = defaultdict(list)
+        adj = [[] for _ in range(n)]
         
         for u, v in edges:
             adj[u].append(v)
