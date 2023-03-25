@@ -1,6 +1,6 @@
 class Solution {
     public int minReorder(int n, int[][] connections) {
-        var map = new ArrayList<List<int[]>>();
+        var map = new ArrayList<List<int[]>>(n);
         for(int i=0; i<n; i++) {
             map.add(new ArrayList<>());
         }
