@@ -1,12 +1,12 @@
 class Solution {
     public int minReorder(int n, int[][] connections) {
-        var map = new ArrayList<List<List<Integer>>>();
+        var map = new ArrayList<List<int[]>>();
         for(int i=0; i<n; i++) {
             map.add(new ArrayList<>());
         }
         for(var conn : connections) {
-            map.get(conn[0]).add(List.of(conn[1], 0));
-            map.get(conn[1]).add(List.of(conn[0], 1));
+            map.get(conn[0]).add(new int[]{conn[1], 0});
+            map.get(conn[1]).add(new int[]{conn[0], 1});
         }
         int ans = 0;
         var queue = new LinkedList<Integer>();
@@ -16,9 +16,9 @@ class Solution {
             visited[queue.peek()] = true;
             var t = map.get(queue.poll());
             for(var l : t) {
-                if(!visited[l.get(0)]) {
-                    if(l.get(1) == 0) ans++;
-                    queue.add(l.get(0));
+                if(!visited[l[0]]) {
+                    if(l[1] == 0) ans++;
+                    queue.add(l[0]);
                 }
             }
         }
