@@ -9,7 +9,7 @@ class Solution {
             map.get(conn[1]).add(new int[]{conn[0], 1});
         }
         int ans = 0;
-        var queue = new LinkedList<Integer>();
+        var queue = new ArrayDeque<Integer>();
         queue.add(0);
         var visited = new boolean[n];
         while(!queue.isEmpty()) {
