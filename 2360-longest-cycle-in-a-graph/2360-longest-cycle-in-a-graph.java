@@ -20,7 +20,7 @@ class Solution {
     }
     public int longestCycle(int[] edges) {
         int n = edges.length;
-        int[] visited = new int[n];
+        var visited = new int[n];
         var map = new int[n];
         ans = -1;
         for(int i=0; i<n; i++) {
