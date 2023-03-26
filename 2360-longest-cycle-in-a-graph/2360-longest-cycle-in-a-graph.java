@@ -2,11 +2,14 @@ class Solution {
     int ans;
     void dfs(int src, int[] edges, int[] visited, int cLength, Map<Integer, Integer> map) {
         int i = edges[src];
-        //map.put(src, cLength);
-        if(i != -1 && visited[i] == 1) {
+        if(i == -1) {
+            visited[src] = 2;
+            return;
+        }
+        else if(visited[i] == 1) {
             ans = Math.max(ans , cLength-map.get(i));
         }
-        else if(i != -1 && visited[i] == 0) {
+        else if(visited[i] == 0) {
             visited[i] = 1;
             map.put(i, cLength);
             dfs(i, edges, visited, cLength+1, map);
