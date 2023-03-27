@@ -56,13 +56,13 @@ class Solution {
         int[] ans = new int[V];
         Arrays.fill(ans, (int)1e8);
         ans[S] = 0;
-        while(V-- > 0) {
+        while(V-- >= 0) {
             for(var edge : edges) {
-                if(ans[edge.get(0)] != (int)1e8 && ans[edge.get(0)] + edge.get(2) < ans[edge.get(1)]) ans[edge.get(1)] = ans[edge.get(0)] + edge.get(2);
+                if(ans[edge.get(0)] != (int)1e8 && ans[edge.get(0)] + edge.get(2) < ans[edge.get(1)]) {
+                    ans[edge.get(1)] = ans[edge.get(0)] + edge.get(2);
+                    if(V == -1) return new int[]{-1};
+                }
             }
-        }
-        for(var edge : edges) {
-            if(ans[edge.get(0)] != (int) 1e8 && ans[edge.get(0)] + edge.get(2) < ans[edge.get(1)]) return new int[]{-1};
         }
         return ans;
     }
