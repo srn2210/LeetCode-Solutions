@@ -54,11 +54,12 @@ class Solution {
     static int[] bellman_ford(int V, ArrayList<ArrayList<Integer>> edges, int S) {
         // Write your code here
         int[] ans = new int[V];
-        Arrays.fill(ans, (int)1e8);
+        int max = (int) 1e8;
+        Arrays.fill(ans, max);
         ans[S] = 0;
         while(V-- >= 0) {
             for(var edge : edges) {
-                if(ans[edge.get(0)] != (int)1e8 && ans[edge.get(0)] + edge.get(2) < ans[edge.get(1)]) {
+                if(ans[edge.get(0)] != max && ans[edge.get(0)] + edge.get(2) < ans[edge.get(1)]) {
                     ans[edge.get(1)] = ans[edge.get(0)] + edge.get(2);
                     if(V == -1) return new int[]{-1};
                 }
