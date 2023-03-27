@@ -6,9 +6,7 @@ class Solution {
         for(int j=1; j<n; j++) grid[0][j] += grid[0][j-1];
         for(int i=1; i<m; i++) {
             for(int j=1; j<n; j++) {
-                int x = grid[i-1][j];
-                int y = grid[i][j-1];
-                grid[i][j] = Math.min(x, y) + grid[i][j];
+                grid[i][j] += Math.min(grid[i-1][j], grid[i][j-1]);
             }
         }
         return grid[m-1][n-1];
