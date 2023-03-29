@@ -5,6 +5,7 @@ class Solution:
         prev = 0
         for s in reversed(sorted(satisfaction)):
             carry += s
-            ans = max(ans, carry + prev)
-            prev = carry + prev
+            curr = carry + prev
+            ans = max(ans, curr)
+            prev = curr
         return ans
