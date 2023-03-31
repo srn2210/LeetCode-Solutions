@@ -9,14 +9,7 @@ class Solution {
         return false;
     }
     int solve(String[] pizza, int target, int startRow, int endRow, int startCol, int endCol, int[][][] dp) {
-        if(target == 0) {
-            for(int i=startRow; i<=endRow; i++) {
-                for(int j=startCol; j<=endCol; j++) {
-                    if(pizza[i].charAt(j) == 'A') return 1;
-                }
-            }
-            return 0;
-        }
+        if(target == 0) return validate(pizza, startRow, endRow, startCol, endCol) ? 1 : 0;
         if(startRow > endRow || startCol > endCol) return 0;
         if(dp[startRow][startCol][target] != -1) return dp[startRow][startCol][target];
         int sum = 0;
