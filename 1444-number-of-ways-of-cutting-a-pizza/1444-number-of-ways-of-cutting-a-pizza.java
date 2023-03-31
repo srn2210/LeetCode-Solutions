@@ -8,7 +8,7 @@ class Solution {
         }
         return false;
     }
-    int solve(String[] pizza, int target, int startRow, int endRow, int startCol, int endCol, Integer[][][] dp) {
+    int solve(String[] pizza, int target, int startRow, int endRow, int startCol, int endCol, int[][][] dp) {
         if(target == 0) {
             for(int i=startRow; i<=endRow; i++) {
                 for(int j=startCol; j<=endCol; j++) {
@@ -18,7 +18,7 @@ class Solution {
             return 0;
         }
         if(startRow > endRow || startCol > endCol) return 0;
-        if(dp[startRow][startCol][target] != null) return dp[startRow][startCol][target];
+        if(dp[startRow][startCol][target] != -1) return dp[startRow][startCol][target];
         int sum = 0;
         for(int i=startRow; i<=endRow; i++) {
             if(validate(pizza, startRow, i, startCol, endCol)) {
@@ -37,7 +37,10 @@ class Solution {
     public int ways(String[] pizza, int k) {
         int m = pizza.length;
         int n = pizza[0].length();
-        Integer[][][] dp = new Integer[m][n][k];
+        int[][][] dp = new int[m][n][k];
+        for(int i=0; i<m; i++)
+            for(int j=0; j<n; j++)
+                Arrays.fill(dp[i][j], -1);
         return solve(pizza, k-1, 0, m-1, 0, n-1, dp);
     }
 }
