@@ -17,9 +17,8 @@ class Solution {
         for(int i=0; i<spells.length; i++) {
             int target = (int)Math.ceil(success / (double) spells[i]);
             int idx = binarySearch(potions, target);
-            idx = idx < 0 ? -idx-1 : idx;
-            idx = potions.length - idx;
-            ans[i] = idx;
+            //idx = idx < 0 ? -idx-1 : idx;
+            ans[i] = potions.length - idx;
         }
         return ans;
     }
