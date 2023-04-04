@@ -15,12 +15,12 @@
  */
 class Solution {
     int idx = -1;
-    TreeNode buildUtil(Map<Integer, Integer> map, int[] postorder, int[] inorder, int left, int right) {
+    TreeNode buildUtil(Map<Integer, Integer> map, int[] postorder, int left, int right) {
         if(left > right || idx < 0) return null;
         int val = postorder[idx--];
         var root = new TreeNode(val);
-        root.right = buildUtil(map, postorder, inorder, map.get(val) + 1, right);
-        root.left = buildUtil(map, postorder, inorder, left, map.get(val)-1);
+        root.right = buildUtil(map, postorder, map.get(val) + 1, right);
+        root.left = buildUtil(map, postorder, left, map.get(val)-1);
         return root;
     }
     public TreeNode buildTree(int[] inorder, int[] postorder) {
@@ -29,6 +29,6 @@ class Solution {
             map.put(inorder[i], i);
         }
         idx = postorder.length-1;
-        return buildUtil(map, postorder, inorder, 0, postorder.length-1);
+        return buildUtil(map, postorder, 0, postorder.length-1);
     }
 }
