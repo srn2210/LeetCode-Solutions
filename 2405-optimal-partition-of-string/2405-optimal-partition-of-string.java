@@ -5,7 +5,7 @@ class Solution {
         for(char ch : s.toCharArray()) {
             if(map.contains(ch)) {
                 ans++;
-                map = new HashSet<Character>();
+                map.clear();
             }
             map.add(ch);
         }
