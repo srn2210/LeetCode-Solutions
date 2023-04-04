@@ -1,13 +1,15 @@
 class Solution {
     public int partitionString(String s) {
-        var map = new HashSet<Character>();
+        int mask = 0;
         int ans = 1;
         for(char ch : s.toCharArray()) {
-            if(map.contains(ch)) {
+            int bit = 1 << (int) (ch-'a');
+            int check = bit & mask;
+            if(check != 0) {
                 ans++;
-                map.clear();
+                mask = 0;
             }
-            map.add(ch);
+            mask += bit;
         }
         return ans;
     }
