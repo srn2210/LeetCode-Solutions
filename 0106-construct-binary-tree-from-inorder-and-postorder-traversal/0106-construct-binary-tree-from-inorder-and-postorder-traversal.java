@@ -14,26 +14,21 @@
  * }
  */
 class Solution {
-    public TreeNode buildTree(int[] inorder, int[] postorder) {
-        return build(inorder,0,inorder.length-1,postorder,0,postorder.length-1);
-    }
-    
-    public TreeNode build(int[] inorder, int inS, int inE, int[] postorder, int posS, int posE){
-        if(inS>inE || posS>posE) return  null;
-        
-        TreeNode root = new TreeNode(postorder[posE]);
-        
-        int rootI=0;
-        for(int i=0;i<inorder.length;i++){
-            if(inorder[i]==root.val){
-                rootI = i;
-                break;
-            }
-        }
-        
-        root.left = build(inorder,inS,rootI-1,postorder,posS,posS+rootI-inS-1);
-        root.right = build(inorder,rootI+1,inE,postorder,posS+rootI-inS,posE-1);
-        
+    int idx = -1;
+    TreeNode buildUtil(Map<Integer, Integer> map, int[] postorder, int[] inorder, int left, int right) {
+        if(left > right || idx < 0) return null;
+        int val = postorder[idx--];
+        var root = new TreeNode(val);
+        root.right = buildUtil(map, postorder, inorder, map.get(val) + 1, right);
+        root.left = buildUtil(map, postorder, inorder, left, map.get(val)-1);
         return root;
+    }
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+        var map = new HashMap<Integer, Integer>();
+        for(int i=0; i<inorder.length; i++) {
+            map.put(inorder[i], i);
+        }
+        idx = postorder.length-1;
+        return buildUtil(map, postorder, inorder, 0, postorder.length-1);
     }
 }
