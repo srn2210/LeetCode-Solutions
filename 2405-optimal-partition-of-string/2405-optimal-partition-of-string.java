@@ -9,7 +9,7 @@ class Solution {
                 ans++;
                 mask = 0;
             }
-            mask |= bit;
+            mask += bit;
         }
         return ans;
     }
