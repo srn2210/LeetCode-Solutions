@@ -2,12 +2,7 @@ class Solution {
     int dfs(int[][] grid, int i, int j, boolean[][] vis) {
         if(i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] == 0 || vis[i][j]) return 0;
         vis[i][j] = true;
-        int ans = 1;
-        ans += dfs(grid, i+1, j, vis);
-        ans += dfs(grid, i, j+1, vis);
-        ans += dfs(grid, i-1, j, vis);
-        ans += dfs(grid, i, j-1, vis);
-        return ans;
+        return 1 + dfs(grid, i+1, j, vis) + dfs(grid, i, j+1, vis) + dfs(grid, i-1, j, vis) + dfs(grid, i, j-1, vis);
     }
     public int numEnclaves(int[][] grid) {
         int m = grid.length;
