@@ -26,18 +26,15 @@ class Solution {
         map.put(node.val, ans);
         var queue = new LinkedList<Node>();
         queue.add(node);
-        var vis = new HashSet<Node>();
-        vis.add(node);
         while(!queue.isEmpty()) {
             var curr = queue.poll();
             var currCpy = map.get(curr.val);
             for(var nodes : curr.neighbors) {
-                if(!map.containsKey(nodes.val)) map.put(nodes.val, new Node(nodes.val, new ArrayList<>()));
-                currCpy.neighbors.add(map.get(nodes.val));
-                if(!vis.contains(nodes)) {
-                    vis.add(nodes);
+                if(!map.containsKey(nodes.val)) {
+                    map.put(nodes.val, new Node(nodes.val, new ArrayList<>()));
                     queue.add(nodes);
                 }
+                currCpy.neighbors.add(map.get(nodes.val));
             }
         }
         return ans;
