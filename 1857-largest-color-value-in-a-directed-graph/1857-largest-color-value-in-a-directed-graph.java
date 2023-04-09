@@ -32,13 +32,11 @@ class Solution {
             dp.put(src, temp);
             return temp;
         }
-        if(dp.containsKey(src)) {
-            return dp.get(src);
-        }
+        if(dp.containsKey(src)) return dp.get(src);
         int[] ans = new int[26];
         for(int i : map.get(src)) {
             int[] a = dfs(i, map, colors, dp);
-            for(int j=0; j<26; j++) {
+            for(int j=0; j<a.length; j++) {
                 ans[j] = Math.max(ans[j], a[j]);
             }
         }
