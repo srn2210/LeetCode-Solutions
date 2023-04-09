@@ -9,7 +9,6 @@ class Solution {
         }
         q = new LinkedList<>();
         q.addAll(queue);
-        int[] ordering = new int[n];
         int left = -1;
         while(!queue.isEmpty()) {
             int t = queue.poll();
@@ -19,7 +18,7 @@ class Solution {
                     if(indegree[edge] == 0) queue.add(edge);
                 }
             }
-            ordering[++left] = t;
+            ++left;
         }
         if(left != n-1) return true;
         return false;
