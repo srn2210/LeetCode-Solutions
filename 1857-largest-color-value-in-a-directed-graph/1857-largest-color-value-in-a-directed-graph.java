@@ -24,12 +24,12 @@ class Solution {
         if(left != n-1) return true;
         return false;
     }
-    int[] dfs(int src, Map<Integer, List<Integer>> map, int[] coloring, String colors, Map<Integer, int[]> dp) {
+    int[] dfs(int src, Map<Integer, List<Integer>> map, String colors, Map<Integer, int[]> dp) {
         int color = colors.charAt(src) - 'a';
         if(!map.containsKey(src)) {
             int[] temp = new int[26];
             temp[color]++;
-            dp.put(src, Arrays.copyOf(temp, temp.length));
+            dp.put(src, temp);
             return temp;
         }
         if(dp.containsKey(src)) {
@@ -37,13 +37,13 @@ class Solution {
         }
         int[] ans = new int[26];
         for(int i : map.get(src)) {
-            int[] a = dfs(i, map, coloring, colors, dp);
+            int[] a = dfs(i, map, colors, dp);
             for(int j=0; j<26; j++) {
                 ans[j] = Math.max(ans[j], a[j]);
             }
         }
         ans[color]++;
-        dp.put(src, Arrays.copyOf(ans, ans.length));
+        dp.put(src, ans);
         return ans;
     }
     public int largestPathValue(String colors, int[][] edges) {
@@ -55,13 +55,11 @@ class Solution {
         }
         n += 1;
         if(kahn(map, edges, n)) return -1;
-        boolean[] vis = new boolean[n];
-        int[] coloring = new int[26];
         int ans = Integer.MIN_VALUE;
         var dp = new HashMap<Integer, int[]>();
         while(!q.isEmpty()) {
             int node = q.poll();
-            int[] arr = dfs(node, map, coloring, colors, dp);
+            int[] arr = dfs(node, map, colors, dp);
             for(int i : arr) ans = Math.max(i, ans);
         }
         return ans;
