@@ -26,14 +26,10 @@ class Solution {
     }
     int[] dfs(int src, Map<Integer, List<Integer>> map, int[] coloring, String colors, Map<Integer, int[]> dp) {
         int color = colors.charAt(src) - 'a';
-        //coloring[color]++;
-        //int ans = Integer.MIN_VALUE;
         if(!map.containsKey(src)) {
-            //for(int i : coloring) ans = Math.max(ans, i);
             int[] temp = new int[26];
             temp[color]++;
             dp.put(src, Arrays.copyOf(temp, temp.length));
-            //coloring[color]--;
             return temp;
         }
         if(dp.containsKey(src)) {
@@ -41,7 +37,6 @@ class Solution {
         }
         int[] ans = new int[26];
         for(int i : map.get(src)) {
-            //ans = Math.max(ans, dfs(i, map, coloring, colors));
             int[] a = dfs(i, map, coloring, colors, dp);
             for(int j=0; j<26; j++) {
                 ans[j] = Math.max(ans[j], a[j]);
@@ -49,11 +44,9 @@ class Solution {
         }
         ans[color]++;
         dp.put(src, Arrays.copyOf(ans, ans.length));
-        //coloring[color]--;
         return ans;
     }
     public int largestPathValue(String colors, int[][] edges) {
-        //if(edges.length == 0) return 1;
         int n = 0;
         var map = new HashMap<Integer, List<Integer>>();
         for(var edge : edges) {
