@@ -1,16 +1,17 @@
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
-        var tmap = new TreeMap<Integer, Integer>(Collections.reverseOrder());
-        for(int i=0; i<k; i++) tmap.put(nums[i], tmap.getOrDefault(nums[i], 0) + 1);
+        var deque = new ArrayDeque<Integer>();
+        for(int i=0; i<k; i++) {
+            while(!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) deque.removeLast();
+            deque.add(i);
+        }
         int[] ans = new int[nums.length - k + 1];
-        int max = 10001;
-        ans[0] = tmap.ceilingKey(max);
-        int left = 1;
-        for(int i=k, j=0; i<nums.length; i++) {
-            if(tmap.get(nums[j]) == 1) tmap.remove(nums[j++]);
-            else tmap.put(nums[j], tmap.get(nums[j++])-1);
-            tmap.put(nums[i], tmap.getOrDefault(nums[i], 0) + 1);
-            ans[left++] = tmap.ceilingKey(max);
+        ans[0] = nums[deque.peekFirst()];
+        for(int i=k, j=1; i<nums.length; i++) {
+            if(!deque.isEmpty() && deque.peekFirst() < i - k + 1) deque.removeFirst();
+            while(!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) deque.removeLast();
+            deque.add(i);
+            ans[j++] = nums[deque.peekFirst()];
         }
         return ans;
     }
