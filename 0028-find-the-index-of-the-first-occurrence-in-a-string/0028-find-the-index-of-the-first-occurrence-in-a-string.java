@@ -5,8 +5,7 @@ class Solution {
         int prev = 0, curr = 1;
         while(curr < m) {
             if(needle.charAt(curr) == needle.charAt(prev)) {
-                prev++;
-                lps[curr] = prev;
+                lps[curr] = ++prev;
                 curr++;
             }
             else {
