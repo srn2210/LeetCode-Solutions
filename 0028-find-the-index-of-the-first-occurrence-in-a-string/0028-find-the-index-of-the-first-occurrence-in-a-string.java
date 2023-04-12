@@ -13,14 +13,11 @@ class Solution {
                 else lps = pi[lps-1];
             }
         }
-        
-        //System.out.println(Arrays.toString(pi));
-        int ptr = -1;
-        for(int i=0; i<haystack.length(); i++) {
-            while(ptr != -1 && haystack.charAt(i) != needle.charAt(ptr+1)) ptr = pi[ptr]-1;
-            //System.out.println(i + "  " + ptr);
-            if(haystack.charAt(i) == needle.charAt(ptr+1)) ptr++;
-            if(ptr == needle.length() - 1) return i - needle.length() + 1;
+        int ptr = 0;
+        for(int i=0; i<n; i++) {
+            while(ptr != 0 && haystack.charAt(i) != needle.charAt(ptr)) ptr = pi[ptr-1];
+            if(haystack.charAt(i) == needle.charAt(ptr)) ptr++;
+            if(ptr == needle.length()) return i - needle.length() + 1;
         }
         return -1;
     }
