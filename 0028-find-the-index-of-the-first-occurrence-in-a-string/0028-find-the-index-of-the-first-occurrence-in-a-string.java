@@ -1,17 +1,30 @@
 class Solution {
     public int strStr(String haystack, String needle) {
         int n = haystack.length(), m = needle.length();
-        int[] pi = new int[m];
-        int lps = 0;
-        for(int i=1; i<m; i++) {
-            while(lps != 0 && needle.charAt(i) != needle.charAt(lps)) lps = pi[lps-1];
-            if(needle.charAt(i) == needle.charAt(lps)) pi[i] = ++lps;
+        int[] lps = new int[m];
+        int prev = 0, curr = 1;
+        while(curr < m) {
+            if(needle.charAt(curr) == needle.charAt(prev)) {
+                prev++;
+                lps[curr] = prev;
+                curr++;
+            }
+            else {
+                if(prev == 0) curr++;
+                else prev = lps[prev-1];
+            }
         }
-        int ptr = 0;
-        for(int i=0; i<n; i++) {
-            while(ptr != 0 && haystack.charAt(i) != needle.charAt(ptr)) ptr = pi[ptr-1];
-            if(haystack.charAt(i) == needle.charAt(ptr)) ptr++;
-            if(ptr == needle.length()) return i - needle.length() + 1;
+        curr = 0; prev = 0;
+        while(curr < n) {
+            if(haystack.charAt(curr) == needle.charAt(prev)) {
+                prev++;
+                curr++;
+                if(prev == m) return curr - m;
+            }
+            else {
+                if(prev == 0) curr++;
+                else prev = lps[prev-1];
+            }
         }
         return -1;
     }
