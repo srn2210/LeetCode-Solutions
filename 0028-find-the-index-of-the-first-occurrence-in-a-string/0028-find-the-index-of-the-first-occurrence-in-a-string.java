@@ -2,16 +2,10 @@ class Solution {
     public int strStr(String haystack, String needle) {
         int n = haystack.length(), m = needle.length();
         int[] pi = new int[m];
-        int lps = 0, j = 1;
-        while(j < m) {
-            if(needle.charAt(j) == needle.charAt(lps)) {
-                pi[j] = ++lps;
-                j++;
-            }
-            else {
-                if(lps == 0) j++;
-                else lps = pi[lps-1];
-            }
+        int lps = 0;
+        for(int i=1; i<m; i++) {
+            while(lps != 0 && needle.charAt(i) != needle.charAt(lps)) lps = pi[lps-1];
+            if(needle.charAt(i) == needle.charAt(lps)) pi[i] = ++lps;
         }
         int ptr = 0;
         for(int i=0; i<n; i++) {
