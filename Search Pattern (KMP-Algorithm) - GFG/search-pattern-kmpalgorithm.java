@@ -43,22 +43,30 @@ class Solution
         int m = pat.length();
         int n = txt.length();
         int[] pi = new int[m];
-        int j = 0;
-        for(int i=1; i<m; i++) {
+        int j = 0, i = 1;
+        while(i < m) {
             if(pat.charAt(i) == pat.charAt(j)) {
-                pi[i] = j+1;
-                j++;
+                pi[i++] = ++j;
             }
-            else j=0;
+            else {
+                if(j == 0) i++;
+                else j = pi[j-1];
+            }
         }
-        j = -1;
         var ans = new ArrayList<Integer>();
-        for(int i=0; i<n; i++) {
-            while(j != -1 && txt.charAt(i) != pat.charAt(j+1)) j = pi[j]-1;
-            if(pat.charAt(j+1) == txt.charAt(i)) j++;
-            if(j == m-1) {
-                ans.add(i-m+2);
-                j = pi[j]-1;
+        j = 0; i = 0;
+        while(j < n) {
+            if(txt.charAt(j) == pat.charAt(i)) {
+                i++;
+                j++;
+                if(i == m) {
+                    ans.add(j-m+1);
+                    i = pi[i-1];
+                }
+            }
+            else {
+                if(i == 0) j++;
+                else i = pi[i-1];
             }
         }
         return ans;
