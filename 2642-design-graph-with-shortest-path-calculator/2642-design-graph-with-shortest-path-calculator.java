@@ -25,7 +25,11 @@ class Graph {
     public void addEdge(int[] edge) {
         if(edge[2] < shortest[edge[0]][edge[1]]) {
             shortest[edge[0]][edge[1]] = edge[2];
-            floydWarshall();
+            for(int i=0; i<size; i++) {
+                for(int j=0; j<size; j++) {
+                    if(shortest[i][edge[0]] != max && shortest[edge[1]][j] != max)shortest[i][j] = Math.min(shortest[i][j], shortest[i][edge[0]] + shortest[edge[1]][j] + edge[2]);
+                }
+            }
         }
     }
     
