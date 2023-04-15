@@ -8,7 +8,7 @@ class Graph {
             for(int i=0; i<size; i++) {
                 for(int j=0; j<size; j++) {
                     if(i == j) shortest[i][j] = 0;
-                    if(shortest[i][k] != max && shortest[k][j] != max && shortest[i][k] + shortest[k][j] < shortest[i][j]) shortest[i][j] = shortest[i][k] + shortest[k][j];
+                    if(shortest[i][k] != max && shortest[k][j] != max) shortest[i][j] = Math.min(shortest[i][j], shortest[i][k] + shortest[k][j]);
                 }
             }
         }
