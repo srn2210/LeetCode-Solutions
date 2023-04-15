@@ -10,15 +10,16 @@ class Solution {
         return dp[idx][k] = ans;
     }
     public int maxValueOfCoins(List<List<Integer>> piles, int k) {
-        int[][] prefixSum = new int[piles.size()][];
-        for(int i=0; i<piles.size(); i++) {
+        int n = piles.size();
+        int[][] prefixSum = new int[n][];
+        for(int i=0; i<n; i++) {
             prefixSum[i] = new int[piles.get(i).size()+1];
             for(int j=1; j<=piles.get(i).size(); j++) {
                 prefixSum[i][j] = prefixSum[i][j-1] + piles.get(i).get(j-1);
             }
         }
-        int[][] dp = new int[piles.size()][k+1];
-        for(int i=0; i<piles.size(); i++) Arrays.fill(dp[i], -1);
+        int[][] dp = new int[n][k+1];
+        for(int i=0; i<n; i++) Arrays.fill(dp[i], -1);
         return solve(piles, k, 0, prefixSum, dp);
     }
 }
