@@ -1,6 +1,6 @@
 class Solution {
     int solve(List<List<Integer>> piles, int k, int idx, int[][] prefixSum, int[][] dp) {
-        if(k <= 0 || idx >= piles.size()) return 0;
+        if(idx >= piles.size()) return 0;
         if(dp[idx][k] != -1) return dp[idx][k];
         int ans = 0;
         for(int i=0; i<=k; i++) {
