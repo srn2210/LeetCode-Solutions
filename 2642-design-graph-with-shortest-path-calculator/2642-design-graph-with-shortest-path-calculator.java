@@ -1,19 +1,20 @@
 class Graph {
     
-    Map<Integer, Map<Integer, Integer>> list;
+    List<List<Pair<Integer, Integer>>> list;
     int n;
     int max = Integer.MAX_VALUE;
     
     public Graph(int n, int[][] edges) {
         this.n = n;
-        list = new HashMap<>(n);
+        list = new ArrayList<>();
+        for(int i=0; i<n; i++) list.add(new ArrayList<>());
         for(var edge : edges) {
-            list.computeIfAbsent(edge[0], a -> new HashMap<>()).put(edge[1], edge[2]);
+            list.get(edge[0]).add(new Pair(edge[1], edge[2]));
         }
     }
     
     public void addEdge(int[] edge) {
-        list.computeIfAbsent(edge[0], a -> new HashMap<>()).put(edge[1], edge[2]);
+        list.get(edge[0]).add(new Pair(edge[1], edge[2]));
     }
     
     public int shortestPath(int node1, int node2) {
@@ -25,8 +26,7 @@ class Graph {
         while(!q.isEmpty()) {
             int node = q.peek().getKey();
             int cost = q.poll().getValue();
-            if(!list.containsKey(node)) continue;
-            for(var neighbours : list.get(node).entrySet()) {
+            for(var neighbours : list.get(node)) {
                 int adjNode = neighbours.getKey();
                 int costToNeighbour = neighbours.getValue();
                 if(cost + costToNeighbour < dist[adjNode]) {
