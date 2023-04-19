@@ -30,7 +30,6 @@ public class Codec {
                 }
             }
         }
-        //System.out.println(ans.toString());
         return ans.toString();
     }
 
@@ -46,17 +45,15 @@ public class Codec {
             int size = q.size();
             while(size-- > 0) {
                 var node = q.poll();
-                //if(!arr[idx].equals("null")) {
-                    if(idx + 1 < arr.length && !arr[idx+1].equals("null")) {
-                        node.left = new TreeNode(Integer.parseInt(arr[idx+1]));
-                        q.add(node.left);
-                    }
-                    if(idx + 2 < arr.length && !arr[idx+2].equals("null")) {
-                        node.right = new TreeNode(Integer.parseInt(arr[idx+2]));
-                        q.add(node.right);
-                    }
-                    idx += 2;
-                //}
+                if(idx + 1 < arr.length && !arr[idx+1].equals("null")) {
+                    node.left = new TreeNode(Integer.parseInt(arr[idx+1]));
+                    q.add(node.left);
+                }
+                if(idx + 2 < arr.length && !arr[idx+2].equals("null")) {
+                    node.right = new TreeNode(Integer.parseInt(arr[idx+2]));
+                    q.add(node.right);
+                }
+                idx += 2;
             }
         }
         return ans;
