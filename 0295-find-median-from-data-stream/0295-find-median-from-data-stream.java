@@ -22,9 +22,7 @@ class MedianFinder {
                 lo.add(hi.poll());
                 hi.add(num);
             }
-            else {
-                lo.add(num);
-            }
+            else lo.add(num);
         }
         else {
             if(!hi.isEmpty() && num >= lo.peek()) hi.add(num);
@@ -38,9 +36,7 @@ class MedianFinder {
     
     public double findMedian() {
         if(size % 2 != 0) return (double)lo.peek();
-        else {
-            return (lo.peek() + hi.peek()) / 2.0;
-        }
+        else return (lo.peek() + hi.peek()) / 2.0;
     }
 }
 
