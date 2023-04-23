@@ -5,7 +5,7 @@ class Solution {
         for(int i=0; i<height.length; i++) {
             if(st.isEmpty() || height[i] < height[st.peekLast()]) st.addLast(i);
             else {
-                while(!st.isEmpty() && height[i] >= height[st.peekLast()]) {
+                while(!st.isEmpty() && height[i] > height[st.peekLast()]) {
                     int prev = st.removeLast();
                     if(st.isEmpty()) continue;
                     int t = Math.min(height[i], height[st.peekLast()]);
