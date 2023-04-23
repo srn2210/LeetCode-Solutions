@@ -1,18 +1,18 @@
 class Solution {
     public int trap(int[] height) {
-        var st = new Stack<Integer>();
+        var st = new ArrayDeque<Integer>();
         int ans = 0;
         for(int i=0; i<height.length; i++) {
-            if(st.isEmpty() || height[i] < height[st.peek()]) st.push(i);
+            if(st.isEmpty() || height[i] < height[st.peekLast()]) st.addLast(i);
             else {
-                while(!st.isEmpty() && height[i] >= height[st.peek()]) {
-                    int prev = st.pop();
+                while(!st.isEmpty() && height[i] > height[st.peekLast()]) {
+                    int prev = st.removeLast();
                     if(st.isEmpty()) continue;
-                    int t = Math.min(height[i], height[st.peek()]);
-                    int temp = (i - st.peek() - 1) * (t - height[prev]);
+                    int t = Math.min(height[i], height[st.peekLast()]);
+                    int temp = (i - st.peekLast() - 1) * (t - height[prev]);
                     ans += temp;
                 }
-                st.push(i);
+                st.addLast(i);
             }
         }
         return ans;
