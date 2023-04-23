@@ -6,9 +6,7 @@ class Solution {
             while(!st.isEmpty() && height[i] > height[st.peekLast()]) {
                 int prev = st.removeLast();
                 if(st.isEmpty()) continue;
-                int t = Math.min(height[i], height[st.peekLast()]);
-                int temp = (i - st.peekLast() - 1) * (t - height[prev]);
-                ans += temp;
+                ans += (i - st.peekLast() - 1) * (Math.min(height[i], height[st.peekLast()]) - height[prev]);
             }
             st.addLast(i);
         }
