@@ -1,6 +1,6 @@
 class Solution {
     public int trap(int[] height) {
-        var st = new ArrayDeque<Integer>();
+        var st = new LinkedList<Integer>();
         int ans = 0;
         for(int i=0; i<height.length; i++) {
             if(st.isEmpty() || height[i] < height[st.peekLast()]) st.addLast(i);
