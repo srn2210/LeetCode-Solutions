@@ -12,14 +12,14 @@ class Solution {
                         r11 = i;
                     }
                     else if(i < r12) r12 = i;
-                    break;
+                break;
                 case 2:
                     if(i <= r21) {
                         r22 = r21;
                         r21 = i;
                     }
                     else if(i < r22) r22 = i;
-                    break;
+                break;
             }
         }
         if(sum % 3 == 0) return sum;
