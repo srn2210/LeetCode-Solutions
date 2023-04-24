@@ -1,19 +1,14 @@
 class Solution {
-    void solve(Set<Integer> dp, long nu, List<Integer> set) {
-        if(nu > Integer.MAX_VALUE) return;
-        int num = (int) nu;
-        if(dp.contains(num)) return;
-        dp.add(num);
-        set.add(num);
-        solve(dp, nu * 2, set);
-        solve(dp, nu * 3, set);
-        solve(dp, nu * 5, set);
-    }
     public int nthUglyNumber(int n) {
-        var set = new ArrayList<Integer>();
-        solve(new HashSet<Integer>(), 1, set);
-        //while(n-- > 1) set.poll();
-        Collections.sort(set);
-        return set.get(n-1);
+        int[] dp = new int[n];
+        dp[0] = 1;
+        int idx1 = 0, idx2 = 0, idx3 = 0;
+        for(int i=1; i<n; i++) {
+            dp[i] = Math.min(2 * dp[idx1], Math.min(3 * dp[idx2], 5 * dp[idx3]));
+            if(dp[i] == 2 * dp[idx1]) idx1++;
+            if(dp[i] == 3 * dp[idx2]) idx2++;
+            if(dp[i] == 5 * dp[idx3]) idx3++;
+        }
+        return dp[n-1];
     }
 }
