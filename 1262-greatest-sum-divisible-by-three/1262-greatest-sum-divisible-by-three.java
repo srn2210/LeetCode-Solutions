@@ -22,8 +22,11 @@ class Solution {
                 break;
             }
         }
-        if(sum % 3 == 0) return sum;
-        else if(sum % 3 == 1) return sum - Math.min(r11, r21+r22);
-        else return sum - Math.min(r11+r12, r21);
+        switch(sum % 3) {
+            case 0: return sum;
+            case 1: return sum - Math.min(r11, r21+r22);
+            case 2: return sum - Math.min(r11+r12, r21);
+        }
+        return 0;
     }
 }
