@@ -1,25 +1,23 @@
 class SmallestInfiniteSet {
-    Queue<Integer> pq;
-    boolean[] set;
+    TreeSet<Integer> set;
+    int curr;
     public SmallestInfiniteSet() {
-        set = new boolean[1001];
-        pq = new PriorityQueue<>();
-        for(int i=1; i<=1000; i++) {
-            set[i] = true;
-            pq.add(i);
-        }
+        set = new TreeSet<>();
+        curr = 1;
     }
     
     public int popSmallest() {
-        set[pq.peek()] = false;
-        return pq.poll();
+        if(!set.isEmpty()) return set.pollFirst();
+        else {
+            int ans = curr;
+            curr++;
+            return ans;
+        }
     }
     
     public void addBack(int num) {
-        if(!set[num]) {
-            set[num] = true;
-            pq.add(num);
-        }
+        if(curr <= num) return;
+        set.add(num);
     }
 }
 
