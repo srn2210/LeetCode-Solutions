@@ -15,7 +15,10 @@
  */
 class Solution {
     int solve(TreeNode node, int status, Map<TreeNode, int[]> dp) {
-        if(node == null) return 0;
+        if(node == null) {
+            if(status == 1) return 1001;
+            return 0;
+        }
         if(dp.containsKey(node) && dp.get(node)[status] != -1) return dp.get(node)[status];
         if(status == 1) {
             int ans = solve(node.left, 2, dp) + solve(node.right, 2, dp);
@@ -31,8 +34,8 @@ class Solution {
         }
         else {
             int setCam = 1 + solve(node.left, 2, dp) + solve(node.right, 2, dp);
-            int leftCam = node.left == null ? 10001 : 1 + solve(node.left, 1, dp) + solve(node.right, 3, dp);
-            int rightCam = node.right == null ? 10001 : 1 + solve(node.left, 3, dp) + solve(node.right, 1, dp);
+            int leftCam = 1 + solve(node.left, 1, dp) + solve(node.right, 3, dp);
+            int rightCam = 1 + solve(node.left, 3, dp) + solve(node.right, 1, dp);
             int ans = Math.min(setCam, Math.min(leftCam, rightCam));
             dp.computeIfAbsent(node, a -> new int[]{-1, -1, -1, -1})[status] = ans;
             return ans;
