@@ -1,23 +1,23 @@
 class SmallestInfiniteSet {
     Queue<Integer> pq;
-    Set<Integer> set;
+    boolean[] set;
     public SmallestInfiniteSet() {
-        set = new HashSet<>();
+        set = new boolean[1001];
         pq = new PriorityQueue<>();
         for(int i=1; i<=1000; i++) {
-            set.add(i);
+            set[i] = true;
             pq.add(i);
         }
     }
     
     public int popSmallest() {
-        set.remove(pq.peek());
+        set[pq.peek()] = false;
         return pq.poll();
     }
     
     public void addBack(int num) {
-        if(!set.contains(num)) {
-            set.add(num);
+        if(!set[num]) {
+            set[num] = true;
             pq.add(num);
         }
     }
