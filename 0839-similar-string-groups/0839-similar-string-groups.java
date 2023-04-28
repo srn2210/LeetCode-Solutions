@@ -44,9 +44,10 @@ class Solution {
         var uf = new UnionFind(strs.length);
         int m = strs.length;
         int n = strs[0].length();
+        int count = 0;
         for(int i=0; i<m; i++) {
             for(int j=0; j<i; j++) {
-                int count = 0;
+                count = 0;
                 for(int k=0; k<n; k++) {
                     if(strs[i].charAt(k) != strs[j].charAt(k)) count++;
                 }
