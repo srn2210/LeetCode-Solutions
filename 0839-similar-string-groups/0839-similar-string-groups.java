@@ -48,7 +48,10 @@ class Solution {
             for(int j=0; j<i; j++) {
                 count = 0;
                 for(int k=0; k<n; k++) {
-                    if(strs[i].charAt(k) != strs[j].charAt(k)) count++;
+                    if(strs[i].charAt(k) != strs[j].charAt(k)) {
+                        count++;
+                        if(count > 2) break;
+                    }
                 }
                 if(count == 0 || count == 2) uf.union(i, j);
             }
