@@ -1,0 +1,58 @@
+class Solution {
+    class UnionFind {
+        int[] arr;
+        int[] sz;
+        UnionFind(int n) {
+            arr = new int[n];
+            sz = new int[n];
+            for(int i=0; i<n; i++) {
+                arr[i] = i;
+                sz[i] = 1;
+            }
+        }
+        int find(int p) {
+            if(p == arr[p]) return p;
+            else return arr[p] = find(arr[p]);
+        }
+        boolean isConnected(int p, int q) {
+            return find(p) == find(q);
+        }
+        void union(int p, int q) {
+            int x = find(p);
+            int y = find(q);
+            if(isConnected(x, y)) return;
+            else {
+                if(sz[x] < sz[y]) {
+                    arr[x] = arr[y];
+                    sz[y] += sz[x];
+                }
+                else {
+                    arr[y] = arr[x];
+                    sz[x] += sz[y];
+                }
+            }
+        }
+        int size() {
+            var set = new HashSet<Integer>();
+            for(int i=0; i<arr.length; i++) {
+                set.add(find(i));
+            }
+            return set.size();
+        }
+    }
+    public int numSimilarGroups(String[] strs) {
+        var uf = new UnionFind(strs.length);
+        int m = strs.length;
+        int n = strs[0].length();
+        for(int i=0; i<m; i++) {
+            for(int j=0; j<i; j++) {
+                int count = 0;
+                for(int k=0; k<n; k++) {
+                    if(strs[i].charAt(k) != strs[j].charAt(k)) count++;
+                }
+                if(count == 0 || count == 2) uf.union(i, j);
+            }
+        }
+        return uf.size();
+    }
+}
