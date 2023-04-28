@@ -2,9 +2,11 @@ class Solution {
     class UnionFind {
         int[] arr;
         int[] sz;
+        int size;
         UnionFind(int n) {
             arr = new int[n];
             sz = new int[n];
+            size = n;
             for(int i=0; i<n; i++) {
                 arr[i] = i;
                 sz[i] = 1;
@@ -22,6 +24,7 @@ class Solution {
             int y = find(q);
             if(isConnected(x, y)) return;
             else {
+                size--;
                 if(sz[x] < sz[y]) {
                     arr[x] = arr[y];
                     sz[y] += sz[x];
@@ -33,11 +36,7 @@ class Solution {
             }
         }
         int size() {
-            var set = new HashSet<Integer>();
-            for(int i=0; i<arr.length; i++) {
-                set.add(find(i));
-            }
-            return set.size();
+            return this.size;
         }
     }
     public int numSimilarGroups(String[] strs) {
