@@ -36,7 +36,7 @@ class Solution {
             }
         }
         int size() {
-            return this.size;
+            return size;
         }
     }
     public int numSimilarGroups(String[] strs) {
