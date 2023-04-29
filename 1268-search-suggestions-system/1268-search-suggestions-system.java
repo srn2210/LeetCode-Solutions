@@ -52,7 +52,7 @@ class Solution {
         Trie trie = new Trie();
         var ans = new ArrayList<List<String>>();
         for(var product : products) trie.insert(product);
-        StringBuilder s = new StringBuilder();
+        var s = new StringBuilder();
         for(char ch : searchWord.toCharArray()) {
             s.append(ch);
             ans.add(trie.suggest(s.toString()));
