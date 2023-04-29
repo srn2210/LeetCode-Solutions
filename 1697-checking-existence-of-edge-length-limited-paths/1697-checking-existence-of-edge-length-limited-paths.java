@@ -36,7 +36,6 @@ class Solution {
     public boolean[] distanceLimitedPathsExist(int n, int[][] edgeList, int[][] queries) {
         UnionFind uf = new UnionFind(n);
         var ans = new boolean[queries.length];
-        //mparator sort = new Comparator();
         Arrays.sort(edgeList, (a,b) -> Integer.compare(a[2], b[2]));
         int[][] queriesIndexed = new int[queries.length][4];
         
