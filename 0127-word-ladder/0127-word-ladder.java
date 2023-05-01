@@ -9,8 +9,7 @@ class Solution {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         var map = new HashMap<String, List<String>>();
         for(int i=0; i<wordList.size(); i++) {
-            List<String> temp = generate(wordList.get(i));
-            for(var s : temp) map.computeIfAbsent(s, a -> new ArrayList<>()).add(wordList.get(i));
+            for(var s : generate(wordList.get(i))) map.computeIfAbsent(s, a -> new ArrayList<>()).add(wordList.get(i));
         }
         var queue = new LinkedList<String>();
         var vis = new HashSet<String>();
