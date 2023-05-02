@@ -20,7 +20,6 @@ class Solution {
                 case '(':
                     curr += evaluate(s, i+1) * sign;
                     i = j;
-                    //curr = 0;
                     sign = 1;
                     break;
                 case ')':
