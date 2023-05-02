@@ -18,9 +18,9 @@ class Solution {
                     sign = -1;
                     break;
                 case '(':
-                    res += evaluate(s, i+1) * sign;
+                    curr += evaluate(s, i+1) * sign;
                     i = j;
-                    curr = 0;
+                    //curr = 0;
                     sign = 1;
                     break;
                 case ')':
