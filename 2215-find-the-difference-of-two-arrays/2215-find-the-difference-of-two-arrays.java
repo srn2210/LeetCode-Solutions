@@ -1,6 +1,5 @@
 class Solution {
     public List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
-        var ans = new ArrayList<List<Integer>>();
         boolean[] set1 = new boolean[2001];
         boolean[] set2 = new boolean[2001];
         for(int i : nums1) set1[i+1000] = true;
@@ -12,8 +11,6 @@ class Solution {
             else if(set1[i]) list1.add(i-1000);
             else if(set2[i]) list2.add(i-1000);
         }
-        ans.add(list1);
-        ans.add(list2);
-        return ans;
+        return Arrays.asList(list1, list2);
     }
 }
