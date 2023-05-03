@@ -1,20 +1,19 @@
 class Solution {
     public List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
         var ans = new ArrayList<List<Integer>>();
-        var set1 = new HashSet<Integer>();
-        var set2 = new HashSet<Integer>();
-        var set3 = new HashSet<Integer>();
-        for(int i : nums1) set1.add(i);
-        for(int i : nums2) {
-            set3.add(i);
-            if(set1.contains(i)) continue;
-            set2.add(i);
+        boolean[] set1 = new boolean[2001];
+        boolean[] set2 = new boolean[2001];
+        for(int i : nums1) set1[i+1000] = true;
+        for(int i : nums2) set2[i+1000] = true;
+        var list1 = new ArrayList<Integer>();
+        var list2 = new ArrayList<Integer>();
+        for(int i=0; i<2001; i++) {
+            if(set1[i] && set2[i]) continue;
+            else if(set1[i]) list1.add(i-1000);
+            else if(set2[i]) list2.add(i-1000);
         }
-        for(int i : set3) {
-            if(set1.contains(i)) set1.remove(i);
-        }
-        ans.add(new ArrayList<>(set1));
-        ans.add(new ArrayList<>(set2));
+        ans.add(list1);
+        ans.add(list2);
         return ans;
     }
 }
