@@ -2,17 +2,17 @@ class Solution {
     public String predictPartyVictory(String senate) {
         int countR = 0, countD = 0;
         int popR = 0, popD = 0;
-        var q = new LinkedList<Character>();
+        var q = new ArrayDeque<Character>();
         for(char ch : senate.toCharArray()) {
             if(ch == 'R') countR++;
             else countD++;
-            q.add(ch);
+            q.addLast(ch);
         }
         while(countR > 0 && countD > 0) {
             var t = q.poll();
             if(t == 'R') {
                 if(popR == 0) {
-                    q.add('R');
+                    q.addLast('R');
                     popD += 1;
                 }
                 else {
@@ -22,7 +22,7 @@ class Solution {
             }
             else {
                 if(popD == 0) {
-                    q.add('D');
+                    q.addLast('D');
                     popR += 1;
                 }
                 else {
