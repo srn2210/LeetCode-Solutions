@@ -51,9 +51,10 @@ class Solution {
         int m = board.length, n = board[0].length;
         boolean[][] vis = new boolean[m][n];
         var ans = new HashSet<String>();
+        var word = new StringBuilder();
         for(int i=0; i<m; i++) {
             for(int j=0; j<n; j++) {
-                if(t.root.get(board[i][j]) != null) explore(board, i, j, t.root.get(board[i][j]), vis, ans, new StringBuilder());
+                if(t.root.get(board[i][j]) != null) explore(board, i, j, t.root.get(board[i][j]), vis, ans, word);
             }
         }
         return new ArrayList<String>(ans);
