@@ -8,19 +8,11 @@ class Solution {
         var lhmap = new LinkedHashMap<Integer, Character>();
         var set = new HashSet<Integer>();
         for(int i=0; i<arr.length; i++) {
+            if(arr[i] == 'R') r.add(i);
+            else d.add(i);
             lhmap.put(i, arr[i]);
         }
         while(!lhmap.isEmpty()) {
-            r.clear();
-            d.clear();
-            rp.clear();
-            dp.clear();
-            for(var entry : lhmap.entrySet()) {
-                int key = entry.getKey();
-                int val = entry.getValue();
-                if(val == 'R') r.add(key);
-                else d.add(key);
-            }
             for(var entry : lhmap.entrySet()) {
                 int key = entry.getKey();
                 int val = entry.getValue();
@@ -29,13 +21,13 @@ class Solution {
                     switch(val) {
                         case 'R':
                             if(d.isEmpty() && dp.isEmpty()) return "Radiant";
-                            while(!d.isEmpty() && d.peek() < key) dp.add(d.pollFirst());
+                            while(!d.isEmpty() && d.peek() < key) dp.addLast(d.pollFirst());
                             if(!d.isEmpty()) set.add(d.pollFirst());
                             else set.add(dp.pollFirst());
                             break;
                         case 'D':
                             if(r.isEmpty() && rp.isEmpty()) return "Dire";
-                            while(!r.isEmpty() && r.peek() < key) rp.add(r.pollFirst());
+                            while(!r.isEmpty() && r.peek() < key) rp.addLast(r.pollFirst());
                             if(!r.isEmpty()) set.add(r.pollFirst());
                             else set.add(rp.pollFirst());
                             break;
@@ -46,6 +38,14 @@ class Solution {
                 lhmap.remove(i);
             }
             set.clear();
+            while(!r.isEmpty()) rp.addLast(r.pollFirst());
+            while(!d.isEmpty()) dp.addLast(d.pollFirst());
+            var t = r;
+            r = rp;
+            rp = t;
+            t = d;
+            d = dp;
+            dp = t;
         }
         return null;
     }
