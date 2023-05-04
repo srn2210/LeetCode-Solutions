@@ -7,16 +7,13 @@ class Solution {
         long ans = gcd(x, y);
         return (x * y) / ans;
     }
-    int check(int mid, int n, int a, int b, int c) {
-        long ab = lcm(a, b), bc = lcm(b, c), ca = lcm(a, c), abc = lcm(a, lcm(b, c));
-        long ans = (mid / a) + (mid / b) + (mid / c) - (mid / ab) - (mid / bc) - (mid / ca) + (mid / abc);
-        return (int)ans;
-    }
     public int nthUglyNumber(int n, int a, int b, int c) {
         int lo = 1, hi = (int)2e9;
+        long ab = lcm(a, b), bc = lcm(b, c), ca = lcm(a, c), abc = lcm(a, lcm(b, c));
         while(lo < hi) {
             int mid = lo + (hi - lo) / 2;
-            if(check(mid, n, a, b, c) >= n) hi = mid;
+            long ans = (mid / a) + (mid / b) + (mid / c) - (mid / ab) - (mid / bc) - (mid / ca) + (mid / abc);
+            if((int)ans >= n) hi = mid;
             else lo = mid + 1;
         }
         return lo;
