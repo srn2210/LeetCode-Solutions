@@ -31,7 +31,7 @@ class Solution {
         }
     }
     void explore(char[][] board, int i, int j, TrieNode node, boolean[][] vis, List<String> ans) {
-        if(i < 0 || j < 0 || i >= board.length || j >= board[0].length || node == null || vis[i][j]) return;
+        if(node == null || vis[i][j]) return;
         vis[i][j] = true;
         if(node.word != null) {
             ans.add(node.word);
