@@ -37,10 +37,7 @@ class Solution {
         if(i < 0 || j < 0 || i >= board.length || j >= board[0].length || node == null || vis[i][j]) return;
         vis[i][j] = true;
         s.append(board[i][j]);
-        if(node.isEnd()) {
-            ans.add(s.toString());
-            //return;
-        }
+        if(node.isEnd()) ans.add(s.toString());
         if(i+1 < board.length) explore(board, i+1, j, node.get(board[i+1][j]), vis, ans, s);
         if(j+1 < board[0].length) explore(board, i, j+1, node.get(board[i][j+1]), vis, ans, s);
         if(i-1 >= 0) explore(board, i-1, j, node.get(board[i-1][j]), vis, ans, s);
