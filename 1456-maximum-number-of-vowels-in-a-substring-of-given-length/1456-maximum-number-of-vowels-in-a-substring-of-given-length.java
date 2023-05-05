@@ -7,14 +7,11 @@ class Solution {
         int left = 0, right = 0;
         
         while(right < s.length()) {
-            if(right - left + 1 <= k) {
-                if(check(s.charAt(right))) count++;
-            }
-            else if(right - left + 1 > k) {
-                if(check(s.charAt(right))) count++;
+            if(right - left + 1 > k) {
                 if(check(s.charAt(left))) count--;
                 left++;
             }
+            if(check(s.charAt(right))) count++;
             right++;
             ans = Math.max(ans, count);
         }
