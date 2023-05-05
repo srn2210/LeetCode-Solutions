@@ -1,25 +1,25 @@
 class Solution {
     public int largestRectangleArea(int[] heights) {
         int ans = 0, min = Integer.MAX_VALUE;
-        var st = new Stack<Integer>();
+        var st = new ArrayDeque<Integer>();
         
         for(int i=0; i<heights.length; i++) {
-            if(st.isEmpty() || heights[st.peek()] <= heights[i]) st.push(i);
+            if(st.isEmpty() || heights[st.peekLast()] <= heights[i]) st.addLast(i);
             else {
-                int og = st.peek();
-                while(!st.isEmpty() && heights[st.peek()] > heights[i]) {
-                    int t = st.pop();
-                    if(!st.isEmpty()) ans = Math.max(ans, heights[t] * (og - st.peek()));
+                int og = st.peekLast();
+                while(!st.isEmpty() && heights[st.peekLast()] > heights[i]) {
+                    int t = st.removeLast();
+                    if(!st.isEmpty()) ans = Math.max(ans, heights[t] * (og - st.peekLast()));
                     else ans = Math.max(ans, heights[t] * (og + 1));
                     
                 }
-                st.push(i);
+                st.addLast(i);
             }
         }
-        int og = st.peek();
+        int og = st.peekLast();
         while(!st.isEmpty()) {
-            int t = st.pop();
-            if(!st.isEmpty()) ans = Math.max(ans, heights[t] * (og - st.peek()));
+            int t = st.removeLast();
+            if(!st.isEmpty()) ans = Math.max(ans, heights[t] * (og - st.peekLast()));
             else ans = Math.max(ans, heights[t] * (og + 1));
         }
         
