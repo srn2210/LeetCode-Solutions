@@ -29,7 +29,7 @@ class Solution {
        Arrays.fill(cache, -1);
        for(int i=0; i<nums.length; i++) {
            int rem = target - nums[i];
-           if(rem < nums[i]) continue;
+           if(rem < nums[i]) break;
            int idx = binarySearch(nums, rem);
            ans += modPow(2, idx-i, mod, cache);
            ans %= mod;
