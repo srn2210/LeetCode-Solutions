@@ -13,13 +13,9 @@ class Solution {
         var lis = new ArrayList<Integer>();
         for(int i=0; i<ans.length; i++) {
             int height = obstacles[i];
-            int idx = 0;
-            if(lis.isEmpty()) lis.add(height);
-            else {
-                idx = binarySearch(lis, height);
-                if(idx == lis.size()) lis.add(height);
-                else lis.set(idx, height);
-            }
+            int idx = binarySearch(lis, height);
+            if(idx >= lis.size()) lis.add(height);
+            else lis.set(idx, height);
             ans[i] = idx+1;
         }
         return ans;
