@@ -22,7 +22,7 @@ class Solution {
                 if(list.get(edge).isEmpty()) queue.add(edge);
             }
         }
-        var ans = new LinkedList<Integer>();
+        var ans = new ArrayList<Integer>();
         for(int i=0; i<n; i++) if(list.get(i).isEmpty()) ans.add(i);
         return ans;
     }
