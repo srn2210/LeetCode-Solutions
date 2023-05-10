@@ -1,7 +1,7 @@
 class Solution {
-    boolean dfs(int node, int n, int[][] graph, boolean[] vis, Set<Integer> terminal) {
+    boolean dfs(int node, int n, int[][] graph, boolean[] vis, boolean[] terminal) {
         if(graph[node].length == 0) {
-            if(terminal.contains(node)) {
+            if(terminal[node]) {
                 return true;
             }
             return false;
@@ -12,25 +12,24 @@ class Solution {
             if(!vis[edge]) {
                 ans = ans && dfs(edge, n, graph, vis, terminal);
             }
-            else if(vis[edge] && !terminal.contains(edge)) return false;
+            else if(vis[edge] && !terminal[edge]) return terminal[node] = false;
         }
-        if(ans) terminal.add(node);
-        return ans;
+        return terminal[node] = ans;
     }
     public List<Integer> eventualSafeNodes(int[][] graph) {
         int n = graph.length;
-        var set = new HashSet<Integer>();
+        var set = new boolean[n];
+        var ans = new ArrayList<Integer>();
+        var vis = new boolean[n];
         for(int i=0; i<n; i++) {
-            if(graph[i].length == 0) set.add(i);
+            if(graph[i].length == 0) set[i] = true;
         }
-        boolean[] vis = new boolean[n];
         for(int i=0; i<n; i++) {
             if(!vis[i]) {
                 dfs(i, n, graph, vis, set);
             }
         }
-        var ans = new ArrayList<>(set);
-        Collections.sort(ans);
+        for(int i=0; i<n; i++) if(set[i]) ans.add(i);
         return ans;
     }
 }
