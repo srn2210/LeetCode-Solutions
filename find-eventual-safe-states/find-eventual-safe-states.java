@@ -1,11 +1,6 @@
 class Solution {
     boolean dfs(int node, int n, int[][] graph, boolean[] vis, boolean[] terminal) {
-        if(graph[node].length == 0) {
-            if(terminal[node]) {
-                return true;
-            }
-            return false;
-        }
+        if(graph[node].length == 0) return true;
         vis[node] = true;
         boolean ans = true;
         for(int edge : graph[node]) {
