@@ -12,7 +12,7 @@ class Solution {
             if(!vis[edge]) {
                 ans = ans && dfs(edge, n, graph, vis, terminal);
             }
-            else if(vis[edge] && !terminal.contains(edge)) ans = false;
+            else if(vis[edge] && !terminal.contains(edge)) return false;
         }
         if(ans) terminal.add(node);
         return ans;
