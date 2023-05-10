@@ -1,29 +1,40 @@
 class Solution {
-    public List<Integer> eventualSafeNodes(int[][] graph) {
-        int n = graph.length;
-        var list = new ArrayList<Set<Integer>>();
-        var rlist = new ArrayList<Set<Integer>>();
-        var queue = new LinkedList<Integer>();
-        for(int i=0; i<n; i++) {
-            list.add(new HashSet<>());
-            rlist.add(new HashSet<>());
+    public List<Integer> eventualSafeNodes(int[][] G) {
+        int N = G.length;
+        boolean[] safe = new boolean[N];
+
+        List<Set<Integer>> graph = new ArrayList();
+        List<Set<Integer>> rgraph = new ArrayList();
+        for (int i = 0; i < N; ++i) {
+            graph.add(new HashSet());
+            rgraph.add(new HashSet());
         }
-        for(int i=0; i<n; i++) {
-            if(graph[i].length == 0) queue.add(i);
-            for(int j=0; j<graph[i].length; j++) {
-                rlist.get(graph[i][j]).add(i);
-                list.get(i).add(graph[i][j]);
+
+        Queue<Integer> queue = new LinkedList();
+
+        for (int i = 0; i < N; ++i) {
+            if (G[i].length == 0)
+                queue.offer(i);
+            for (int j: G[i]) {
+                graph.get(i).add(j);
+                rgraph.get(j).add(i);
             }
         }
-        while(!queue.isEmpty()) {
-            int x = queue.poll();
-            for(int edge : rlist.get(x)) {
-                list.get(edge).remove(x);
-                if(list.get(edge).isEmpty()) queue.add(edge);
+
+        while (!queue.isEmpty()) {
+            int j = queue.poll();
+            safe[j] = true;
+            for (int i: rgraph.get(j)) {
+                graph.get(i).remove(j);
+                if (graph.get(i).isEmpty())
+                    queue.offer(i);
             }
         }
-        var ans = new ArrayList<Integer>();
-        for(int i=0; i<n; i++) if(list.get(i).isEmpty()) ans.add(i);
+
+        List<Integer> ans = new ArrayList();
+        for (int i = 0; i < N; ++i) if (safe[i])
+            ans.add(i);
+
         return ans;
     }
 }
