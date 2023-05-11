@@ -1,9 +1,11 @@
 class Solution {
     public int rob(int[] nums) {
-        int[] dp = new int[nums.length+2];
-        for(int i=2; i<dp.length; i++) {
-            dp[i] = Math.max(dp[i-1], dp[i-2] + nums[i-2]);
+        int x = 0, y = 0, ans = 0;
+        for(int i=0; i<nums.length; i++) {
+            ans = Math.max(y, x + nums[i]);
+            x = y;
+            y = ans;
         }
-        return dp[dp.length-1];
+        return ans;
     }
 }
