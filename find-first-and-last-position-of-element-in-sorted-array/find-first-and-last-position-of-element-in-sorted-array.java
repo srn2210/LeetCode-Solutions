@@ -8,8 +8,8 @@ class Solution {
             if(nums[mid] >= target) hi = mid;
             else lo = mid + 1;
         }
-        ans[0] = nums[lo] == target ? lo : -1;
-        if(ans[0] == -1) return new int[]{-1,-1};
+        if(nums[lo] != target) return new int[]{-1,-1};
+        ans[0] = lo;
         lo = 0; hi = nums.length-1;
         while(lo < hi) {
             mid = lo + (hi - lo) / 2;
