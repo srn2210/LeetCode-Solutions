@@ -8,9 +8,7 @@ class Solution {
                 else lo = mid + 1;
             }
             ans += grid[0].length - hi;
-            //hi = lo;
             lo = 0;
-            //System.out.println(hi);
             i++;
         }
         return ans;
