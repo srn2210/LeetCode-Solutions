@@ -4,19 +4,22 @@ class Solution {
         for(int i=0; i<n; i++) {
             if(manager[i] != -1) map.computeIfAbsent(manager[i], a -> new ArrayList<>()).add(i);
         }
-        var q = new LinkedList<Pair<Integer, Integer>>();
-        q.add(new Pair<>(headID, 0));
+        int[] cost = new int[n];
+        Arrays.fill(cost, Integer.MAX_VALUE);
+        cost[headID] = 0;
+        var q = new LinkedList<Integer>();
+        q.add(headID);
         int ans = 0;
         while(!q.isEmpty()) {
             int size = q.size();
             while(size-- > 0) {
-                var p = q.poll();
-                int node = p.getKey();
-                int cost = p.getValue();
-                ans = Math.max(cost, ans);
+                int node = q.poll();
+                int curr = cost[node];
+                ans = Math.max(curr, ans);
                 if(!map.containsKey(node)) continue;
                 for(int i : map.get(node)) {
-                    q.add(new Pair(i, cost + informTime[node]));
+                    cost[i] = curr + informTime[node];
+                    q.add(i);
                 }
             }
         }
