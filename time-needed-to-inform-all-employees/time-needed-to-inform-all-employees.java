@@ -1,9 +1,8 @@
 class Solution {
     public int numOfMinutes(int n, int headID, int[] manager, int[] informTime) {
-        var map = new HashMap<Integer, List<Integer>>();
-        for(int i=0; i<n; i++) {
-            if(manager[i] != -1) map.computeIfAbsent(manager[i], a -> new ArrayList<>()).add(i);
-        }
+        var adj = new ArrayList<List<Integer>>();
+        for(int i=0; i<n; i++) adj.add(new ArrayList<>());
+        for(int i=0; i<n; i++) if(manager[i] != -1) adj.get(manager[i]).add(i);
         int[] cost = new int[n];
         Arrays.fill(cost, Integer.MAX_VALUE);
         cost[headID] = 0;
@@ -16,8 +15,7 @@ class Solution {
                 int node = q.poll();
                 int curr = cost[node];
                 ans = Math.max(curr, ans);
-                if(!map.containsKey(node)) continue;
-                for(int i : map.get(node)) {
+                for(int i : adj.get(node)) {
                     cost[i] = curr + informTime[node];
                     q.add(i);
                 }
