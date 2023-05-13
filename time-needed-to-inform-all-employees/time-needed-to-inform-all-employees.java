@@ -1,6 +1,6 @@
 class Solution {
     public int numOfMinutes(int n, int headID, int[] manager, int[] informTime) {
-        var adj = new ArrayList<List<Integer>>();
+        var adj = new ArrayList<List<Integer>>(n);
         for(int i=0; i<n; i++) adj.add(new ArrayList<>());
         for(int i=0; i<n; i++) if(manager[i] != -1) adj.get(manager[i]).add(i);
         int[] cost = new int[n];
