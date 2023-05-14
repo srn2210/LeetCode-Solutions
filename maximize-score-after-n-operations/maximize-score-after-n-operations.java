@@ -10,7 +10,7 @@ class Solution {
         for(int i=0; i<nums.length; i++) {
             if((state & 1 << i) == 0) {
                 state = state | 1 << i;
-                for(int j=0; j<nums.length; j++) {
+                for(int j=i+1; j<nums.length; j++) {
                     if((state & 1 << j) == 0) {
                         state = state | 1 << j;
                         ans = Math.max(ans, k * gcd(nums[i], nums[j]) + solve(nums, k+1, dp, g, state));
