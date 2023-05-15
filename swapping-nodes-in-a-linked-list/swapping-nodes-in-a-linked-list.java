@@ -15,15 +15,15 @@ class Solution {
         begN.val = node.val;
         node.val = t;
     }
-    int solve(ListNode head, int beg, int end, int k) {
+    int solve(ListNode head, int beg, int k) {
         if(head == null) return 0;
         if(beg == k) begN = head;
-        int pos = 1 + solve(head.next, beg+1, end, k);
+        int pos = 1 + solve(head.next, beg+1, k);
         if(pos == k) swap(head);
         return pos;
     }
     public ListNode swapNodes(ListNode head, int k) {
-        solve(head, 1, 0, k);
+        solve(head, 1, k);
         return head;
     }
 }
