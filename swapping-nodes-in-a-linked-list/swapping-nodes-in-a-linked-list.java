@@ -9,28 +9,21 @@
  * }
  */
 class Solution {
+    ListNode begN;
+    void swap(ListNode node) {
+        int t = begN.val;
+        begN.val = node.val;
+        node.val = t;
+    }
+    int solve(ListNode head, int beg, int end, int k) {
+        if(head == null) return 0;
+        if(beg == k) begN = head;
+        int pos = 1 + solve(head.next, beg+1, end, k);
+        if(pos == k) swap(head);
+        return pos;
+    }
     public ListNode swapNodes(ListNode head, int k) {
-        var beg = head;
-        var end = head;
-        var endK = head;
-        int curr = 1;
-        int n = 0;
-        while(end != null) {
-            end = end.next;
-            n++;
-        }
-        while(curr < k) {
-            beg = beg.next;
-            curr++;
-        }
-        curr = 1;
-        while(curr != n-k+1) {
-            endK = endK.next;
-            curr++;
-        }
-        int t = beg.val;
-        beg.val = endK.val;
-        endK.val = t;
+        solve(head, 1, 0, k);
         return head;
     }
 }
