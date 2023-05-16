@@ -35,10 +35,7 @@ class Solution {
         return true;
     }
     int backtrack(int row, int col, int n, boolean[][] board) {
-        if(col == n) {
-            //if(check(board)) return 1;
-            return 1;
-        }
+        if(col == n) return 1;
         int ans = 0;
         for(int i=0; i<n; i++) {
             board[i][col] = true;
