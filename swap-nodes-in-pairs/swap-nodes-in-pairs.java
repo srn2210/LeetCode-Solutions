@@ -9,15 +9,14 @@
  * }
  */
 class Solution {
-    void swap(ListNode prev, ListNode node1, ListNode node2) {
-        var temp = node2.next;
-        node2.next = node1;
-        node1.next = temp;
-        prev.next = node2;
+    void swap(ListNode prev, ListNode curr, ListNode next) {
+        var temp = next.next;
+        next.next = curr;
+        curr.next = temp;
+        prev.next = next;
     }
     public ListNode swapPairs(ListNode head) {
         if(head == null || head.next == null) return head;
-        ListNode res = head.next;
         ListNode curr = head;
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
@@ -27,6 +26,6 @@ class Solution {
             prev = curr;
             curr = curr.next;
         }
-        return res;
+        return dummy.next;
     }
 }
