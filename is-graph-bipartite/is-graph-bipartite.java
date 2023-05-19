@@ -14,7 +14,6 @@ class Solution {
         boolean ans = true;
         for(int i=0; i<graph.length; i++) {
             if(color[i] == null) ans = ans & dfs(graph, i, true, color);
-            if(!ans) return ans;
         }
         return ans;
     }
