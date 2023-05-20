@@ -36,14 +36,7 @@ class Solution {
         }
         var set2 = new HashSet<>();
         for(var node : set) {
-            //if(set.contains(list.get(0))) {
-                //set.remove(node);
-                dfs(adj, node, node, map, new HashSet<>(), map.get(node).get(node));
-            //}
-            /*if(set.contains(list.get(1))) {
-                set.remove(list.get(1));
-                dfs(adj, list.get(1), list.get(0), map, new HashSet<>(), map.get(list.get(1)).get(list.get(0)));
-            }*/
+            dfs(adj, node, node, map, new HashSet<>(), map.get(node).get(node));
         }
         var ans = new double[queries.size()];
         for(int i=0; i<queries.size(); i++) {
