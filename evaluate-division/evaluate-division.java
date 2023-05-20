@@ -20,8 +20,6 @@ class Solution {
             var list = equations.get(i);
             map.computeIfAbsent(list.get(0), a -> new HashMap<>()).put(list.get(1), values[i]);
             map.computeIfAbsent(list.get(1), a -> new HashMap<>()).put(list.get(0), 1/values[i]);
-            //map.get(list.get(0)).put(list.get(0), 1.0);
-            //map.get(list.get(1)).put(list.get(1), 1.0);
         }
         var ans = new double[queries.size()];
         for(int i=0; i<queries.size(); i++) {
