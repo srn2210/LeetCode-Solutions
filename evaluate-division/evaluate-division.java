@@ -1,7 +1,4 @@
 class Solution {
-    /*UnionFind {
-
-    }*/
     void dfs(Map<String, List<Pair<String, Double>>> adj, String par, String src, Map<String, Map<String, Double>> map, Set<String> set, double value) {
         set.add(src);
         for(var neigh : adj.get(src)) {
