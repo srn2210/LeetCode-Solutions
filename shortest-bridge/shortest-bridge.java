@@ -15,7 +15,6 @@ class Solution {
             for(int j=0; j<n; j++) {
                 if(grid[i][j] == 1) {
                     q.add(new Pair(i, j));
-                    q2.add(new Pair(i, j));
                     vis[i][j] = true;
                     f = true;
                     break;
@@ -30,12 +29,12 @@ class Solution {
             while(size-- > 0) {
                 int i = q.peek().getKey();
                 int j = q.poll().getValue();
+                q2.add(new Pair(i, j));
                 for(int k=0; k<4; k++) {
                     int x = i + directions[k];
                     int y = j + directions[k+1];
                     if(isSafe(x, y, grid) && !vis[x][y]) {
                         q.add(new Pair(x, y));
-                        q2.add(new Pair(x, y));
                         vis[x][y] = true;
                     }
                 }
