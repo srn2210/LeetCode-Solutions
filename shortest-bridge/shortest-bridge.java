@@ -16,38 +16,28 @@ class Solution {
                 if(grid[i][j] == 1) {
                     q.add(new Pair(i, j));
                     q2.add(new Pair(i, j));
+                    vis[i][j] = true;
                     f = true;
                     break;
                 }
             }
             if(f) break;
         }
+        var directions = new int[]{1,0,-1,0,1};
         int level = 0;
         while(!q.isEmpty()) {
             int size = q.size();
             while(size-- > 0) {
                 int i = q.peek().getKey();
                 int j = q.poll().getValue();
-                vis[i][j] = true;
-                if(isSafe(i+1, j, grid) && !vis[i+1][j]) {
-                    q.add(new Pair(i+1, j));
-                    q2.add(new Pair(i+1, j));
-                    vis[i+1][j] = true;
-                }
-                if(isSafe(i, j+1, grid) && !vis[i][j+1]) {
-                    q.add(new Pair(i, j+1));
-                    q2.add(new Pair(i, j+1));
-                    vis[i][j+1] = true;
-                }
-                if(isSafe(i-1, j, grid) && !vis[i-1][j]) {
-                    q.add(new Pair(i-1, j));
-                    q2.add(new Pair(i-1, j));
-                    vis[i-1][j] = true;
-                }
-                if(isSafe(i, j-1, grid) && !vis[i][j-1]) {
-                    q.add(new Pair(i, j-1));
-                    q2.add(new Pair(i, j-1));
-                    vis[i][j-1] = true;
+                for(int k=0; k<4; k++) {
+                    int x = i + directions[k];
+                    int y = j + directions[k+1];
+                    if(isSafe(x, y, grid) && !vis[x][y]) {
+                        q.add(new Pair(x, y));
+                        q2.add(new Pair(x, y));
+                        vis[x][y] = true;
+                    }
                 }
             }
         }
@@ -56,26 +46,14 @@ class Solution {
             while(size-- > 0) {
                 int i = q2.peek().getKey();
                 int j = q2.poll().getValue();
-                
-                if(isZero(i+1, j, grid) && !vis[i+1][j]) {
-                    if(grid[i+1][j] == 1) return level;
-                    q2.add(new Pair(i+1, j));
-                    vis[i+1][j] = true;
-                }
-                if(isZero(i, j+1, grid) && !vis[i][j+1]) {
-                    if(grid[i][j+1] == 1) return level;
-                    q2.add(new Pair(i, j+1));
-                    vis[i][j+1] = true;
-                }
-                if(isZero(i-1, j, grid) && !vis[i-1][j]) {
-                    if(grid[i-1][j] == 1) return level;
-                    q2.add(new Pair(i-1, j));
-                    vis[i-1][j] = true;
-                }
-                if(isZero(i, j-1, grid) && !vis[i][j-1]) {
-                    if(grid[i][j-1] == 1) return level;
-                    q2.add(new Pair(i, j-1));
-                    vis[i][j-1] = true;
+                for(int k=0; k<4; k++) {
+                    int x = i + directions[k];
+                    int y = j + directions[k+1];
+                    if(isZero(x, y, grid) && !vis[x][y]) {
+                        if(grid[x][y] == 1) return level;
+                        q2.add(new Pair(x, y));
+                        vis[x][y] = true;
+                    }
                 }
             }
             level++;
