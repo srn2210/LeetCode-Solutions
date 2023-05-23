@@ -23,8 +23,7 @@ class TimeMap {
     public String get(String key, int timestamp) {
         if(!map.containsKey(key)) return "";
         else {
-            var list = map.get(key);
-            return bsearch(list, timestamp);
+            return bsearch(map.get(key), timestamp);
         }
     }
 }
