@@ -6,8 +6,8 @@ class Solution {
             arr[i][0] = nums1[i];
             arr[i][1] = nums2[i];
         }
-        Arrays.sort(arr, (a,b) -> Integer.compare(b[0], a[0]));
-        var pq = new PriorityQueue<int[]>((a,b) -> Integer.compare(a[1], b[1]));
+        Arrays.sort(arr, (a,b) -> Integer.compare(b[1], a[1]));
+        var pq = new PriorityQueue<int[]>((a,b) -> Integer.compare(a[0], b[0]));
         long sum = 0;
         long ans = 0;
         for(int i=0; i<n; i++) {
@@ -16,7 +16,7 @@ class Solution {
             if(i > k-1) {
                 sum -= pq.poll()[0];
             }
-            if(i >= k-1) ans = Math.max(ans, sum * pq.peek()[1]);
+            if(i >= k-1) ans = Math.max(ans, sum * arr[i][1]);
         }
         return ans;
     }
