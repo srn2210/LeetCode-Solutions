@@ -12,7 +12,7 @@ class Solution {
         return dp[idx][M][flag] = ans;
     }
     public int stoneGameII(int[] piles) {
-        int[][][] dp = new int[piles.length][piles.length+1][2];
+        int[][][] dp = new int[piles.length][201][2];
         for(int i=0; i<dp.length; i++) {
             for(int j=0; j<dp[i].length; j++) {
                 Arrays.fill(dp[i][j], -1);
