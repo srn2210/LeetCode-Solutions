@@ -1,5 +1,4 @@
 class Solution {
-    int[] pre;
     int solve(int[] piles, int idx, int M, int[][] dp) {
         if(idx >= piles.length) return 0;
         if(dp[idx][M] != -1) return dp[idx][M];
