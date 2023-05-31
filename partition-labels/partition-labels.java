@@ -5,7 +5,6 @@ class Solution {
             char ch = s.charAt(i);
             arr[ch-'a'] = i;
         }
-        //System.out.println(Arrays.toString(arr));
         int left = 0, right = 0;
         var ans = new ArrayList<Integer>();
         while(left < s.length() && right < s.length()) {
@@ -17,7 +16,6 @@ class Solution {
             ans.add(right);
         }
         for(int i=ans.size()-1; i>0; i--) ans.set(i, ans.get(i)-ans.get(i-1));
-        //System.out.println(ans);
         return ans;
     }
 }
