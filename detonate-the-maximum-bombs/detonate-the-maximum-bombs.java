@@ -13,6 +13,7 @@ class Solution {
         }
         var vis = new boolean[n][n];
         var q = new LinkedList<int[]>();
+        var numArr = new int[n];
         for(int i=0; i<n; i++) {
             q.add(new int[]{i,i});
             vis[i][i] = true;
@@ -23,6 +24,8 @@ class Solution {
                 var arr = q.poll();
                 int node = arr[1];
                 int row = arr[0];
+                numArr[row]++;
+                ans = Math.max(ans, numArr[row]);
                 for(int neigh : adj.get(node)) {
                     if(!vis[row][neigh]) {
                         vis[row][neigh] = true;
@@ -30,13 +33,6 @@ class Solution {
                     }
                 }
             }
-        }
-        for(int i=0; i<n; i++) {
-            int count = 0;
-            for(int j=0; j<n; j++) {
-                if(vis[i][j]) count++;
-            }
-            ans = Math.max(ans, count);
         }
         return ans;
     }
