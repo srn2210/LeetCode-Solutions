@@ -17,7 +17,6 @@ class Solution {
             q.add(new int[]{i,i});
             vis[i][i] = true;
         }
-        System.out.println(adj);
         while(!q.isEmpty()) {
             int size = q.size();
             while(size-- > 0) {
