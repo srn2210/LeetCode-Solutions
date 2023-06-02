@@ -17,26 +17,22 @@ class Solution {
             q.add(new int[]{i,i});
             vis[i][i] = true;
         }
-        System.out.println(adj);
         while(!q.isEmpty()) {
             int size = q.size();
             while(size-- > 0) {
                 var arr = q.poll();
                 int node = arr[1];
                 int row = arr[0];
-                //System.out.println(row + " - " + node);
                 for(int neigh : adj.get(node)) {
                     if(!vis[row][neigh]) {
                         vis[row][neigh] = true;
                         q.add(new int[]{row, neigh});
-                        //System.out.println(row + " - " + neigh);
                     }
                 }
             }
         }
         for(int i=0; i<n; i++) {
             int count = 0;
-            //System.out.println(Arrays.toString(vis[i]));
             for(int j=0; j<n; j++) {
                 if(vis[i][j]) count++;
             }
