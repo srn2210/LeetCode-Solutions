@@ -21,12 +21,9 @@ class SnapshotArray {
     
     public int get(int index, int snap_id) {
         int left = 0, right = arr.get(index).size()-1;
-        int ans = 0;
         while(left < right) {
             int mid = left + (right - left) / 2 + 1;
-            if(arr.get(index).get(mid).getKey() <= snap_id) {
-                left = mid;
-            }
+            if(arr.get(index).get(mid).getKey() <= snap_id) left = mid;
             else right = mid - 1;
         }
         return arr.get(index).get(left).getValue();
