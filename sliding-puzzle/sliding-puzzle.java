@@ -1,5 +1,5 @@
 class Solution {
-    int[] directions = new int[]{1,0,-1,0,1};
+    int[] dir = new int[]{1,0,-1,0,1};
     boolean done(int[][] board) {
         int prev = 1;
         for(int i=0; i<board.length; i++) {
@@ -56,9 +56,9 @@ class Solution {
                 int j = q.peek().getValue()[1];
                 var grid = q.poll().getKey();
                 if(done(grid)) return ans;
-                for(int dir=0; dir<4; dir++) {
-                    int x = i + directions[dir];
-                    int y = j + directions[dir+1];
+                for(int d=0; d<4; d++) {
+                    int x = i + dir[d];
+                    int y = j + dir[d+1];
                     if(safe(grid, x, y)) {
                         var temp = copy(grid);
                         swap(i, j, x, y, temp);
