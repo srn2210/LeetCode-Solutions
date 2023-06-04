@@ -29,24 +29,6 @@ class Solution {
         }
         return res.toString();
     }
-    /*int backtrack(int[][] board, int row, int col, Set<String> vis) {
-        if(done(board)) return 0;
-        if(!safe(board, row, col)) return 1000;
-        String str = serialize(board);
-        if(vis.contains(str)) return 1000;
-        else vis.add(str);
-        int ans = Integer.MAX_VALUE;
-        for(int dir=0; dir<directions.length-1; dir++) {
-            int x = row + directions[dir];
-            int y = col + directions[dir+1];
-            if(safe(board, x, y)) {
-                swap(row, col, x, y, board);
-                ans = Math.min(ans, 1 + backtrack(board, x, y, vis));
-                swap(x, y, row, col, board);
-            }
-        }
-        return ans;
-    }*/
     int[][] copy(int[][] g) {
         int[][] ans = new int[g.length][g[0].length];
         for(int i=0; i<g.length; i++) {
@@ -80,13 +62,9 @@ class Solution {
                     int y = j + directions[dir+1];
                     if(safe(grid, x, y)) {
                         var temp = copy(grid);
-                        //for(int[] a : grid) System.out.println(Arrays.toString(a));
-                        //System.out.println(" --------------- ");
                         swap(i, j, x, y, temp);
                         var s = serialize(temp);
                         if(vis.contains(s)) continue;
-                        //System.out.println(s);
-                        
                         vis.add(s);
                         q.add(new Pair<>(temp, new int[]{x,y}));
                     }
