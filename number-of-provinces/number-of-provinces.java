@@ -1,6 +1,5 @@
 class Solution {
     void dfs(int row, int[][] grid, boolean[][] vis) {
-        if(row < 0 || row >= grid.length) return;
         for(int i=0; i<grid.length; i++) {
             if(grid[row][i] == 1 && !vis[row][i]) {
                 vis[row][i] = true;
