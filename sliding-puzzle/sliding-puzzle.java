@@ -63,8 +63,7 @@ class Solution {
                         var temp = copy(grid);
                         swap(i, j, x, y, temp);
                         var s = serialize(temp);
-                        if(vis.contains(s)) continue;
-                        vis.add(s);
+                        if(!vis.add(s)) continue;
                         q.add(new Pair<>(temp, new int[]{x,y}));
                     }
                 }
