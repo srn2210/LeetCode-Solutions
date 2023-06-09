@@ -1,11 +1,12 @@
 class Solution {
     public char nextGreatestLetter(char[] letters, char target) {
-        int lo = 0, hi = letters.length-1, mid = 0;
-        while(lo < hi) {
-            mid = (hi + lo) / 2;
-            if(letters[mid] > target) hi = mid;
-            else lo = mid + 1;
+        int left = 0, right = letters.length;
+        while(left < right) {
+            int mid = left + (right - left) / 2;
+            if(letters[mid] <= target) left = mid + 1;
+            else right = mid;
         }
-        return letters[lo] > target ? letters[lo] : letters[0];
+        if(left == letters.length) return letters[0];
+        return letters[left];
     }
 }
