@@ -10,8 +10,7 @@
  */
 class Solution {
     void reverse(ListNode head, ListNode tail) {
-        ListNode dummy = new ListNode();
-        ListNode prev = dummy;
+        ListNode prev = new ListNode();
         ListNode curr = head.next;
         ListNode end = null;
         while(curr != tail) {
@@ -23,8 +22,7 @@ class Solution {
             prev = curr;
             curr = next;
         }
-        ListNode t = head.next;
-        t.next = tail;
+        head.next.next = tail;
         head.next = end;
     }
     public ListNode reverseKGroup(ListNode head, int k) {
@@ -36,13 +34,11 @@ class Solution {
             count++;
             var next = curr.next;
             if(count == k) {
-                //System.out.println(start.val + " " + curr.val);
                 var t = start.next;
                 reverse(start, curr.next);
                 count = 0;
                 start = t;
             }
-            //start = curr;
             curr = next;
         }
         return dummy.next;
