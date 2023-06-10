@@ -10,7 +10,7 @@ class Solution {
         return total <= max;
     }
     public int maxValue(int n, int index, int maxSum) {
-        int left = 1, right = maxSum - (n - 1);
+        int left = 0, right = maxSum - (n - 1);
         while(left < right) {
             int mid = left + (right - left) / 2 + 1;
             if(safe(mid, n, index, maxSum)) {
