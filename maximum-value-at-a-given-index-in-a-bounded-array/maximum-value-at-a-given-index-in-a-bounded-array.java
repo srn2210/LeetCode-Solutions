@@ -6,7 +6,6 @@ class Solution {
         long left = Math.min(target-1, idx), right = Math.min(target - 1, n - idx - 1);
         left = sum(left, target) + idx - left;
         right = sum(right, target) + n - idx - 1 - right;
-        //System.out.println(target + " " + left + " " + right);
         long total = left + right + target;
         return total <= max;
     }
