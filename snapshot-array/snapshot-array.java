@@ -1,18 +1,17 @@
 class SnapshotArray {
+    TreeMap[] map;
     int snaps;
-    List<List<Pair<Integer, Integer>>> arr;
     public SnapshotArray(int length) {
-        arr = new ArrayList<>();
+        map = new TreeMap[length];
         snaps = 0;
         for(int i=0; i<length; i++) {
-            var list = new ArrayList<Pair<Integer, Integer>>();
-            list.add(new Pair(0,0));
-            arr.add(list);
+            map[i] = new TreeMap<Integer, Integer>();
+            map[i].put(0, 0);
         }
     }
     
     public void set(int index, int val) {
-        arr.get(index).add(new Pair(snaps, val));
+        map[index].put(snaps, val);
     }
     
     public int snap() {
@@ -20,13 +19,8 @@ class SnapshotArray {
     }
     
     public int get(int index, int snap_id) {
-        int left = 0, right = arr.get(index).size()-1;
-        while(left < right) {
-            int mid = left + (right - left) / 2 + 1;
-            if(arr.get(index).get(mid).getKey() <= snap_id) left = mid;
-            else right = mid - 1;
-        }
-        return arr.get(index).get(left).getValue();
+        int key = (int)map[index].floorKey(snap_id);
+        return (int)map[index].get(key);
     }
 }
 
