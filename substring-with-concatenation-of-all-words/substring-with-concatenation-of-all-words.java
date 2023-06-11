@@ -6,25 +6,31 @@ class Solution {
         for(var word : words) {
             map.put(word, map.getOrDefault(word, 0) + 1);
         }
-        int left = 0, right = (n * len) - 1;
-        var curr = new HashMap<String, Integer>();
-        while(right < s.length()) {
-            int t = left;
-            for(int i=0; i<n; i++) {
-                var str = s.substring(t, t+len);
-                curr.put(str, curr.getOrDefault(str, 0) + 1);
-                if(!map.containsKey(str) || curr.get(str) > map.get(str)) {
-                    curr.clear();
-                    break;
+        for(int i=0; i<len; i++) {
+            var curr = new HashMap<String, Integer>();
+            int left = i, right = i + len - 1, start = i, currLen = 0;
+            while(right < s.length()) {
+                var str = s.substring(left, right+1);
+                if(map.containsKey(str)) {
+                    curr.put(str, curr.getOrDefault(str, 0) + 1);
+                    if(curr.get(str).equals(map.get(str))) currLen++;
+                    while(curr.get(str) > map.get(str)) {
+                        var temp = s.substring(start, start+len);
+                        if(map.get(temp) == curr.get(temp)) currLen--;
+                        if(curr.get(temp) == 1) curr.remove(temp);
+                        else curr.put(temp, curr.get(temp) - 1);
+                        start += len;
+                    }
                 }
-                if(i == n-1) {
-                    ans.add(left);
+                else {
                     curr.clear();
+                    currLen = 0;
+                    start = right + 1;
                 }
-                t += len;
+                if(currLen == map.size()) ans.add(start);
+                left += len;
+                right += len;
             }
-            left++;
-            right++;
         }
         return ans;
     }
