@@ -6,21 +6,21 @@ class Solution {
         for(int i=1; i<n; i++) {
             if(nums[i] != nums[i-1] + 1) {
                 if(start == end) {
-                    ans.add(String.valueOf(start));
+                    ans.add(start + "");
                     
                 }
                 else {
-                    ans.add(String.valueOf(start) + "->" + String.valueOf(end));
+                    ans.add(start + "->" + end);
                 }
                 start = nums[i];
             }
             end = nums[i];
         }
         if(start != end) {
-            ans.add(String.valueOf(start) + "->" + String.valueOf(end));
+            ans.add(start + "->" + end);
         }
         else {
-            ans.add(String.valueOf(start));
+            ans.add(start + "");
         }
         return ans;
     }
