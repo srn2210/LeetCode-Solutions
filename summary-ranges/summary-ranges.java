@@ -5,23 +5,14 @@ class Solution {
         var ans = new ArrayList<String>();
         for(int i=1; i<n; i++) {
             if(nums[i] != nums[i-1] + 1) {
-                if(start == end) {
-                    ans.add(start + "");
-                    
-                }
-                else {
-                    ans.add(start + "->" + end);
-                }
+                if(start == end) ans.add(start + "");
+                else ans.add(start + "->" + end);
                 start = nums[i];
             }
             end = nums[i];
         }
-        if(start != end) {
-            ans.add(start + "->" + end);
-        }
-        else {
-            ans.add(start + "");
-        }
+        if(start != end) ans.add(start + "->" + end);
+        else ans.add(start + "");
         return ans;
     }
 }
