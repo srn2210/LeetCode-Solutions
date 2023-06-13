@@ -1,6 +1,7 @@
 class Solution {
     boolean safe(int cand, int[][] matrix, int k) {
-        int row = 0, col = matrix.length-1, count = 0;
+        int row = 0, col = matrix.length-1;
+        int count = 0;
         while(col >= 0 && row < matrix.length) {
             if(cand >= matrix[row][col]) {
                 count += col + 1;
