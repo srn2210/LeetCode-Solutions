@@ -15,8 +15,7 @@ class Solution {
             for(int i=0; i<n; i++) {
                 sb.append(grid[i][j]).append(',');
             }
-            var s = sb.toString();
-            ans += rows.getOrDefault(s, 0);
+            ans += rows.getOrDefault(sb.toString(), 0);
         }
         return ans;
     }
