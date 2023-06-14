@@ -19,7 +19,6 @@ class Solution {
         int ans = Math.min(Math.abs(node.val - leftBound), Math.abs(rightBound - node.val));
         ans = Math.min(ans, dfs(node.left, leftBound, node.val));
         ans = Math.min(ans, dfs(node.right, node.val, rightBound));
-        //System.out.println(ans + " -- " + node.val);
         return ans;
     }
     public int getMinimumDifference(TreeNode root) {
