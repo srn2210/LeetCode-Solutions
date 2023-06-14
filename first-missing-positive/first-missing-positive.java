@@ -1,23 +1,17 @@
 class Solution {
+    void swap(int a, int b, int[] nums) {
+        int t = nums[a];
+        nums[a] = nums[b];
+        nums[b] = t;
+    }
     public int firstMissingPositive(int[] nums) {
-        int n = nums.length, rep = 0;
+        int n = nums.length;
         for(int i=0; i<n; i++) {
-            if(nums[i] > 0) {
-                rep = nums[i];
-                break;
+            while(nums[i] > 0 && nums[i] <= n && nums[i] != nums[nums[i]-1]) {
+                swap(i, nums[i]-1, nums);
             }
         }
-        //System.out.println(Arrays.toString(nums));
-        for(int i=0; i<n; i++) if(nums[i] <= 0) nums[i] = rep;
-        //System.out.println(Arrays.toString(nums));
-        for(int i=0; i<n; i++) {
-            int val = Math.abs(nums[i]);
-            if(val != 0 && val <= n && nums[val-1] > 0) nums[val-1] = -1 * nums[val-1];
-        }
-        //System.out.println(Arrays.toString(nums));
-        for(int i=0; i<n; i++) {
-            if(nums[i] >= 0) return i+1;
-        }
+        for(int i=0; i<n; i++) if(nums[i] != i+1) return i+1;
         return n+1;
     }
 }
