@@ -1,8 +1,8 @@
 class Solution {
     public int equalPairs(int[][] grid) {
-        int m = grid.length, n = grid[0].length, ans = 0;
+        int n = grid[0].length, ans = 0;
         var rows = new HashMap<String, Integer>();
-        for(int i=0; i<m; i++) {
+        for(int i=0; i<n; i++) {
             var sb = new StringBuilder();
             for(int j=0; j<n; j++) {
                 sb.append(grid[i][j]).append(',');
@@ -12,7 +12,7 @@ class Solution {
         }
         for(int j=0; j<n; j++) {
             var sb = new StringBuilder();
-            for(int i=0; i<m; i++) {
+            for(int i=0; i<n; i++) {
                 sb.append(grid[i][j]).append(',');
             }
             var s = sb.toString();
