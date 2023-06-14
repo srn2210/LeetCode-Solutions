@@ -22,6 +22,6 @@ class Solution {
         return ans;
     }
     public int getMinimumDifference(TreeNode root) {
-        return dfs(root, -100000000, 100000000);
+        return dfs(root, (int)-1e8, (int)1e8);
     }
 }
