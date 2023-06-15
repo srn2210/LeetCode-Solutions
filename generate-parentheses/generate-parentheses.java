@@ -17,7 +17,7 @@ class Solution {
     }
     void backtrack(int remOpen, int remClose, StringBuilder s, List<String> ans) {
         if(remOpen == 0 && remClose == 0) {
-            if(valid(s)) ans.add(s.toString());
+            ans.add(s.toString());
             return;
         }
         else {
