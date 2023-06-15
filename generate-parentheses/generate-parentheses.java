@@ -16,11 +16,10 @@ class Solution {
         return st.isEmpty();
     }
     void backtrack(int remOpen, int remClose, StringBuilder s, List<String> ans) {
-        if(remOpen == 0 && remClose == 0 && valid(s)) {
-            ans.add(s.toString());
+        if(remOpen == 0 && remClose == 0) {
+            if(valid(s)) ans.add(s.toString());
             return;
         }
-        else if(remOpen == 0 && remClose == 0) return;
         else {
             if(remOpen > 0) {
                 s.append('(');
