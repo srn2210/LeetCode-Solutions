@@ -1,20 +1,4 @@
 class Solution {
-    boolean valid(StringBuilder s) {
-        var st = new Stack<Character>();
-        for(int i=0; i<s.length(); i++) {
-            char ch = s.charAt(i);
-            switch(ch) {
-                case '(':
-                    st.push(ch);
-                    break;
-                default:
-                    if(!st.isEmpty()) st.pop();
-                    else return false;
-                    break;
-            }
-        }
-        return st.isEmpty();
-    }
     void backtrack(int remOpen, int remClose, StringBuilder s, List<String> ans) {
         if(remOpen == 0 && remClose == 0) {
             ans.add(s.toString());
