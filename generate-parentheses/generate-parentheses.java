@@ -26,7 +26,7 @@ class Solution {
                 backtrack(remOpen-1, remClose, s, ans);
                 s.deleteCharAt(s.length()-1);
             }
-            if(remClose > 0) {
+            if(remClose > remOpen) {
                 s.append(')');
                 backtrack(remOpen, remClose-1, s, ans);
                 s.deleteCharAt(s.length()-1);
