@@ -20,7 +20,7 @@ class Solution {
 
     long dfs(List<Integer> nums) {
         int m = nums.size();
-        if (m < 3) {
+        if (m == 0) {
             return 1;
         }
 
