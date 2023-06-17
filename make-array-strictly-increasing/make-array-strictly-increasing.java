@@ -3,7 +3,7 @@ class Solution {
     int solve(int[] arr, TreeSet<Integer> map, int idx, int prev) {
         if(idx == arr.length) return 0;
         if(dp.containsKey(new Pair<>(idx, prev))) return dp.get(new Pair<>(idx, prev));
-        int ans = 100000;
+        int ans = (int)1e5;
         var low = map.higher(prev);
         if(arr[idx] > prev) ans = solve(arr, map, idx+1, arr[idx]);
         if(low != null) ans = Math.min(ans, 1 + solve(arr, map, idx+1, low));
@@ -15,6 +15,6 @@ class Solution {
         for(int i : arr2) map.add(i);
         dp = new HashMap<>();
         int ans = solve(arr1, map, 0, -1);
-        return ans >= 100000 ? -1 : ans;
+        return ans >= (int)1e5 ? -1 : ans;
     }
 }
