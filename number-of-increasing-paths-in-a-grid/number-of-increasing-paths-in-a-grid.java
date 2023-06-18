@@ -16,6 +16,7 @@ class Solution {
     public int countPaths(int[][] grid) {
         m = grid.length; n = grid[0].length;
         dp = new int[m][n];
+        long sum = 0;
         for(int[] d : dp) Arrays.fill(d, -1);
         for(int i=0; i<m; i++) {
             for(int j=0; j<n; j++) {
@@ -24,10 +25,9 @@ class Solution {
                 }
             }
         }
-        long sum = 0;
         for(int i=0; i<m; i++) {
             for(int j=0; j<n; j++) {
-                sum = sum + dp[i][j];
+                sum += dp[i][j];
                 sum %= mod;
             }
         }
