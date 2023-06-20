@@ -1,6 +1,5 @@
 class Solution {
     public int minimumDeletions(int[] nums) {
-        if(nums.length == 1) return 1;
         int min_idx = 0, max_idx = 0;
         for(int i=0; i<nums.length; i++) {
             if(nums[i] < nums[min_idx]) min_idx = i;
