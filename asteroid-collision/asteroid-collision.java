@@ -10,7 +10,7 @@ class Solution {
         }
     }
     public int[] asteroidCollision(int[] asteroids) {
-        var st = new ArrayDeque<Integer>();
+        var st = new Stack<Integer>();
         for(int i : asteroids) {
             if(st.isEmpty()) st.push(i);
             else if(!st.isEmpty()) {
