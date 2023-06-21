@@ -1,16 +1,6 @@
 class Solution {
-    void reverse(int[] nums) {
-        int left = 0, right = nums.length-1;
-        while(left < right) {
-            int t = nums[left];
-            nums[left] = nums[right];
-            nums[right] = t;
-            left++;
-            right--;
-        }
-    }
     public int[] asteroidCollision(int[] asteroids) {
-        var st = new Stack<Integer>();
+        var st = new ArrayDeque<Integer>();
         for(int i : asteroids) {
             if(st.isEmpty()) st.push(i);
             else if(!st.isEmpty()) {
@@ -31,9 +21,8 @@ class Solution {
             }
         }
         int[] ans = new int[st.size()];
-        int i = 0;
-        while(!st.isEmpty()) ans[i++] = st.pop();
-        reverse(ans);
+        int i = st.size()-1;
+        while(!st.isEmpty()) ans[i--] = st.pop();
         return ans;
     }
 }
