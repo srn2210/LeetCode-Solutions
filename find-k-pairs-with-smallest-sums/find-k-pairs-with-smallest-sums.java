@@ -1,7 +1,7 @@
 class Solution {
     void solve2(List<List<Integer>> ans, int curr, int[] nums, int[] arr, int k) {
         int ptr = arr.length - 1;
-        for(int i=0; i<nums.length; i++) {
+        for(int i=0; i<nums.length && ptr >= 0; i++) {
             while(ptr >= 0 && nums[i] + arr[ptr] > curr) ptr--;
             int t = ptr;
             while(ptr >= 0 && nums[i] + arr[ptr] == curr) {
