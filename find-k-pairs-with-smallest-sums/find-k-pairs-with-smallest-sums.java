@@ -1,15 +1,15 @@
 class Solution {
     void solve2(List<List<Integer>> ans, int curr, int[] nums, int[] arr, int k) {
-        var map = new HashMap<Integer, Integer>();
-        for(int a : arr) map.put(a, map.getOrDefault(a, 0) + 1);
+        int ptr = arr.length - 1;
         for(int i=0; i<nums.length; i++) {
-            if(map.containsKey(curr - nums[i])) {
-                int n = map.get(curr - nums[i]);
-                for(int j=0; j<n; j++) {
-                    if(ans.size() == k) return;
-                    ans.add(List.of(nums[i], curr-nums[i]));
-                }
+            while(ptr >= 0 && nums[i] + arr[ptr] > curr) ptr--;
+            int t = ptr;
+            while(ptr >= 0 && nums[i] + arr[ptr] == curr) {
+                if(ans.size() == k) return;
+                ans.add(List.of(nums[i], curr-nums[i]));
+                ptr--;
             }
+            ptr = t;
         }
     }
     void solve(List<List<Integer>> ans, int curr, int[] nums, int[] arr) {
