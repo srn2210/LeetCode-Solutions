@@ -36,14 +36,13 @@ class Solution {
     }
     public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         int m = nums1.length , n = nums2.length;
-        int max = (int)1e9, left = nums1[0] + nums2[0], right = nums1[m-1] + nums2[n-1];
+        int left = nums1[0] + nums2[0], right = nums1[m-1] + nums2[n-1];
         var ans = new ArrayList<List<Integer>>();
         while(left < right) {
             int mid = left + (right - left) / 2;
             if(safe(k, nums1, nums2, mid)) right = mid;
             else left = mid + 1;
         }
-        //System.out.println(left);
         solve(ans, left-1, nums1, nums2);
         solve2(ans, left, nums1, nums2, k);
         return ans;
