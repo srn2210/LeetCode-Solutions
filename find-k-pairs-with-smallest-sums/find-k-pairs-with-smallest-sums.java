@@ -1,23 +1,51 @@
 class Solution {
-    public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
-        var ans = new ArrayList<List<Integer>>();
-        var pq = new PriorityQueue<int[]>((a,b) -> Integer.compare(a[0], b[0]));
-        var vis = new HashSet<Pair<Integer, Integer>>();
-        pq.add(new int[]{nums1[0] + nums2[0], 0, 0});
-        vis.add(new Pair<>(0, 0));
-        while(!pq.isEmpty() && k-- > 0) {
-            int i = pq.peek()[1];
-            int j = pq.poll()[2];
-            ans.add(List.of(nums1[i], nums2[j]));
-            while(i + 1 < nums1.length && !vis.contains(new Pair<>(i+1, j))) {
-                pq.add(new int[]{nums1[i+1] + nums2[j], i+1, j});
-                vis.add(new Pair<>(i+1, j));
-            }
-            while(j + 1 < nums2.length && !vis.contains(new Pair<>(i, j+1))) {
-                pq.add(new int[]{nums1[i] + nums2[j+1], i, j+1});
-                vis.add(new Pair<>(i, j+1));
+    void solve2(List<List<Integer>> ans, int curr, int[] nums, int[] arr, int k) {
+        var map = new HashMap<Integer, Integer>();
+        for(int a : arr) map.put(a, map.getOrDefault(a, 0) + 1);
+        for(int i=0; i<nums.length; i++) {
+            if(map.containsKey(curr - nums[i])) {
+                int n = map.get(curr - nums[i]);
+                for(int j=0; j<n; j++) {
+                    if(ans.size() == k) return;
+                    ans.add(List.of(nums[i], curr-nums[i]));
+                }
             }
         }
+    }
+    void solve(List<List<Integer>> ans, int curr, int[] nums, int[] arr) {
+        int ptr = arr.length-1;
+        for(int i=0; i<nums.length && ptr >= 0; i++) {
+            while(ptr >= 0 && arr[ptr] + nums[i] > curr) {
+                ptr--;
+            }
+            for(int j=0; j<=ptr; j++) {
+                ans.add(List.of(nums[i], arr[j]));
+            }
+        }
+    }
+    boolean safe(int k, int[] nums, int[] arr, int curr) {
+        long count = 0;
+        int ptr = arr.length-1;
+        for(int i=0; i<nums.length && ptr >= 0; i++) {
+            while(ptr >= 0 && arr[ptr] + nums[i] > curr) {
+                ptr--;
+            }
+            count += ptr + 1;
+        }
+        return count >= k;
+    }
+    public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
+        int m = nums1.length , n = nums2.length;
+        int max = (int)1e9, left = nums1[0] + nums2[0], right = nums1[m-1] + nums2[n-1];
+        var ans = new ArrayList<List<Integer>>();
+        while(left < right) {
+            int mid = left + (right - left) / 2;
+            if(safe(k, nums1, nums2, mid)) right = mid;
+            else left = mid + 1;
+        }
+        //System.out.println(left);
+        solve(ans, left-1, nums1, nums2);
+        solve2(ans, left, nums1, nums2, k);
         return ans;
     }
 }
