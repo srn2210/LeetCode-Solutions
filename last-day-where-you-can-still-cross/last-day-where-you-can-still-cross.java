@@ -57,7 +57,6 @@ class Solution {
                     if(set.contains(new Pair<>(newX, newY))) {
                         uf.union(transform(x,y), transform(newX, newY));
                     }
-                    //else set.add(new Pair<>(newX, newY));
                 }
             }
             if(uf.isConnected(0, last)) return i;
