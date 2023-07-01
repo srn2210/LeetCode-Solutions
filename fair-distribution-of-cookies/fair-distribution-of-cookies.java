@@ -1,33 +1,31 @@
 class Solution {
     int[][] dp;
-    int solve(int[] cookies, int[] dist, int idx, int prev) {
-        if(idx == cookies.length) {
-            int max = Integer.MIN_VALUE;
-            for(int num : dist) {
-                max = Math.max(max, num);
-            }
-            return max;
+    int[] c;
+    int solve(int[] cookies, int k, int idx, int curr) {
+        if(idx == k) {
+            if(curr == (1 << cookies.length) -1) return 0;
+            return (int)1e7;
         }
-        //if(dp[idx][prev] != -1) return dp[idx][prev];
-        int ans = Integer.MAX_VALUE;
-        for(int i=0; i<dist.length; i++) {
-            dist[i] += cookies[idx];
-            ans = Math.min(ans, solve(cookies, dist, idx+1, (1 << i)));
-            dist[i] -= cookies[idx];
+        if(dp[idx][curr] != -1) return dp[idx][curr];
+        int ans = solve(cookies, k, idx+1, curr);
+        for(int i=1; i<(1 << cookies.length); i++) {
+            if((i & curr) == 0)ans = Math.min(ans, Math.max(solve(cookies, k, idx+1, curr | i), c[i]));
         }
-        return dp[idx][prev] = ans;
+        return dp[idx][curr] = ans;
     }
     public int distributeCookies(int[] cookies, int k) {
-        dp = new int[cookies.length][1 << k];
+        dp = new int[k][1 << cookies.length];
         for(int[] d : dp) Arrays.fill(d, -1);
-        int max = Integer.MAX_VALUE;
-        int[] dist = new int[k];
-        /*for(int i=0; i<k; i++) {
-            dist[i] += cookies[i];
-            max = Math.min(max, solve(cookies, dist, 1, (1 << i)));
-            dist[i] -= cookies[i];
-        }*/
-        //return max;
-        return solve(cookies, dist, 0, 0);
+        c = new int[1 << cookies.length];
+        for(int i=0; i<(1<<cookies.length); i++) {
+            //c[i] = 0;
+            for(int j=0; j<cookies.length; j++) {
+                if((i & (1 << j)) != 0) {
+                    c[i] += cookies[j];
+                }
+            }
+        }
+        //System.out.println(Arrays.toString(c));
+        return solve(cookies, k, 0, 0);
     }
 }
