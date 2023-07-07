@@ -15,18 +15,7 @@ class Solution {
         }
         return max;
     }
-    boolean safe(int cand, String str, int k) {
-        return Math.max(getMax(str, k, 'T'), getMax(str, k, 'F')) >= cand;
-
-    }
     public int maxConsecutiveAnswers(String answerKey, int k) {
-        /*int n = answerKey.length(), left = 1, right = n;
-        while(left < right) {
-            int mid = (left + (right - left) / 2) + 1;
-            if(safe(mid, answerKey, k)) left = mid;
-            else right = mid - 1;
-        }
-        return left;*/
         return Math.max(getMax(answerKey, k, 'T'), getMax(answerKey, k, 'F'));
     }
 }
