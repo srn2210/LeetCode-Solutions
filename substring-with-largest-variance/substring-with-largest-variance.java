@@ -6,7 +6,7 @@ class Solution {
         for(int i=0; i<26; i++) {
             char ch = (char)(i + 'a');
             for(int j=0; j<26; j++) {
-                if(i == j || map[i] == 0 || map[j] == 0) continue;
+                if(i == j) continue;
                 char c = (char)(j + 'a');
                 int c1 = 0, c2 = 0, c3 = map[j];
                 for(int k=0; k<s.length(); k++) {
