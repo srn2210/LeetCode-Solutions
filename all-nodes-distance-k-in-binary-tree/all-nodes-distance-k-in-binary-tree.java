@@ -8,7 +8,6 @@
  * }
  */
 class Solution {
-    
     public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
         var adj = new HashMap<Integer, List<Integer>>();
         var g = new LinkedList<TreeNode>();
