@@ -1,15 +1,14 @@
 class Solution {
     boolean dfs(int src, int[][] g, boolean[] vis, boolean[] safe) {
         if(safe[src]) return true;
-        boolean ans = true;
         for(int d : g[src]) {
-            if(vis[d] && !safe[d]) ans = false;
+            if(vis[d] && !safe[d]) return false;
             if(!vis[d]) {
                 vis[d] = true;
-                ans = dfs(d, g, vis, safe) && ans;
+                if(!dfs(d, g, vis, safe)) return false;
             }
         }
-        return safe[src] = ans;
+        return safe[src] = true;
     }
     public List<Integer> eventualSafeNodes(int[][] graph) {
         int n = graph.length;
