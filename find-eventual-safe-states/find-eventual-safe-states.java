@@ -1,30 +1,37 @@
 class Solution {
-    boolean dfs(int node, int n, int[][] graph, boolean[] vis, boolean[] terminal) {
-        if(graph[node].length == 0) return true;
-        vis[node] = true;
+    boolean dfs(int src, int[][] g, boolean[] vis, boolean[] safe) {
+        if(safe[src]) return true;
         boolean ans = true;
-        for(int edge : graph[node]) {
-            if(!vis[edge]) {
-                ans = ans && dfs(edge, n, graph, vis, terminal);
+        //System.out.println(src);
+        for(int d : g[src]) {
+            if(vis[d] && !safe[d]) ans = false;
+            if(!vis[d]) {
+                vis[d] = true;
+                //System.out.println(src + "  " + d);
+                ans = dfs(d, g, vis, safe) && ans;
             }
-            else if(vis[edge] && !terminal[edge]) return terminal[node] = false;
         }
-        return terminal[node] = ans;
+        return safe[src] = ans;
     }
     public List<Integer> eventualSafeNodes(int[][] graph) {
         int n = graph.length;
-        var set = new boolean[n];
-        var ans = new ArrayList<Integer>();
+        var safe = new boolean[n];
         var vis = new boolean[n];
         for(int i=0; i<n; i++) {
-            if(graph[i].length == 0) set[i] = true;
+            int[] g = graph[i];
+            if(g.length == 0) {
+                safe[i] = true;
+                //vis[i] = true;
+            }
         }
         for(int i=0; i<n; i++) {
             if(!vis[i]) {
-                dfs(i, n, graph, vis, set);
+                vis[i] = true;
+                dfs(i, graph, vis, safe);
             }
         }
-        for(int i=0; i<n; i++) if(set[i]) ans.add(i);
+        var ans = new ArrayList<Integer>();
+        for(int i=0; i<n; i++) if(safe[i]) ans.add(i);
         return ans;
     }
 }
