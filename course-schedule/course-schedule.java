@@ -13,7 +13,10 @@ class Solution {
         while(!q.isEmpty()) {
             var curr = q.poll();
             if(!adj.containsKey(curr)) continue;
-            for(int neigh : adj.get(curr)) if(--indegree[neigh] == 0) q.add(neigh);
+            for(int neigh : adj.get(curr)) {
+                //indegree[neigh]--;
+                if(--indegree[neigh] == 0) q.add(neigh);
+            }
         }
         for(int i : indegree) if(i != 0) return false;
         return true;
