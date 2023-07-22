@@ -7,6 +7,7 @@ class Solution {
         if(k == 0) return 1;
         if(dp[row][col][k] != -1) return dp[row][col][k];
         double ans = 0;
+        //System.out.println(row + " - " + col);
         for(int[] dir : directions) {
             int x = dir[0] + row;
             int y = dir[1] + col;
@@ -14,7 +15,7 @@ class Solution {
                 ans += solve(n, k-1, x, y, dp);
             }
         }
-        return dp[row][col][k] = ans/8.0;
+        return dp[row][col][k] = ans;
     }
     public double knightProbability(int n, int k, int row, int column) {
         var dp = new double[n][n][k+1];
@@ -23,6 +24,8 @@ class Solution {
                 Arrays.fill(dp[i][j], -1);
             }
         }
-        return solve(n, k, row, column, dp);
+        double moves = solve(n, k, row, column, dp);
+        //System.out.println(moves);
+        return moves / (Math.pow(8, k));
     }
 }
