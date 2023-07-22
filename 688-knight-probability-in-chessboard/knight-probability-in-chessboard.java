@@ -7,7 +7,6 @@ class Solution {
         if(k == 0) return 1;
         if(dp[row][col][k] != -1) return dp[row][col][k];
         double ans = 0;
-        //System.out.println(row + " - " + col);
         for(int[] dir : directions) {
             int x = dir[0] + row;
             int y = dir[1] + col;
@@ -24,8 +23,6 @@ class Solution {
                 Arrays.fill(dp[i][j], -1);
             }
         }
-        double moves = solve(n, k, row, column, dp);
-        //System.out.println(moves);
-        return moves / (Math.pow(8, k));
+        return solve(n, k, row, column, dp) / (Math.pow(8, k));
     }
 }
