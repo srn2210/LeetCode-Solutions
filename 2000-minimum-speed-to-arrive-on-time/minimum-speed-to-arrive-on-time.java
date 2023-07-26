@@ -9,7 +9,7 @@ class Solution {
         return time <= hour;
     }
     public int minSpeedOnTime(int[] dist, double hour) {
-        int max = (int)(1e9), left = 1, right = max;
+        int max = (int)(1e7+1), left = 1, right = max;
         while(left < right) {
             int mid = left + (right - left) / 2;
             if(safe(mid, dist, hour)) right = mid;
