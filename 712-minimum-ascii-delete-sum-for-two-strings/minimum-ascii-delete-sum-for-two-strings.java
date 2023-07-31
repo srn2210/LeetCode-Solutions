@@ -1,6 +1,6 @@
 class Solution {
     int[][] dp;
-    int lcs(int[] s1, int[] s2, int idx1, int idx2, int cost) {
+    int lcs(int[] s1, int[] s2, int idx1, int idx2) {
         if(idx1 == s1.length && idx2 == s2.length) {
             return 0;
         }
@@ -16,9 +16,9 @@ class Solution {
         }
         if(dp[idx1][idx2] != -1) return dp[idx1][idx2];
         int ans = 0;
-        if(s1[idx1] == s2[idx2]) ans = lcs(s1, s2, idx1+1, idx2+1, cost);
+        if(s1[idx1] == s2[idx2]) ans = lcs(s1, s2, idx1+1, idx2+1);
         else {
-            ans = Math.min(s1[idx1] + lcs(s1, s2, idx1+1, idx2, cost), s2[idx2] + lcs(s1, s2, idx1, idx2+1, cost));
+            ans = Math.min(s1[idx1] + lcs(s1, s2, idx1+1, idx2), s2[idx2] + lcs(s1, s2, idx1, idx2+1));
         }
         return dp[idx1][idx2] = ans;
     }
@@ -33,6 +33,6 @@ class Solution {
         }
         dp = new int[s1.length()][s2.length()];
         for(int i=0; i<dp.length; i++) Arrays.fill(dp[i], -1);
-        return lcs(arr1, arr2, 0, 0, 0);
+        return lcs(arr1, arr2, 0, 0);
     }
 }
