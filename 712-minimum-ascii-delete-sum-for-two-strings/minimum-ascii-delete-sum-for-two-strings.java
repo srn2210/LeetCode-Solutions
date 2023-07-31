@@ -1,0 +1,55 @@
+class Solution {
+    int[][] dp;
+    int lcs(int[] s1, int[] s2, int idx1, int idx2, int cost) {
+        if(idx1 == s1.length && idx2 == s2.length) {
+            return 0;
+        }
+        else if(idx1 == s1.length) {
+            int s = 0;
+            for(int i=idx2; i<s2.length; i++) s += s2[i];
+            return s;
+        }
+        else if(idx2 == s2.length) {
+            int s = 0;
+            for(int i=idx1; i<s1.length; i++) s += s1[i];
+            return s;
+        }
+        if(dp[idx1][idx2] != -1) return dp[idx1][idx2];
+        int ans = 0;
+        if(s1[idx1] == s2[idx2]) ans = lcs(s1, s2, idx1+1, idx2+1, cost);
+        else {
+            ans = Math.min(s1[idx1] + lcs(s1, s2, idx1+1, idx2, cost), s2[idx2] + lcs(s1, s2, idx1, idx2+1, cost));
+        }
+        return dp[idx1][idx2] = ans;
+    }
+    public int minimumDeleteSum(String s1, String s2) {
+        /*int[] map1 = new int[26];
+        int[] map2 = new int[26];
+        for(char ch : s1.toCharArray()) {
+            map1[ch-'a']++;
+        }
+        for(char ch : s2.toCharArray()) {
+            map2[ch-'a']++;
+        }
+        int ans = 0;
+        for(int i=0; i<26; i++) {
+            int t = Math.min(map1[i], map2[i]);
+            int diff = map1[i] + map2[i] - (2 * t);
+            int temp = diff * ('a' + i);
+            ans += temp;
+            System.out.println(diff + " --- " + i + " ---- " + t + " --- " + temp);
+        }*/
+        int[] arr1 = new int[s1.length()];
+        int[] arr2 = new int[s2.length()];
+        for(int i=0; i<s1.length(); i++) {
+            arr1[i] = (int)s1.charAt(i);
+        }
+        for(int i=0; i<s2.length(); i++) {
+            arr2[i] = (int)s2.charAt(i);
+        }
+        dp = new int[s1.length()][s2.length()];
+        for(int i=0; i<dp.length; i++) Arrays.fill(dp[i], -1);
+        
+        return lcs(arr1, arr2, 0, 0, 0);
+    }
+}
