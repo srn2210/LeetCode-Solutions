@@ -12,7 +12,6 @@ class Solution {
                 else left = mid;
             }
         }
-        //System.out.println(left);
         return nums[left] == target ? left : -1;
     }
 }
