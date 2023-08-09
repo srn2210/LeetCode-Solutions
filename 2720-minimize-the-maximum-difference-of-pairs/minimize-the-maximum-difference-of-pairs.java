@@ -1,10 +1,10 @@
 class Solution {
     boolean safe(int cand, int[] nums, int p) {
         int count = 0;
-        for(int i=0; i<nums.length; i++) {
-            if(i+1 < nums.length && Math.abs(nums[i] - nums[i+1]) <= cand) {
+        for(int i=0; i<nums.length-1; i++) {
+            if(Math.abs(nums[i] - nums[i+1]) <= cand) {
                 count++;
-                i = i + 1;
+                i++;
             }
         }
         return count >= p;
