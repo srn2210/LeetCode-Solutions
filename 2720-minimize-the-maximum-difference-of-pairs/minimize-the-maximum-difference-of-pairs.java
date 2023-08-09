@@ -6,7 +6,6 @@ class Solution {
                 count++;
                 i = i + 1;
             }
-            else continue;
         }
         return count >= p;
     }
