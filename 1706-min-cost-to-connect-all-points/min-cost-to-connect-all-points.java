@@ -1,11 +1,13 @@
 class Solution {
+    int dist(int[] a, int[] b) {
+        return Math.abs(a[0]-b[0]) + Math.abs(a[1]-b[1]);
+    }
     public int minCostConnectPoints(int[][] points) {
-        var adj = new ArrayList<List<Pair<Integer, Integer>>>();
-        for(int i=0; i<points.length; i++) adj.add(new ArrayList<>());
+        int[][] adj = new int[points.length][points.length];
         for(int i=0; i<points.length; i++) {
             for(int j=i+1; j<points.length; j++) {
-                adj.get(i).add(new Pair<>(Math.abs(points[i][0]-points[j][0]) + Math.abs(points[i][1]-points[j][1]), j));
-                adj.get(j).add(new Pair<>(Math.abs(points[i][0]-points[j][0]) + Math.abs(points[i][1]-points[j][1]), i));
+                adj[i][j] = dist(points[i], points[j]);
+                adj[j][i] = dist(points[i], points[j]);
             }
         }
         var pq = new PriorityQueue<int[]>((a,b) -> Integer.compare(a[0], b[0]));
@@ -18,9 +20,9 @@ class Solution {
             if(vis[node]) continue;
             ans += cost;
             vis[node] = true;
-            for(var edge : adj.get(node)) {
-                int c = edge.getKey();
-                int neigh = edge.getValue();
+            for(int i=0; i<adj[node].length; i++) {
+                int c = adj[i][node];
+                int neigh = i;
                 if(!vis[neigh]) {
                     pq.add(new int[]{c, neigh});
                 }
