@@ -8,14 +8,13 @@ class Solution {
                 adj.get(j).add(new Pair<>(Math.abs(points[i][0]-points[j][0]) + Math.abs(points[i][1]-points[j][1]), i));
             }
         }
-        var pq = new PriorityQueue<List<Integer>>((a,b) -> Integer.compare(a.get(0), b.get(0)));
+        var pq = new PriorityQueue<int[]>((a,b) -> Integer.compare(a[0], b[0]));
         int ans = 0;
         boolean[] vis = new boolean[points.length];
-        pq.add(List.of(0, 0));
+        pq.add(new int[]{0, 0});
         while(!pq.isEmpty()) {
-            var list = pq.poll();
-            int cost = list.get(0);
-            int node = list.get(1);
+            int cost = pq.peek()[0];
+            int node = pq.poll()[1];
             if(vis[node]) continue;
             ans += cost;
             vis[node] = true;
@@ -23,7 +22,7 @@ class Solution {
                 int c = edge.getKey();
                 int neigh = edge.getValue();
                 if(!vis[neigh]) {
-                    pq.add(List.of(c, neigh));
+                    pq.add(new int[]{c, neigh});
                 }
             }
         }
