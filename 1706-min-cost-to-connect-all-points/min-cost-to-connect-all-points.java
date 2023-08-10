@@ -14,10 +14,13 @@ class Solution {
         int ans = 0;
         boolean[] vis = new boolean[points.length];
         pq.add(new int[]{0, 0});
+        int vertices = 0;
         while(!pq.isEmpty()) {
             int cost = pq.peek()[0];
             int node = pq.poll()[1];
+            if(vertices == points.length) break;
             if(vis[node]) continue;
+            vertices++;
             ans += cost;
             vis[node] = true;
             for(int i=0; i<adj[node].length; i++) {
