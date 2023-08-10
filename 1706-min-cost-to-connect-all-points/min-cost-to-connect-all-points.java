@@ -9,7 +9,6 @@ class Solution {
             }
         }
         var pq = new PriorityQueue<List<Integer>>((a,b) -> Integer.compare(a.get(0), b.get(0)));
-        //System.out.println(adj);
         int ans = 0;
         boolean[] vis = new boolean[points.length];
         int edgeCount = 0;
@@ -17,18 +16,13 @@ class Solution {
         while(!pq.isEmpty()) {
             var list = pq.poll();
             int cost = list.get(0);
-            int node = list.get(1);
-            //int parent = list.get(2);
-            //System.out.println(pq);
-            
+            int node = list.get(1);            
             if(edgeCount == points.length) break;
             if(!vis[node]) {
-                //System.out.println(cost + " --- " + node + " ---- " + parent);
                 ans += cost;
                 edgeCount++;
                 vis[node] = true;
             }
-            
             for(var edge : adj.get(node)) {
                 int c = edge.getKey();
                 int neigh = edge.getValue();
