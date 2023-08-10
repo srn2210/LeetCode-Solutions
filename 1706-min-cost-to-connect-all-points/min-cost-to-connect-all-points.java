@@ -11,18 +11,14 @@ class Solution {
         var pq = new PriorityQueue<List<Integer>>((a,b) -> Integer.compare(a.get(0), b.get(0)));
         int ans = 0;
         boolean[] vis = new boolean[points.length];
-        int edgeCount = 0;
         pq.add(List.of(0, 0));
         while(!pq.isEmpty()) {
             var list = pq.poll();
             int cost = list.get(0);
-            int node = list.get(1);            
-            if(edgeCount == points.length) break;
-            if(!vis[node]) {
-                ans += cost;
-                edgeCount++;
-                vis[node] = true;
-            }
+            int node = list.get(1);
+            if(vis[node]) continue;
+            ans += cost;
+            vis[node] = true;
             for(var edge : adj.get(node)) {
                 int c = edge.getKey();
                 int neigh = edge.getValue();
