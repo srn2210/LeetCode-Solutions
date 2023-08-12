@@ -51,36 +51,28 @@ class Encrypter {
             keyToValue[keys[i]-'a'] = values[i];
             strToValue.computeIfAbsent(values[i], a -> new HashSet<>()).add(keys[i]);
         }
-        for(String s : dictionary) trie.insert(s);
+        for(String s : dictionary) {
+            String encrypted = encrypt(s);
+            if(encrypted != null) trie.insert(encrypted);
+        }
     }
     
     public String encrypt(String word1) {
         StringBuilder res = new StringBuilder();
         for(char ch : word1.toCharArray()) {
+            if(keyToValue[ch-'a'] == null) return null;
             res.append(keyToValue[ch-'a']);
         }
         return res.toString();
     }
-    
-    int solve(String word2, int idx, TrieNode curr) {
-        if(curr == null) return 0;
-        else if(idx >= word2.length()) {
-            return curr.getCount();
-        }
-        else {
-            var sub = word2.substring(idx, idx+2);
-            int ans = 0;
-            if(strToValue.containsKey(sub)) {
-                for(char ch : strToValue.get(sub)) {
-                    ans += solve(word2, idx+2, curr.get(ch-'a'));
-                }
-            }
-            return ans;
-        }
-    }
 
     public int decrypt(String word2) {
-        return solve(word2, 0, trie.get());
+        var curr = trie.get();
+        for(char ch : word2.toCharArray()) {
+            if(curr.isNull(ch-'a')) return 0;
+            curr = curr.get(ch-'a');
+        }
+        return curr.getCount();
     }
 }
 
