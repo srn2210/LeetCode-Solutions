@@ -40,15 +40,15 @@ class Trie {
     }
 }
 class Encrypter {
-    Map<Character, String> keyToValue;
+    String[] keyToValue;
     Map<String, Set<Character>> strToValue;
     Trie trie;
     public Encrypter(char[] keys, String[] values, String[] dictionary) {
         trie = new Trie();
-        keyToValue = new HashMap<>();
+        keyToValue = new String[26];
         strToValue = new HashMap<>();
         for(int i=0; i<keys.length; i++) {
-            keyToValue.put(keys[i], values[i]);
+            keyToValue[keys[i]-'a'] = values[i];
             strToValue.computeIfAbsent(values[i], a -> new HashSet<>()).add(keys[i]);
         }
         for(String s : dictionary) trie.insert(s);
@@ -57,7 +57,7 @@ class Encrypter {
     public String encrypt(String word1) {
         StringBuilder res = new StringBuilder();
         for(char ch : word1.toCharArray()) {
-            res.append(keyToValue.get(ch));
+            res.append(keyToValue[ch-'a']);
         }
         return res.toString();
     }
