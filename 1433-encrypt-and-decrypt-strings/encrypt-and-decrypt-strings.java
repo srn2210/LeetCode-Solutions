@@ -1,9 +1,9 @@
 class TrieNode {
     TrieNode[] nodes;
-    boolean isWord;
+    int count;
     TrieNode() {
         nodes = new TrieNode[26];
-        isWord = false;
+        count = 0;
     }
     TrieNode get(int idx) {
         return nodes[idx];
@@ -14,11 +14,11 @@ class TrieNode {
     void putNode(int idx, TrieNode node) {
         nodes[idx] = node;
     }
-    void setWord() {
-        isWord = true;
+    void setCount() {
+        count++;
     }
-    boolean getWord() {
-        return isWord;
+    int getCount() {
+        return count;
     }
 }
 class Trie {
@@ -33,7 +33,7 @@ class Trie {
             if(curr.isNull(i)) curr.putNode(i, new TrieNode());
             curr = curr.get(i);
         }
-        curr.setWord();
+        curr.setCount();
     }
     TrieNode get() {
         return root;
@@ -65,8 +65,7 @@ class Encrypter {
     int solve(String word2, int idx, TrieNode curr) {
         if(curr == null) return 0;
         else if(idx >= word2.length()) {
-            if(curr.getWord()) return 1;
-            return 0;
+            return curr.getCount();
         }
         else {
             var sub = word2.substring(idx, idx+2);
