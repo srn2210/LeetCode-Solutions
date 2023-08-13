@@ -9,7 +9,7 @@ class Solution {
                 if(i > 0) dp[j] = prev[j];
                 if(j - coins[i] >= 0) dp[j] += dp[j-coins[i]];
             }
-            for(int k=0; k<dp.length; k++) prev[k] = dp[k];
+            prev = Arrays.copyOf(dp, dp.length);
         }
         return dp[amount];
     }
