@@ -79,7 +79,8 @@ public class Heap {
 class Solution {
     public int[] sortArray(int[] nums) {
         Heap pq = new Heap();
-        for(int num : nums) pq.add(num);
+        for(int num : nums) pq.arr.add(num);
+        for(int i=nums.length/2-1; i>=0; i--) pq.bubbleDown(i);
         int i = 0;
         while(!pq.empty()) nums[i++] = pq.remove();
         return nums;
