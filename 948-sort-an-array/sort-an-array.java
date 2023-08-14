@@ -17,46 +17,50 @@ public class Heap {
         arr.set(i, arr.get(j));
         arr.set(j, temp);
     }
-    void add(int num) {
-        arr.add(num);
-        int last = arr.size()-1;
-        while(last != 0) {
-            int par = parent(last);
+    void bubbleUp(int idx) {
+        while(idx != 0) {
+            int par = parent(idx);
+            int curr = arr.get(idx);
             int parVal = arr.get(par);
-            int curr = arr.get(last);
             if(parVal > curr) {
-                swap(par, last);
-                last = par;
+                swap(par, idx);
+                idx = par;
             }
             else break;
         }
+    }
+    void bubbleDown(int num) {
+        while(num < arr.size()) {
+            int left = left(num);
+            int right = right(num);
+            int idx = num;
+            int curr = arr.get(num);
+            int leftVal = left < arr.size() ? arr.get(left) : (int)1e9;
+            int rightVal = right < arr.size() ? arr.get(right) : (int)1e9;
+            if(leftVal < curr) {
+                curr = leftVal;
+                idx = left;
+            }
+            if(rightVal < curr) {
+                idx = right;
+            }
+            if(idx != num) {
+                swap(idx, num);
+                num = idx;
+            }
+            else break;
+        }
+    }
+    void add(int num) {
+        arr.add(num);
+        int last = arr.size()-1;
+        bubbleUp(last);
     }
     int remove() {
         int ans = arr.get(0);
         swap(0, arr.size()-1);
         arr.remove(arr.size()-1);
-        int idx = 0;
-        while(idx < arr.size()) {
-            int left = left(idx);
-            int right = right(idx);
-            int curr = arr.get(idx);
-            int ind = idx;
-            int leftVal = left < arr.size() ? arr.get(left) : (int)1e9;
-            int rightVal = right < arr.size() ? arr.get(right) : (int)1e9;
-            if(leftVal < curr) {
-                curr = leftVal;
-                ind = left;
-            }
-            if(rightVal < curr) {
-                ind = right;
-                curr = rightVal;
-            }
-            if(idx != ind) {
-                swap(idx, ind);
-                idx = ind;
-            }
-            else break;
-        }
+        bubbleDown(0);
         return ans;
     }
     int peek() {
