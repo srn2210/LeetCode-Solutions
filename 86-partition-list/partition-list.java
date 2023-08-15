@@ -9,6 +9,18 @@
  * }
  */
 class Solution {
+    ListNode addNode(ListNode node, ArrayDeque<ListNode> st) {
+        if(node == null && !st.isEmpty()) {
+            node = st.pop();
+            node.next = null;
+        }
+        while(!st.isEmpty()) {
+            var curr = st.pop();
+            curr.next = node;
+            node = curr;
+        }
+        return node;
+    }
     public ListNode partition(ListNode head, int x) {
         var curr = head;
         var greater = new ArrayDeque<ListNode>();
@@ -19,24 +31,7 @@ class Solution {
             curr = curr.next;
         }
         ListNode prev = null;
-        if(!greater.isEmpty()) {
-            prev = greater.pop();
-            prev.next = null;
-        }
-        while(!greater.isEmpty()) {
-            var node = greater.pop();
-            node.next = prev;
-            prev = node;
-        }
-        if(prev == null && !lesser.isEmpty()) {
-            prev = lesser.pop();
-            prev.next = null;
-        }
-        while(!lesser.isEmpty()) {
-            var node = lesser.pop();
-            node.next = prev;
-            prev = node;
-        }
-        return prev;
+        prev = addNode(prev, greater);
+        return addNode(prev, lesser);
     }
 }
