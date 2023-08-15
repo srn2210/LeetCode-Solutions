@@ -33,12 +33,10 @@ class Solution {
             if(curr.random != null) {
                 if(map.containsKey(curr.random)) {
                     curr2.random = map.get(curr.random);
-                    //curr2 = curr2.next;
                 }
                 else {
                     Node t = new Node(curr.random.val);
                     curr2.random = t;
-                    //curr2 = curr2.next;
                     map.put(curr.random, t);
                 }
             }
