@@ -14,31 +14,24 @@ class Node {
 */
 
 class Solution {
+    Node giveNode(Map<Node, Node> map, Node node) {
+        if(map.containsKey(node)) return map.get(node);
+        else {
+            Node n = new Node(node.val);
+            map.put(node, n);
+            return n;
+        }
+    }
     public Node copyRandomList(Node head) {
         var curr = head;
         var dummy = new Node(0);
         var curr2 = dummy;
         var map = new HashMap<Node, Node>();
         while(curr != null) {
-            if(map.containsKey(curr)) {
-                curr2.next = map.get(curr);
-                curr2 = curr2.next;
-            }
-            else {
-                Node t = new Node(curr.val);
-                curr2.next = t;
-                curr2 = curr2.next;
-                map.put(curr, t);
-            }
+            curr2.next = giveNode(map, curr);
+            curr2 = curr2.next;
             if(curr.random != null) {
-                if(map.containsKey(curr.random)) {
-                    curr2.random = map.get(curr.random);
-                }
-                else {
-                    Node t = new Node(curr.random.val);
-                    curr2.random = t;
-                    map.put(curr.random, t);
-                }
+                curr2.random = giveNode(map, curr.random);
             }
             curr = curr.next;
         }
