@@ -11,8 +11,8 @@
 class Solution {
     public ListNode partition(ListNode head, int x) {
         var curr = head;
-        var greater = new Stack<ListNode>();
-        var lesser = new Stack<ListNode>();
+        var greater = new ArrayDeque<ListNode>();
+        var lesser = new ArrayDeque<ListNode>();
         while(curr != null) {
             if(curr.val < x) lesser.push(curr);
             else greater.push(curr);
