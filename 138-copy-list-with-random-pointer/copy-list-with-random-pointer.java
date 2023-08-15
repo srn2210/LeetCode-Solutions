@@ -27,12 +27,11 @@ class Solution {
         var dummy = new Node(0);
         var curr2 = dummy;
         var map = new HashMap<Node, Node>();
+        map.put(null, null);
         while(curr != null) {
             curr2.next = giveNode(map, curr);
             curr2 = curr2.next;
-            if(curr.random != null) {
-                curr2.random = giveNode(map, curr.random);
-            }
+            curr2.random = giveNode(map, curr.random);
             curr = curr.next;
         }
         return dummy.next;
