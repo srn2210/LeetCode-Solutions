@@ -12,7 +12,7 @@ class Solution {
         for(int i=0; i<n; i++) {
             int node = i;
             int edges = adj.get(i).size();
-            for(int j=0; j<n; j++) {
+            for(int j=i+1; j<n; j++) {
                 int node2 = j;
                 int edges2 = adj.get(j).size();
                 if(node == node2) continue;
