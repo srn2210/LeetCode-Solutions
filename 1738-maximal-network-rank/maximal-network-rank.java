@@ -12,7 +12,6 @@ class Solution {
             out[road[0]][1]++;
             out[road[1]][1]++;
         }
-        Arrays.sort(out, (a,b) -> Integer.compare(b[1], a[1]));
         int ans = 0;
         for(int i=0; i<n; i++) {
             int node = out[i][0];
