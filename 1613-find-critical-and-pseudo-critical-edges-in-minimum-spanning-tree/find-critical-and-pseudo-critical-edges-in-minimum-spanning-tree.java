@@ -28,12 +28,10 @@ class Solution {
                 if(sz[x] < sz[y]) {
                     sz[y] += sz[x];
                     uf[x] = y;
-                    //nodes = Math.max(nodes, sz[y]);
                 }
                 else {
                     uf[y] = x;
                     sz[x] += sz[y];
-                    //nodes = Math.max(nodes, sz[x]);
                 }
             }
         }
