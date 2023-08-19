@@ -87,7 +87,6 @@ class Solution {
                 int curr2 = indexedEdges[i][2];
                 f.union(indexedEdges[i][0], indexedEdges[i][1]);
                 for(int j=0; j<indexedEdges.length; j++) {
-                    if(i == j) continue;
                     int node1 = indexedEdges[j][0];
                     int node2 = indexedEdges[j][1];
                     int wt = indexedEdges[j][2];
