@@ -24,16 +24,16 @@ class Solution {
             int y = find(q);
             if(isConnected(x, y)) return;
             else {
-                //nodes++;
+                nodes++;
                 if(sz[x] < sz[y]) {
                     sz[y] += sz[x];
                     uf[x] = y;
-                    nodes = Math.max(nodes, sz[y]);
+                    //nodes = Math.max(nodes, sz[y]);
                 }
                 else {
                     uf[y] = x;
                     sz[x] += sz[y];
-                    nodes = Math.max(nodes, sz[x]);
+                    //nodes = Math.max(nodes, sz[x]);
                 }
             }
         }
