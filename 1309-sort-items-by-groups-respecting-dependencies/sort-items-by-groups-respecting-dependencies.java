@@ -19,16 +19,13 @@ class Solution {
     public int[] sortItems(int n, int m, int[] group, List<List<Integer>> beforeItems) {
         int gID = m;
         flag = false;
-        //int[] idToi = new int[n];
         for(int i=0; i<n; i++) {
             if(group[i] == -1) group[i] = gID++;
-        //    idToi[group[i]]
         }
         var grpDep = new HashMap<Integer, Set<Integer>>();
         var intDep = new HashMap<Integer, Set<Integer>>();
         var grpMap = new HashMap<Integer, Set<Integer>>();
         for(int i=0; i<n; i++) {
-            //grpDep.computeIfAbsent(group[i], a -> new HashSet<>()).addAll(beforeItems.get(i))
             if(!grpDep.containsKey(group[i])) grpDep.put(group[i], new HashSet<>());
             if(!intDep.containsKey(i)) intDep.put(i, new HashSet<>());
             if(!grpMap.containsKey(group[i])) grpMap.put(group[i], new HashSet<>());
@@ -42,7 +39,6 @@ class Solution {
                 }
             }
         }
-        //System.out.println(grpDep);
         m = gID;
         var st = new ArrayDeque<Integer>();
         int[] vis = new int[m];
@@ -52,7 +48,6 @@ class Solution {
             }
         }
         if(flag) return new int[0];
-
 
         var map = new HashMap<Integer, List<Integer>>();
         for(var entry : grpMap.entrySet()) {
@@ -80,9 +75,6 @@ class Solution {
                 }
             }
             else {
-                //System.out.println(beforeItems);
-                //System.out.println(grpMap);
-                //System.out.println(grpId);
                 for(int i : grpMap.get(grpId)) {
                     ans[ind++] = i;
                 }
