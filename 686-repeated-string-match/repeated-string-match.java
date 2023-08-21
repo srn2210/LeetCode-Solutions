@@ -3,7 +3,6 @@ class Solution {
         int[] pre = new int[b.length()];
         int lp = 0, rp = 1;
         while(rp < b.length()) {
-            //System.out.println(rp + " -- " + lp);
             if(b.charAt(lp) == b.charAt(rp)) {
                 pre[rp++] = ++lp;
             }
@@ -12,7 +11,6 @@ class Solution {
             }
             else rp++;
         }
-        //System.out.println(Arrays.toString(pre));
         int ceil = (int)Math.ceil((2.0 * b.length()) / a.length()) + 1;
         int bp = 0, i = 0;
         while(i<=(ceil * a.length())) {
@@ -21,7 +19,7 @@ class Solution {
                 bp++;
                 i++;
                 if(bp == b.length()) {
-                    return i % a.length() == 0 ? i / a.length() : (i / a.length()) + 1;
+                    return (int)Math.ceil(i / (double)a.length());
                 }
             }
             else if(bp != 0) bp = pre[bp-1];
