@@ -1,19 +1,32 @@
 class Solution {
-    boolean safe(int cand, String s1, String s2) {
-        StringBuilder res = new StringBuilder();
-        for(int i=0; i<cand; i++) {
-            res.append(s1);
-        }
-        return res.toString().contains(s2);
-    }
     public int repeatedStringMatch(String a, String b) {
-        int ceil = (int)Math.ceil((2d * b.length()) / a.length()) + 2;
-        int left = 0, right = ceil;
-        while(left < right) {
-            int mid = left + (right - left) / 2;
-            if(safe(mid, a, b)) right = mid;
-            else left = mid + 1;
+        int[] pre = new int[b.length()];
+        int lp = 0, rp = 1;
+        while(rp < b.length()) {
+            //System.out.println(rp + " -- " + lp);
+            if(b.charAt(lp) == b.charAt(rp)) {
+                pre[rp++] = ++lp;
+            }
+            else if(lp != 0) {
+                lp = pre[lp-1];
+            }
+            else rp++;
         }
-        return left == ceil ? -1 : left;
+        //System.out.println(Arrays.toString(pre));
+        int ceil = (int)Math.ceil((2.0 * b.length()) / a.length()) + 1;
+        int bp = 0, i = 0;
+        while(i<=(ceil * a.length())) {
+            int curr = i % a.length();
+            if(a.charAt(curr) == b.charAt(bp)) {
+                bp++;
+                i++;
+                if(bp == b.length()) {
+                    return i % a.length() == 0 ? i / a.length() : (i / a.length()) + 1;
+                }
+            }
+            else if(bp != 0) bp = pre[bp-1];
+            else i++;
+        }
+        return -1;
     }
 }
