@@ -1,54 +1,65 @@
 class Solution {
     public List<String> fullJustify(String[] words, int maxWidth) {
-        List<String> ans = new ArrayList<>();
-        int i = 0;
-        
-        while (i < words.length) {
-            List<String> currentLine = getWords(i, words, maxWidth);
-            i += currentLine.size();
-            ans.add(createLine(currentLine, i, words, maxWidth));
+        if (words == null || words.length == 0 || maxWidth <= 0) {
+            return new ArrayList<String>();
         }
-        
-        return ans;
+
+        List<String> result = new ArrayList<String>();
+        List<String> row = new ArrayList<String>();
+        int index = 0, len = 0;
+        while (index < words.length) {
+            String word = words[index];
+            if ((row.size() == 0 && len + word.length() > maxWidth) 
+                || (row.size() > 0 && len + word.length() + 1 > maxWidth)) {
+                result.add(formatHelper(row, len, maxWidth, false));
+                row = new ArrayList<String>();
+                len = 0;
+            } else {
+                row.add(word);
+                if (len == 0) {
+                    len += word.length();
+                } else {
+                    len += (word.length() + 1);
+                }
+                index++;
+            }
+        }
+        if (!row.isEmpty()) {
+            result.add(formatHelper(row, len, maxWidth, true));
+        }
+        return result;
     }
-    
-    private List<String> getWords(int i, String[] words, int maxWidth) {
-        List<String> currentLine = new ArrayList<>();
-        int currLength = 0;
 
-        while (i < words.length && currLength + words[i].length() <= maxWidth) {
-            currentLine.add(words[i]);
-            currLength += words[i].length() + 1;
-            i++;
+    private String formatHelper(List<String> row, int len, int maxWidth, boolean isLastRow) {
+        StringBuilder result = new StringBuilder();
+        int diff = maxWidth - len;
+        int interLen = (row.size() > 1) ? (diff / (row.size() - 1)) : diff;
+        StringBuilder interString = new StringBuilder();
+        for (int i = 0; i < interLen; i++) {
+            interString.append(" ");
         }
-
-        return currentLine;
-    }
-    
-    private String createLine(List<String> line, int i, String[] words, int maxWidth) {
-        int baseLength = -1;
-        for (String word: line) {
-            baseLength += word.length() + 1;
+        int largerInterCount = diff - interLen * (row.size() == 1 ? 1 : (row.size() - 1));
+        for (int i = 0; i < row.size(); i++) {
+            result.append(row.get(i));
+            if (isLastRow) {
+                if (i < row.size() - 1) {
+                    result.append(" ");
+                }
+            } else if (i < row.size() - 1 || row.size() == 1) {
+                if (i < row.size() - 1) {
+                    result.append(" ");
+                }
+                result.append(interString);
+                if (largerInterCount-- > 0) {
+                    result.append(" ");
+                }
+            }
         }
-
-        int extraSpaces = maxWidth - baseLength;
-
-        if (line.size() == 1 || i == words.length) {
-            return String.join(" ", line) + " ".repeat(extraSpaces);
+        if (isLastRow) {
+            while (result.length() < maxWidth) {
+                result.append(" ");
+            }
         }
-
-        int wordCount = line.size() - 1;
-        int spacesPerWord = extraSpaces / wordCount;
-        int needsExtraSpace = extraSpaces % wordCount;
-
-        for (int j = 0; j < needsExtraSpace; j++) {
-            line.set(j, line.get(j) + " ");
-        }
-
-        for (int j = 0; j < wordCount; j++) {
-            line.set(j, line.get(j) + " ".repeat(spacesPerWord));
-        }
-
-        return String.join(" ",  line);
+        return result.toString();
     }
 }
