@@ -1,34 +1,14 @@
 class Solution {
     public int minTaps(int n, int[] ranges) {
-        // Define an infinite value
-        final int INF = (int) 1e9;
-        
-        // Create an array to store the minimum number of taps needed for each position
-        int[] dp = new int[n + 1];
-        Arrays.fill(dp, INF);
-        
-        // Initialize the starting position of the garden
+        int[] dp = new int[n+1];
+        Arrays.fill(dp, (int)1e9);
         dp[0] = 0;
-        
-        for (int i = 0; i <= n; i++) {
-            // Calculate the leftmost position reachable by the current tap
-            int tapStart = Math.max(0, i - ranges[i]);
-            // Calculate the rightmost position reachable by the current tap
-            int tapEnd = Math.min(n, i + ranges[i]);
-            
-            for (int j = tapStart; j <= tapEnd; j++) {
-                // Update with the minimum number of taps
-                dp[tapEnd] = Math.min(dp[tapEnd], dp[j] + 1);
+        for(int i=0; i<=n; i++) {
+            int left = Math.max(0, i - ranges[i]), right = Math.min(n, i + ranges[i]);
+            for(int j=left; j<=right; j++) {
+                dp[right] = Math.min(dp[j]+1, dp[right]);
             }
         }
-        
-        // Check if the garden can be watered completely
-        if (dp[n] == INF) {
-            // Garden cannot be watered
-            return -1;
-        }
-        
-        // Return the minimum number of taps needed to water the entire garden
-        return dp[n];
+        return dp[n] == (int)1e9 ? -1 : dp[n];
     }
 }
