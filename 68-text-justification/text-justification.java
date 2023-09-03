@@ -1,65 +1,57 @@
 class Solution {
-    public List<String> fullJustify(String[] words, int maxWidth) {
-        if (words == null || words.length == 0 || maxWidth <= 0) {
-            return new ArrayList<String>();
-        }
-
-        List<String> result = new ArrayList<String>();
-        List<String> row = new ArrayList<String>();
-        int index = 0, len = 0;
-        while (index < words.length) {
-            String word = words[index];
-            if ((row.size() == 0 && len + word.length() > maxWidth) 
-                || (row.size() > 0 && len + word.length() + 1 > maxWidth)) {
-                result.add(formatHelper(row, len, maxWidth, false));
-                row = new ArrayList<String>();
-                len = 0;
-            } else {
-                row.add(word);
-                if (len == 0) {
-                    len += word.length();
-                } else {
-                    len += (word.length() + 1);
+    void storeWord(int start, int end, int len, List<String> ans, int width, String[] words) {
+        int spaces = width - len;
+        int numSpaces = end - start;
+        int spcQ = 1;
+        if(numSpaces != 0) spcQ = spaces / numSpaces;
+        int extra = 0;
+        if(numSpaces != 0) extra = spaces % numSpaces;
+        StringBuilder res = new StringBuilder();
+        for(int i=start; i<=end; i++) {
+            res.append(words[i]);
+            if(extra > 0) {
+                for(int j=0; j<spcQ+1; j++) {
+                    if(spaces > 0) {
+                        res.append(' ');
+                        spaces--;
+                    }
                 }
-                index++;
+                extra--;
+            }
+            else {
+                for(int j=0; j<spcQ; j++) {
+                    if(spaces > 0) {
+                        res.append(' ');
+                        spaces--;
+                    }
+                }
             }
         }
-        if (!row.isEmpty()) {
-            result.add(formatHelper(row, len, maxWidth, true));
-        }
-        return result;
+        if(spaces > 0) for(int i=0; i<spaces; i++) res.append(' ');
+        ans.add(res.toString());
     }
-
-    private String formatHelper(List<String> row, int len, int maxWidth, boolean isLastRow) {
-        StringBuilder result = new StringBuilder();
-        int diff = maxWidth - len;
-        int interLen = (row.size() > 1) ? (diff / (row.size() - 1)) : diff;
-        StringBuilder interString = new StringBuilder();
-        for (int i = 0; i < interLen; i++) {
-            interString.append(" ");
-        }
-        int largerInterCount = diff - interLen * (row.size() == 1 ? 1 : (row.size() - 1));
-        for (int i = 0; i < row.size(); i++) {
-            result.append(row.get(i));
-            if (isLastRow) {
-                if (i < row.size() - 1) {
-                    result.append(" ");
-                }
-            } else if (i < row.size() - 1 || row.size() == 1) {
-                if (i < row.size() - 1) {
-                    result.append(" ");
-                }
-                result.append(interString);
-                if (largerInterCount-- > 0) {
-                    result.append(" ");
-                }
+    public List<String> fullJustify(String[] words, int maxWidth) {
+        List<String> ans = new ArrayList<>();
+        int start = 0, end = 0, currLen = 0;
+        for(int i=0; i<words.length; i++) {
+            String word = words[i];
+            int numWords = currLen + word.length() + i - start;
+            if(numWords > maxWidth) {
+                storeWord(start, end, currLen, ans, maxWidth, words);
+                start = i;
+                end = i;
+                currLen = word.length();
+            }
+            else {
+                end = i;
+                currLen += word.length();
             }
         }
-        if (isLastRow) {
-            while (result.length() < maxWidth) {
-                result.append(" ");
-            }
-        }
-        return result.toString();
+        storeWord(start, end, currLen, ans, currLen+end-start, words);
+        String s = ans.get(ans.size()-1);
+        int size = s.length();
+        for(int i=0; i<maxWidth-size; i++) s = s + " ";
+        ans.set(ans.size()-1, s);
+        return ans;
     }
 }
