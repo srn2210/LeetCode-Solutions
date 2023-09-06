@@ -20,7 +20,6 @@ class Solution {
         int compSize = len / k;
         int extra = len % k;
         dummy = head;
-        //System.out.println(compSize);
         for(int i=0; i<k; i++) {
             int count = compSize + (extra > 0 ? 1 : 0);
             extra--;
