@@ -1,23 +1,16 @@
 class Solution {
     public int minDeletions(String s) {
         int[] counts = new int[26];
-        for(char ch : s.toCharArray()) {
-            counts[ch-'a']++;
-        }
+        for(char ch : s.toCharArray()) counts[ch-'a']++;
         Arrays.sort(counts);
-        var set = new HashSet<Integer>();
-        int ans = s.length();
-        for(int i=0; i<26; i++) {
-            int freq = counts[i];
-            for(int j=freq; j>0; j--) {
-                if(!set.contains(j)) {
-                    set.add(j);
-                    ans = ans - freq + j;
-                    break;
-                }
-                if(j == 1) ans -= freq;
+        int ans = 0;
+        for(int i=24; i>=0; i--) {
+            if(counts[i] >= counts[i+1]) {
+                int diff = counts[i] - counts[i+1] + (counts[i+1] == 0 ? 0 : 1);
+                counts[i] -= diff;
+                ans += diff;
             }
         }
-        return s.length() - ans;
+        return ans;
     }
 }
