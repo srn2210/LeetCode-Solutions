@@ -1,8 +1,8 @@
 class Solution {
     public int candy(int[] ratings) {
         int n = ratings.length;
+        if(n == 1) return 1;
         int[] arr = new int[n];
-        arr[0] = 1;
         int cnt = 2;
         for(int i=1; i<n; i++) {
             if(ratings[i-1] < ratings[i]) {
@@ -13,6 +13,7 @@ class Solution {
                 arr[i] = cnt++;
             }
         }
+        int sum = arr[n-1];
         cnt = 2;
         for(int i=n-2; i>=0; i--) {
             if(ratings[i] > ratings[i+1]) {
@@ -22,9 +23,8 @@ class Solution {
                 cnt = 1;
                 arr[i] = Math.max(arr[i], cnt++);
             }
+            sum += arr[i];
         }
-        int sum = 0;
-        for(int i : arr) sum += i;
         return sum;
     }
 }
