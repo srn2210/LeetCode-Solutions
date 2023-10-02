@@ -1,27 +1,20 @@
 class Solution {
-    public boolean winnerOfGame(String colors) {
-        int countA = 0, countB = 0;
-        int left = 0, right = 0;
-        while(right < colors.length()) {
-            char rCH = colors.charAt(right);
-            char lCH = colors.charAt(left);
-            if(lCH == rCH) {
-                if(right - left + 1 >= 3) {
-                    switch(rCH) {
-                        case 'A':
-                            countA++;
-                            break;
-                        case 'B':
-                            countB++;
-                            break;
-                    }
-                }
-                right++;
-            }
+    int count(String str, char col) {
+        int left = 0, right = 0, ans = 0;
+        while(right < str.length()) {
+            if(str.charAt(right) == col) right++;
             else {
+                int c = (right - left - 2);
+                ans += c < 0 ? 0 : c;
+                right++;
                 left = right;
             }
         }
-        return countA > countB;
+        int c = (right - left - 2);
+        ans += c < 0 ? 0 : c;
+        return ans;
+    }
+    public boolean winnerOfGame(String colors) {
+        return count(colors, 'A') > count(colors, 'B');
     }
 }
