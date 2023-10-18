@@ -1,13 +1,8 @@
 class Solution {
     boolean solve(int n, int[] left, int[] right, int idx, Set<Integer> set) {
-        if(set.contains(idx)) return false;
-        set.add(idx);
-        if(left[idx] != -1) {
-            if(!solve(n, left, right, left[idx], set)) return false;
-        }
-        if(right[idx] != -1) {
-            if(!solve(n, left, right, right[idx], set)) return false;
-        }
+        if(!set.add(idx)) return false;
+        if(left[idx] != -1 && !solve(n, left, right, left[idx], set)) return false;
+        if(right[idx] != -1 && !solve(n, left, right, right[idx], set)) return false;
         return true;
     }
     public boolean validateBinaryTreeNodes(int n, int[] leftChild, int[] rightChild) {
