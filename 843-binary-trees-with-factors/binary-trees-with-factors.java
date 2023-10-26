@@ -1,11 +1,11 @@
 class Solution {
     int mod = (int)1e9+7;
     Map<Integer, Integer> dp;
-    int solve(int[] arr, Map<Integer, Integer> map, int val) {
+    int solve(int[] arr, Set<Integer> map, int val) {
         if(dp.containsKey(val)) return dp.get(val);
         long ans = 1;
         for(int i=0; i<arr.length; i++) {
-            if(val % arr[i] == 0 && map.containsKey(val/arr[i])) {
+            if(val % arr[i] == 0 && map.contains(val/arr[i])) {
                 ans += (((long)solve(arr, map, arr[i]) * solve(arr, map, val/arr[i])) % mod);
                 ans %= mod;
             }
@@ -14,10 +14,8 @@ class Solution {
         return (int)ans;
     }
     public int numFactoredBinaryTrees(int[] arr) {
-        var map = new HashMap<Integer, Integer>();
-        for(int i=0; i<arr.length; i++) {
-            map.put(arr[i], map.getOrDefault(arr[i], 0)+1);
-        }
+        var map = new HashSet<Integer>();
+        for(int i=0; i<arr.length; i++) map.add(arr[i]);
         dp = new HashMap<Integer, Integer>();
         long ans = 0;
         Arrays.sort(arr);
