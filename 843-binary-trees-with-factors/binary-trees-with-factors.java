@@ -19,13 +19,6 @@ class Solution {
             map.put(arr[i], map.getOrDefault(arr[i], 0)+1);
         }
         dp = new HashMap<Integer, Integer>();
-        // for(int i=0; i<arr.length; i++) {
-        //     int counter = 0;
-        //     for(int j=0; j<arr.length; j++) {
-        //         if(arr[i] % arr[j] == 0 && map.containsKey(arr[i] / arr[j])) counter++;
-        //     }
-        //     if(counter == 0) dp.put(arr[i], 1);
-        // }
         long ans = 0;
         Arrays.sort(arr);
         for(int i=0; i<arr.length; i++) {
