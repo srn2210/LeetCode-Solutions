@@ -10,7 +10,6 @@ class Solution {
                 ans %= mod;
             }
         }
-        //if(ans == 0) ans = 1;
         dp.put(val, (int)ans);
         return (int)ans;
     }
@@ -33,9 +32,6 @@ class Solution {
             ans += solve(arr, map, arr[i]);
             ans %= mod;
         }
-        
-        //System.out.println(dp);
-        // return (int)(ans + arr.length) % mod;
         return (int)ans;
     }
 }
