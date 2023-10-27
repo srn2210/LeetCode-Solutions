@@ -9,7 +9,6 @@ class Solution {
         }
         if(idx >= arr.length) return;
         state.add(map.toString());
-        //System.out.println(state);
         if(curr + arr[idx] <= target) {
             list.add(arr[idx]);
             var currMap = map;
