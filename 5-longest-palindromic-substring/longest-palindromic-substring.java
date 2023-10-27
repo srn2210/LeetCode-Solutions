@@ -20,6 +20,7 @@ class Solution {
                     maxLen = j-i+1;
                     startMax = i;
                     endMax = j;
+                    break;
                 }
             }
         }
