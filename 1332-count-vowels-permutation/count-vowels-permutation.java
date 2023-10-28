@@ -1,11 +1,10 @@
 class Solution {
     int mod = (int)1e9+7;
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
-    Map<Pair<Character, Integer>, Integer> dp;
+    int[][] dp;
     int solve(char ch, int n) {
         if(n == 0) return 1;
-        var curr = new Pair<>(ch, n);
-        if(dp.containsKey(curr)) return dp.get(curr);
+        if(dp[ch-'a'][n] != -1) return dp[ch-'a'][n];
         long ans = 0;
         switch(ch) {
             case 'a':
@@ -36,12 +35,12 @@ class Solution {
                 ans %= mod;
                 break;
         }
-        dp.put(curr, (int)ans);
-        return (int)ans;
+        return dp[ch-'a'][n] = (int)ans;
     }
     public int countVowelPermutation(int n) {
         int ans = 0;
-        dp = new HashMap<>();
+        dp = new int[26][n+1];
+        for(int i=0; i<26; i++) Arrays.fill(dp[i], -1);
         for(char ch : vowels) {
             ans += solve(ch, n-1);
             ans %= mod;
