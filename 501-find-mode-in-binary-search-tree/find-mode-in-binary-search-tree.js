@@ -17,7 +17,7 @@ var findMode = function(root) {
 
     function dfs(node) {
         if(node === null) return node;
-        count = 0;
+        let count = 0;
         if(map.has(node.val)) count = map.get(node.val);
         map.set(node.val, count+1);
         max = Math.max(max, map.get(node.val));
