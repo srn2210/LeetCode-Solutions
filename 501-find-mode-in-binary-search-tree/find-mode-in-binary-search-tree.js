@@ -27,8 +27,6 @@ var findMode = function(root) {
 
     dfs(root);
 
-    //console.log(map);
-
     for(pair of map.entries()) {
         if(pair[1] == max) {
             ans.push(pair[0]);
