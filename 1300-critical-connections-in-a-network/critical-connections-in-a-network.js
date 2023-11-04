@@ -14,7 +14,7 @@ var criticalConnections = function(n, connections) {
         graph[i] = [];
     }
 
-    for(con of connections) {
+    for(let con of connections) {
         graph[con[0]].push(con[1]);
         graph[con[1]].push(con[0]);
     }
