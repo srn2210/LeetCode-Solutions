@@ -3,12 +3,13 @@ class Solution {
     int[] low;
     int[] disc;
     List<List<Integer>> bridges;
-    void dfs(int u, int p, List<List<Integer>> graph) {
+    List<List<Integer>> graph;
+    void dfs(int u, int p) {
         low[u] = disc[u] = ++time;
         for(int v : graph.get(u)) {
             if(v == p) continue;
             if(disc[v] == 0) {
-                dfs(v, u, graph);
+                dfs(v, u);
                 if(disc[u] < low[v]) {
                     bridges.add(List.of(u, v));
                 }
@@ -22,9 +23,9 @@ class Solution {
     public List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) {
         low = new int[n];
         disc = new int[n];
-        time = 0;
         bridges = new ArrayList<>();
-        var graph = new ArrayList<List<Integer>>(n);
+        graph = new ArrayList<List<Integer>>(n);
+        time = 0;
         for(int i=0; i<n; i++) {
             graph.add(new ArrayList<>());
         }
@@ -34,7 +35,7 @@ class Solution {
         }
         for(int i=0; i<n; i++) {
             if(disc[i] == 0) {
-                dfs(i, i, graph);
+                dfs(i, i);
             }
         }
         return bridges;
