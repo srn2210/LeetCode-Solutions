@@ -24,7 +24,7 @@ class Solution {
         disc = new int[n];
         time = 0;
         bridges = new ArrayList<>();
-        var graph = new ArrayList<List<Integer>>();
+        var graph = new ArrayList<List<Integer>>(n);
         for(int i=0; i<n; i++) {
             graph.add(new ArrayList<>());
         }
