@@ -1,6 +1,6 @@
 class Solution {
     public int getWinner(int[] arr, int k) {
-        Deque<Integer> q = new LinkedList<Integer>();
+        Deque<Integer> q = new ArrayDeque<Integer>();
         for(int i=0; i<arr.length; i++) {
             q.add(i);
         }
