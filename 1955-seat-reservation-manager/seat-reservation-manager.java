@@ -1,21 +1,20 @@
 class SeatManager {
 
-    TreeSet<Integer> set;
+    PriorityQueue<Integer> pq;
 
     public SeatManager(int n) {
-        set = new TreeSet<>();
+        pq = new PriorityQueue<>();
         for(int i=1; i<=n; i++) {
-            set.add(i);
+            pq.add(i);
         }
     }
     
     public int reserve() {
-        int seat = set.pollFirst();
-        return seat;
+        return pq.poll();
     }
     
     public void unreserve(int seatNumber) {
-        set.add(seatNumber);
+        pq.add(seatNumber);
     }
 }
 
