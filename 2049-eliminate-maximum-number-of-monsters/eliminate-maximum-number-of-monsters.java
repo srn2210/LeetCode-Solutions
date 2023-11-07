@@ -6,7 +6,6 @@ class Solution {
             time[i] = (int)Math.ceil(dist[i]/(double)speed[i]);
         }
         Arrays.sort(time);
-        //System.out.println(Arrays.toString(time));
         int count = 0;
         for(int i=0; i<n; i++) {
             if(count < time[i]) count++;
