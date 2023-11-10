@@ -21,14 +21,13 @@ var restoreArray = function(adjacentPairs) {
         }
     }
 
-    let vis = new Array(adjacentPairs.length+1).fill(false);
-    let ans = new Array(adjacentPairs.length+1).fill(0);
-    let itr = 0;
+    const vis = new Array(adjacentPairs.length+1).fill(false);
+    const ans = [];
 
     function dfs(node) {
         vis[node] = true;
 
-        ans[itr++] = node;
+        ans.push(node);
 
         for(let neigh of map.get(node)) {
             if(!vis[neigh]) {
