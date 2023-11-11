@@ -2,7 +2,7 @@ class Graph:
 
     def __init__(self, n: int, edges: List[List[int]]):
         d = int(1e8)
-        self.graph = [[d] * n for i in range(n)]
+        self.graph = [[d] * n for _ in range(n)]
 
         for u, v, c in edges:
             self.graph[u][v] = c
@@ -12,8 +12,8 @@ class Graph:
                 for j in range(n):
                     if i == j:
                         self.graph[i][j] = 0
-                    elif self.graph[i][k] + self.graph[k][j] < self.graph[i][j]:
-                        self.graph[i][j] = self.graph[i][k] + self.graph[k][j]
+                        continue
+                    self.graph[i][j] = min(self.graph[i][k] + self.graph[k][j], self.graph[i][j])
 
 
     def addEdge(self, edge: List[int]) -> None:
@@ -26,8 +26,7 @@ class Graph:
     def update(self, u: int, v: int, c: int) -> None:
         for i in range(len(self.graph)):
             for j in range(len(self.graph)):
-                if self.graph[i][u] + self.graph[v][j] + c < self.graph[i][j]:
-                    self.graph[i][j] = self.graph[i][u] + self.graph[v][j] + c
+                self.graph[i][j] = min(self.graph[i][u] + self.graph[v][j] + c, self.graph[i][j])
 
     def shortestPath(self, node1: int, node2: int) -> int:
         return self.graph[node1][node2] if self.graph[node1][node2] != int(1e8) else -1
