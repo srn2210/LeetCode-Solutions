@@ -31,7 +31,7 @@ class Graph {
         int cost = edge[2];
 
         if(graph[e1][e2] > cost) {
-            //graph[e1][e2] = cost;
+            graph[e1][e2] = cost;
             updDist(e1, e2, cost);
         }
     }
