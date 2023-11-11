@@ -5,13 +5,12 @@
 var Graph = function(n, edges) {
     this.graph = new Array(n);
 
-    for(let i=0; i<n; i++) this.graph[i] = [];
+    let graph = this.graph;
 
-    // let graph = this.graph;
+    for(let i=0; i<n; i++) graph[i] = [];
     
     for(let [u, v, c] of edges) {
-        // console.log(this.graph);
-        this.graph[u].push([v, c]);
+        graph[u].push([v, c]);
     }
 
 };
@@ -21,8 +20,6 @@ var Graph = function(n, edges) {
  * @return {void}
  */
 Graph.prototype.addEdge = function(edge) {
-    // let graph = this.graph;
-
     this.graph[edge[0]].push([edge[1], edge[2]]);
 };
 
