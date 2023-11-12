@@ -23,7 +23,6 @@ var numBusesToDestination = function(routes, source, target) {
 
     while(q.size() > 0) {
         let size = q.size();
-        //console.log(q);
         for(let s=0; s<size; s++) {
             let curr = q.dequeue();
             if(curr === target) return ans;
