@@ -4,7 +4,7 @@
  */
 var maximumElementAfterDecrementingAndRearranging = function(arr) {
     const n = arr.length;
-    const ar = new Array(n+1).fill(0);
+    const ar = Array(n+1).fill(0);
     for(let num of arr) {
         ar[Math.min(num, n)]++;
     }
