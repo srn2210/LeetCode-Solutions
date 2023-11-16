@@ -9,7 +9,10 @@ var findDifferentBinaryString = function(nums) {
         s.add(parseInt(num, 2));
     }
     for(let i=0; i<=nums.length; i++) {
-        if(!s.has(i)) ans = i;
+        if(!s.has(i)) {
+            ans = i;
+            break;
+        }
     }
     ans = ans.toString(2);
     while(ans.length < nums.length) {
