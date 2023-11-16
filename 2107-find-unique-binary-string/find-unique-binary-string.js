@@ -10,13 +10,10 @@ var findDifferentBinaryString = function(nums) {
     }
     for(let i=0; i<=nums.length; i++) {
         if(!s.has(i)) {
-            ans = i;
-            break;
+            ans = i.toString(2);
+            ans = ans.padStart(nums.length, '0');
+            return ans;
         }
-    }
-    ans = ans.toString(2);
-    while(ans.length < nums.length) {
-        ans = '0' + ans;
     }
     return ans;
 };
