@@ -4,7 +4,7 @@ class Solution:
         ans = 0
         diffMap = defaultdict(int)
 
-        def reverse(num):
+        def reverse(num: int) -> None:
             cpy = num
             rev = 0
 
