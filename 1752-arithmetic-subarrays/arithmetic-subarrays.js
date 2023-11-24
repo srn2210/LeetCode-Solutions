@@ -22,11 +22,9 @@ var checkArithmeticSubarrays = function(nums, l, r) {
             ans.push(false);
             continue;
         }
-        // console.log(min + " " + max + " " + l[i] + " " + r[i]);
         let curr = min;
         let flag = true;
         for(let k=0; k<=r[i]-l[i]; k++) {
-            // console.log(curr);
             if(!s.has(curr)) {
                 flag = false;
                 break;
