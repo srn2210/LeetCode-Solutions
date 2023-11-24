@@ -1,12 +1,13 @@
 from sortedcontainers import SortedList
 class Solution:
     def maxCoins(self, piles: List[int]) -> int:
-        sl = SortedList(piles)
+        piles.sort()
+        dq = deque(piles)
         ans = 0
-        while sl:
-            sl.pop()
-            ans += sl.pop()
-            sl.pop(0)
+        while dq:
+            dq.pop()
+            ans += dq.pop()
+            dq.popleft()
 
         return ans
 
