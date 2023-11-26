@@ -10,7 +10,6 @@ class Solution {
         }
         for(int[] mat : matrix) {
             Arrays.sort(mat);
-            //System.out.println(Arrays.toString(mat));
         }
         int ans = 0;
         for(int[] mat : matrix) {
@@ -22,6 +21,7 @@ class Solution {
                     min = Math.min(min, ma);
                     ans = Math.max(ans, count * min);
                 }
+                else break;
             }
         }
         return ans;
