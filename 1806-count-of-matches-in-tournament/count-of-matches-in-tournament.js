@@ -3,16 +3,16 @@
  * @return {number}
  */
 var numberOfMatches = function(n) {
-    let ans = 0;
-    while(n !== 1) {
-        if(n % 2 === 0) {
-            ans += n / 2;
-            n = n / 2;
+    let solve = (teams) => {
+        if(teams === 1) return 0;
+        let ans = 0;
+        if(teams % 2 == 0) {
+            ans = teams / 2 + solve(teams / 2);
         }
         else {
-            ans += (n - 1) / 2;
-            n = (n - 1) / 2 + 1;
+            ans = (teams-1) / 2 + solve((teams - 1) / 2 + 1);
         }
+        return ans;
     }
-    return ans;
+    return solve(n);
 };
