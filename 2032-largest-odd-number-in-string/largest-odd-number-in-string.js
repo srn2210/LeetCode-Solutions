@@ -5,7 +5,7 @@
 var largestOddNumber = function(num) {
     let right = -1;
     for(let i=num.length-1; i>=0; i--) {
-        if(num[i] % 2 != 0) {
+        if(num[i] % 2 !== 0) {
             right = i;
             break;
         }
