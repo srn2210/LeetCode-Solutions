@@ -4,13 +4,13 @@
  */
 var destCity = function(paths) {
     let set = new Set();
-    for(let path of paths) {
+    paths.forEach((path) => {
         set.add(path[0]);
         set.add(path[1]);
-    }
-    for(let path of paths) {
+    });
+    paths.forEach((path) => {
         set.delete(path[0]);
-    }
+    });
     let ans = '';
     set.forEach((s) => ans = s);
     return ans;
