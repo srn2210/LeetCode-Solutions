@@ -12,10 +12,8 @@ var kthFactor = function(n, k) {
             if(n / i != i) fac2.push(n/i);
         }
     }
-    // console.log(fac);
-    // console.log(fac2);
-    // console.log(k-fac.length-fac2.length);
-    if(k > (fac2.length + fac.length)) return -1;
+    let m = fac.length + fac2.length;
+    if(k > m) return -1;
     else if(k <= fac.length) return fac[k-1];
-    else return fac2[(-k+fac.length+fac2.length)];
+    else return fac2[m-k];
 };
