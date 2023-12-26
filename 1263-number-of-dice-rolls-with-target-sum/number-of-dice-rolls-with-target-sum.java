@@ -1,6 +1,6 @@
 class Solution {
-    int mod = (int)1e9+7;
     public int numRollsToTarget(int n, int k, int target) {
+        int mod = (int)1e9+7;
         int[] prev = new int[target+1];
         int[] curr = new int[target+1];
         prev[0] = 1;
