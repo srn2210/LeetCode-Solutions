@@ -1,20 +1,19 @@
 class Solution {
     int mod = (int)1e9+7;
-    int[][] dp;
-    int solve(int n, int k, int target) {
-        if(target < 0 || n < 0) return 0;
-        if(n == 0 && target == 0) return 1;
-        if(dp[n][target] != -1) return dp[n][target];
-        long ans = 0;
-        for(int i=1; i<=k; i++) {
-            ans += solve(n-1, k, target - i);
-            ans %= mod;
-        }
-        return dp[n][target] = (int)ans;
-    }
+    long[][] dp;
     public int numRollsToTarget(int n, int k, int target) {
-        dp = new int[n+1][target+1];
-        for(int[] d : dp) Arrays.fill(d, -1);
-        return solve(n, k, target);
+        dp = new long[n+1][target+1];
+        dp[0][0] = 1;
+
+        for(int i=1; i<=n; i++) {
+            for(int j=1; j<=k; j++) {
+                for(int l=j; l<=target; l++) {
+                    dp[i][l] += dp[i-1][l-j];
+                    dp[i][l] %= mod;
+                }
+            }
+        }
+
+        return (int)dp[n][target];
     }
 }
