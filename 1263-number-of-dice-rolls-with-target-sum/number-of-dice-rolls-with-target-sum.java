@@ -1,8 +1,7 @@
 class Solution {
     int mod = (int)1e9+7;
-    long[][] dp;
     public int numRollsToTarget(int n, int k, int target) {
-        dp = new long[n+1][target+1];
+        int[][] dp = new int[n+1][target+1];
         dp[0][0] = 1;
 
         for(int i=1; i<=n; i++) {
@@ -14,6 +13,6 @@ class Solution {
             }
         }
 
-        return (int)dp[n][target];
+        return dp[n][target];
     }
 }
