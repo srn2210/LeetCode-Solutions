@@ -1,10 +1,9 @@
 class Solution {
     public int minCost(String colors, int[] neededTime) {
         var st = new ArrayDeque<Integer>();
-        st.push(0);
         int ans = 0;
-        for(int i=1; i<colors.length(); i++) {
-            if(colors.charAt(i) == colors.charAt(st.peek())) {
+        for(int i=0; i<colors.length(); i++) {
+            if(!st.isEmpty() && colors.charAt(i) == colors.charAt(st.peek())) {
                 if(neededTime[st.peek()] < neededTime[i]) {
                     ans += neededTime[st.pop()];
                     st.push(i);
