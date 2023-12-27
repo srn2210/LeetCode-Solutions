@@ -1,6 +1,6 @@
 class Solution {
     public int minCost(String colors, int[] neededTime) {
-        var st = new Stack<Integer>();
+        var st = new ArrayDeque<Integer>();
         st.push(0);
         int ans = 0;
         for(int i=1; i<colors.length(); i++) {
