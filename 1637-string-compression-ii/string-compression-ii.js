@@ -4,11 +4,13 @@
  * @return {number}
  */
 var getLengthOfOptimalCompression = function(s, k) {
-    let dp = new Array(s.length+1);
+    let dp = new Array(s.length+2);
 
     for(let i=0; i<dp.length; i++) {
-        dp[i] = new Array(k+1).fill(-1);
+        dp[i] = new Array(k+2).fill(1e9);
     }
+
+    dp[0][0] = 0;
 
     function cost(run) {
         if(run === 0) return 0;
@@ -18,24 +20,22 @@ var getLengthOfOptimalCompression = function(s, k) {
         return 4;
     }
 
-    function solve(si, ki) {
-        if(ki < 0) return 1e8;
-        if(si === s.length) return 0;
+    for(let i=1; i<=s.length; i++) {
+        for(let m=0; m<=k; m++) {
 
-        if(dp[si][ki] != -1) return dp[si][ki];
-
-        let ans = solve(si+1, ki-1);
-        let run = 0;
-        let deleted = 0;
-        for(let j=si; j<s.length; j++) {
-            if(s[j] === s[si]) {
-                run++;
+            let ans = m-1 >= 0 ? dp[i-1][m-1] : 1e8;
+            let run = 0;
+            let deleted = 0;
+            for(let j=i; j>=1; j--) {
+                if(s[j-1] === s[i-1]) {
+                    run++;
+                }
+                else deleted++;
+                if(m - deleted >= 0) dp[i][m] = Math.min(dp[i][m], cost(run) + dp[j-1][m-deleted]);
             }
-            else deleted++;
-            ans = Math.min(ans, cost(run) + solve(j+1, ki-deleted));
+            dp[i][m] = Math.min(dp[i][m], ans);
         }
-        return dp[si][ki] = ans;
     }
 
-    return solve(0, k);
+    return dp[s.length][k];
 };
