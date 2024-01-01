@@ -22,11 +22,9 @@ var getLengthOfOptimalCompression = function(s, k) {
         if(ki < 0) return 1e8;
         if(si === s.length) return 0;
 
-        // const key = `${si}_${ki}`;
-        // if(key in dp) return dp[key];
         if(dp[si][ki] != -1) return dp[si][ki];
 
-        let ans = 1e8;
+        let ans = solve(si+1, ki-1);
         let run = 0;
         let deleted = 0;
         for(let j=si; j<s.length; j++) {
@@ -34,7 +32,6 @@ var getLengthOfOptimalCompression = function(s, k) {
                 run++;
             }
             else deleted++;
-            ans = Math.min(ans, solve(j+1, ki-j+si-1));
             ans = Math.min(ans, cost(run) + solve(j+1, ki-deleted));
         }
         return dp[si][ki] = ans;
