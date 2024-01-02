@@ -14,10 +14,11 @@ var findMatrix = function(nums) {
             map.set(num, curr);
         }
         max = Math.max(max, curr);
+        while(ans.length < max) ans.push([]);
     }
-    for(let i=0; i<max; i++) {
-        ans.push([]);
-    }
+    // for(let i=0; i<max; i++) {
+    //     ans.push([]);
+    // }
     for(let [key, value] of map) {
         for(let i=0; i<value; i++) {
             ans[i].push(key);
