@@ -7,13 +7,12 @@ var lengthOfLIS = function(nums) {
     let n = nums.length;
 
     function binarySearch(cand) {
-        let left = 0, right = ans.length-1;
+        let left = 0, right = ans.length;
         while(left < right) {
             let mid = Math.floor(left + (right - left) / 2);
             if(cand <= ans[mid]) right = mid;
             else left = mid + 1;
         }
-        if(cand > ans[left]) return ans.length;
         return left;
     }
 
