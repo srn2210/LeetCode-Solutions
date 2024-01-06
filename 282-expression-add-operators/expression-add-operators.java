@@ -19,7 +19,6 @@ class Solution {
     }
     public List<String> addOperators(String num, int target) {
         var ans = new ArrayList<String>();
-        var sb = new StringBuilder();
         backtrack(num, target, 0, ans, "", 0, 0);
         return ans;
     }
