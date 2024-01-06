@@ -1,73 +1,26 @@
 class Solution {
-    Set<Character> ops = Set.of('+', '-', '*');
-    long evaluate(String expression) {
-        var st = new Stack<Long>();
-        long ans = 0;
-        for(int i=0; i<expression.length(); i++) {
-            
-            var curr = new StringBuilder();
-            while(i < expression.length() && !ops.contains(expression.charAt(i))) {
-                curr.append(expression.charAt(i));
-                i++;
-            }
-            if(curr.length() != 0) {
-                if(curr.charAt(0) == '0' && curr.length() > 1) return Integer.MAX_VALUE+1;
-                st.push(Long.parseLong(curr.toString()));
-            }
-            if(i == expression.length()) break;
-            char op = expression.charAt(i);
-            if(op == '*') {
-                i++;
-                curr = new StringBuilder();
-                while(i < expression.length() && !ops.contains(expression.charAt(i))) {
-                    curr.append(expression.charAt(i));
-                    i++;
-                }
-                if(curr.charAt(0) == '0' && curr.length() > 1) return Integer.MAX_VALUE+1;
-                var next = Long.parseLong(curr.toString());
-                st.push(st.pop() * next);
-                i--;
-            }
-            else if(op == '-') {
-                i++;
-                curr = new StringBuilder();
-                while(i < expression.length() && !ops.contains(expression.charAt(i))) {
-                    curr.append(expression.charAt(i));
-                    i++;
-                }
-                if(curr.charAt(0) == '0' && curr.length() > 1) return Integer.MAX_VALUE+1;
-                var next = Long.parseLong(curr.toString());
-                st.push(-1 * next);
-                i--;
-            }
-        }
-        if(st.isEmpty()) return Integer.MAX_VALUE+1;
-        while(!st.isEmpty()) ans += st.pop();
-        return ans;
-    }
-    void backtrack(String num, int target, int idx, List<String> ans, StringBuilder curr, boolean appChar) {
+    void backtrack(String num, int target, int idx, List<String> ans, String curr, long sum, long last) {
         if(idx == num.length()) {
-            long res = evaluate(curr.toString());
-            if(res == target) ans.add(curr.toString());
+            if(sum == target) ans.add(curr);
             return;
         }
         else {
-            if(appChar) {
-                for(var op : ops) {
-                    curr.append(op);
-                    backtrack(num, target, idx, ans, curr, false);
-                    curr.deleteCharAt(curr.length()-1);
+            for(int i=idx; i<num.length(); i++) {
+                var number = Long.parseLong(num.substring(idx, i+1));
+                if(i-idx+1 > 1 && num.charAt(idx) == '0') break;
+                if(curr.length() == 0) backtrack(num, target, i+1, ans, num.substring(idx, i+1), sum + number, number);
+                else{
+                    backtrack(num, target, i+1, ans, curr + "+" + num.substring(idx, i+1), sum + number, number);
+                    backtrack(num, target, i+1, ans, curr + "-" + num.substring(idx, i+1), sum - number, -number);
+                    backtrack(num, target, i+1, ans, curr + "*" + num.substring(idx, i+1), sum - last + last * number, last * number);
                 }
             }
-            curr.append(num.charAt(idx));
-            backtrack(num, target, idx+1, ans, curr, true);
-            curr.deleteCharAt(curr.length()-1);
         }
     }
     public List<String> addOperators(String num, int target) {
         var ans = new ArrayList<String>();
         var sb = new StringBuilder();
-        backtrack(num, target, 0, ans, sb, false);
+        backtrack(num, target, 0, ans, "", 0, 0);
         return ans;
     }
 }
