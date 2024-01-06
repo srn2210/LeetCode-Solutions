@@ -1,9 +1,8 @@
 class Solution {
-    List<Character> ops = List.of('+', '-', '*');
+    Set<Character> ops = Set.of('+', '-', '*');
     long evaluate(String expression) {
         var st = new Stack<Long>();
         long ans = 0;
-        // System.out.println(expression);
         for(int i=0; i<expression.length(); i++) {
             
             var curr = new StringBuilder();
@@ -18,7 +17,6 @@ class Solution {
             if(i == expression.length()) break;
             char op = expression.charAt(i);
             if(op == '*') {
-                // st.push(st.pop() * num);
                 i++;
                 curr = new StringBuilder();
                 while(i < expression.length() && !ops.contains(expression.charAt(i))) {
@@ -31,7 +29,6 @@ class Solution {
                 i--;
             }
             else if(op == '-') {
-                // st.push(-1 * num);
                 i++;
                 curr = new StringBuilder();
                 while(i < expression.length() && !ops.contains(expression.charAt(i))) {
@@ -43,22 +40,18 @@ class Solution {
                 st.push(-1 * next);
                 i--;
             }
-            // else st.push(num);
         }
         if(st.isEmpty()) return Integer.MAX_VALUE+1;
         while(!st.isEmpty()) ans += st.pop();
-        // System.out.println(ans);
         return ans;
     }
     void backtrack(String num, int target, int idx, List<String> ans, StringBuilder curr, boolean appChar) {
         if(idx == num.length()) {
-            // System.out.println(curr);
             long res = evaluate(curr.toString());
             if(res == target) ans.add(curr.toString());
             return;
         }
         else {
-            
             if(appChar) {
                 for(var op : ops) {
                     curr.append(op);
