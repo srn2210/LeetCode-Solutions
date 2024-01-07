@@ -4,31 +4,19 @@
  */
 var numberOfArithmeticSlices = function(nums) {
     let n = nums.length;
-
-    // function solve(idx, diff) {
-    //     if(idx === n) return 0;
-
-    //     let ans = 0;
-    //     for(let i=idx+1; i<n; i++) {
-    //         ans += solve(i, nums[i]-nums[idx]);
-    //     }
-    // }
-
-    // return solve(0, 0);
-
-    let dp = new Map();
+    let dp = new Array(n);
     let ans = 0;
+
+    for(let i=0; i<n; i++) dp[i] = new Map();
 
     for(let i=0; i<n; i++) {
         for(let j=i-1; j>=0; j--) {
             let diff = nums[i] - nums[j];
-            let key = j + "," + diff;
-            let nKey = i + "," + diff;
             let upd = 0;
             let an = 0;
-            if(dp.has(key)) upd = dp.get(key);
-            if(dp.has(nKey)) an = dp.get(nKey);
-            dp.set(nKey, upd + an + 1);
+            if(dp[j].has(diff)) upd = dp[j].get(diff);
+            if(dp[i].has(diff)) an = dp[i].get(diff);
+            dp[i].set(diff, upd + an + 1);
             ans += upd;
         }
     }
