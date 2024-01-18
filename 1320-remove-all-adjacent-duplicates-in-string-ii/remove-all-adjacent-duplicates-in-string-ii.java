@@ -9,10 +9,12 @@ class Solution {
             else st.push(new Pair(curr, 1));
         }
         var ans = new StringBuilder();
+        int count = 0;
+        char ch = 'A';
         while(!st.isEmpty()) {
-            var ch = st.peek().getKey();
-            int count = st.pop().getValue();
-            for(int i=0; i<count; i++) {
+            ch = st.peek().getKey();
+            count = st.pop().getValue();
+            while(count-- > 0) {
                 ans.append(ch);
             }
         }
