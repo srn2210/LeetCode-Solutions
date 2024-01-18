@@ -1,6 +1,6 @@
 class Solution {
     public String removeDuplicates(String s, int k) {
-        var st = new Stack<Pair<Character, Integer>>();
+        var st = new ArrayDeque<Pair<Character, Integer>>();
         for(int i=0; i<s.length(); i++) {
             var curr = s.charAt(i);
             if(st.isEmpty()) st.push(new Pair(curr, 1));
