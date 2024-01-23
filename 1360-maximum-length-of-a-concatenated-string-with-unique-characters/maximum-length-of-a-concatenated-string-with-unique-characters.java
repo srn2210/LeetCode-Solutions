@@ -1,30 +1,28 @@
 class Solution {
-    boolean containsDup(Set<Character> set, String s) {
-        var selfSet = new HashSet<Character>();
+    Map<Pair<Integer, Integer>, Integer> dp;
+    int getMask(String s) {
+        int mask = 0;
         for(char ch : s.toCharArray()) {
-            if(set.contains(ch) || selfSet.contains(ch)) {
-                return true;
-            }
-            else selfSet.add(ch);
+            mask |= 1 << (ch-'a');
         }
-        return false;
+        return mask;
     }
-    int solve(List<String> arr, int idx, Set<Character> set) {
-        if(idx == arr.size()) return set.size();
-        int ans = solve(arr, idx+1, set);
-        if(!containsDup(set, arr.get(idx))) {
-            for(char ch : arr.get(idx).toCharArray()) {
-                set.add(ch);
-            }
-            ans = Math.max(ans, solve(arr, idx+1, set));
-            for(char ch : arr.get(idx).toCharArray()) {
-                set.remove(ch);
-            }
+    int solve(List<String> arr, int idx, int mask) {
+        if(idx == arr.size()) return 0;
+        var p = new Pair<Integer, Integer>(idx, mask);
+        if(dp.containsKey(p)) return dp.get(p);
+        int ans = 0;
+        for(int i=idx; i<arr.size(); i++) {
+            int curr = getMask(arr.get(i));
+            if(arr.get(i).length() != Integer.bitCount(curr)) continue;
+            if((curr & mask) != 0) continue;
+            ans = Math.max(ans, arr.get(i).length() + solve(arr, idx+1, mask | curr));
         }
+        dp.put(p, ans);
         return ans;
     }
     public int maxLength(List<String> arr) {
-        List<String> list = new ArrayList<>();
-        return solve(arr, 0, new HashSet<Character>());
+        dp = new HashMap<>();
+        return solve(arr, 0, 0);
     }
 }
