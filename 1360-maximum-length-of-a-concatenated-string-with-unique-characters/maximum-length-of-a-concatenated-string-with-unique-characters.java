@@ -1,9 +1,11 @@
 class Solution {
     boolean containsDup(Set<Character> set, String s) {
+        var selfSet = new HashSet<Character>();
         for(char ch : s.toCharArray()) {
-            if(set.contains(ch)) {
+            if(set.contains(ch) || selfSet.contains(ch)) {
                 return true;
             }
+            else selfSet.add(ch);
         }
         return false;
     }
@@ -23,20 +25,6 @@ class Solution {
     }
     public int maxLength(List<String> arr) {
         List<String> list = new ArrayList<>();
-        for(String s : arr) {
-            var set = new HashSet<Character>();
-            boolean flag = true;
-            for(char ch : s.toCharArray()) {
-                if(set.contains(ch)) {
-                    flag = false;
-                    break;
-                }
-                else {
-                    set.add(ch);
-                }
-            }
-            if(flag) list.add(s);
-        }
-        return solve(list, 0, new HashSet<Character>());
+        return solve(arr, 0, new HashSet<Character>());
     }
 }
