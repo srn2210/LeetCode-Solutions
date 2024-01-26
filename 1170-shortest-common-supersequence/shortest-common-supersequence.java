@@ -16,7 +16,7 @@ class Solution {
         int i = m, j = n;
         while(i > 0 && j > 0) {
             if(dp[i][j] > dp[i-1][j] && dp[i][j] > dp[i][j-1]) {
-                str.append(str1.charAt(i-1));
+                str.append(str2.charAt(j-1));
                 i--;
                 j--;
             }
