@@ -19,7 +19,6 @@ class Solution {
                     int sum = prefix[j][k] - prevRow;
                     map.computeIfAbsent(sum, a -> new LinkedList<Integer>()).add(k);
                     if(sum == target) ans++;
-                    // System.out.println("Top Row - (" + i + ",0) and Bottom - (" + j + "," + k + ") = " + sum);
                 }
                 for(int k=0; k<n-1; k++) {
                     int prevRow = i-1 >= 0 ? prefix[i-1][k] : 0;
