@@ -23,12 +23,10 @@ class Solution {
                 for(int k=0; k<n-1; k++) {
                     int prevRow = i-1 >= 0 ? prefix[i-1][k] : 0;
                     int sum = prefix[j][k] - prevRow;
-                    if(map.containsKey(target+sum)) {
-                        while(!map.get(target+sum).isEmpty() && map.get(target+sum).peek() <= k) {
-                            map.get(target+sum).poll();
-                        }
-                        ans += map.get(target+sum).size();
+                    while(!map.getOrDefault(target+sum, new LinkedList<>()).isEmpty() && map.get(target+sum).peek() <= k) {
+                        map.get(target+sum).poll();
                     }
+                    ans += map.getOrDefault(target+sum, new LinkedList<>()).size();
                 }
             }
         }
