@@ -6,7 +6,6 @@ var evalRPN = function(tokens) {
     let list = [];
 
     for(let token of tokens) {
-        // console.log(list);
         if(token === '+') {
             let second = list.pop();
             let first = list.pop();
