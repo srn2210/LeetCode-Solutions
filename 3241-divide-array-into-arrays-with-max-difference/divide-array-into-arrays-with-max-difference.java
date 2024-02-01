@@ -1,6 +1,6 @@
 class Solution {
     public int[][] divideArray(int[] nums, int k) {
-        int[][] ans = new int[nums.length/3][3];
+        int[][] ans = new int[nums.length/3][];
         int counter = 0;
         Arrays.sort(nums);
         for(int i=0; i<nums.length; i+=3) {
