@@ -34,7 +34,5 @@ var minWindow = function(s, t) {
         right++;
     }
     if(ansLeft === -1 && ansRight === -1) return '';
-    let res = '';
-    for(let i=ansLeft; i<=ansRight; i++) res += s[i];
-    return res;
+    return s.substring(ansLeft, ansRight+1);
 };
