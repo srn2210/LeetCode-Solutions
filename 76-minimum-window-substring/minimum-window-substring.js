@@ -15,8 +15,9 @@ var minWindow = function(s, t) {
     let currCount = new Array(58).fill(0);
     let ans = s.length;
     while(left <= right && right < s.length) {
-        currCount[s[right].charCodeAt(0)-'A'.charCodeAt(0)]++;
-        if(currCount[s[right].charCodeAt(0)-'A'.charCodeAt(0)] === arr[s[right].charCodeAt(0)-'A'.charCodeAt(0)]) {
+        let r = s[right].charCodeAt(0) - 'A'.charCodeAt(0);
+        currCount[r]++;
+        if(currCount[r] === arr[r]) {
             count--;
         }         
         while(count === 0) {
@@ -25,8 +26,9 @@ var minWindow = function(s, t) {
                 ansRight = right;
                 ans = right - left + 1;
             }
-            currCount[s[left].charCodeAt(0)-'A'.charCodeAt(0)]--;
-            if(currCount[s[left].charCodeAt(0)-'A'.charCodeAt(0)] + 1 === arr[s[left].charCodeAt(0)-'A'.charCodeAt(0)]) {
+            let l = s[left].charCodeAt(0) - 'A'.charCodeAt(0);
+            currCount[l]--;
+            if(currCount[l] + 1 === arr[l]) {
                 count++;
             }
             left++;
