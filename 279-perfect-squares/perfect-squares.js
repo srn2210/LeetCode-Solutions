@@ -16,7 +16,7 @@ var numSquares = function(n) {
         let ans = 1e9;
         let ind = Math.trunc(Math.sqrt(num));
         for(let i=ind-1; i>=0; i--) {
-            if(num-perf[i] >= 0) ans = Math.min(ans, solve(num-perf[i]) + 1);
+            ans = Math.min(ans, solve(num-perf[i]) + 1);
         }
 
         return dp[num] = ans;
