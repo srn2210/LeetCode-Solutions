@@ -10,26 +10,21 @@ class Solution {
         Arrays.sort(nums);
         for(int i=0; i<n; i++) {
             for(int j=i-1; j>=0; j--) {
-                if(nums[i] % nums[j] == 0) {
-                    if(dp[j] + 1 > dp[i]) {
-                        dp[i] = dp[j] + 1;
-                        prev[i] = j;
-                        if(dp[i] > maxAns) {
-                            maxAns = dp[i];
-                            maxInd = i;
-                        }
+                if(nums[i] % nums[j] == 0 && dp[j] + 1 > dp[i]) {
+                    dp[i] = dp[j] + 1;
+                    prev[i] = j;
+                    if(dp[i] > maxAns) {
+                        maxAns = dp[i];
+                        maxInd = i;
                     }
                 }
             }
         }
-
         var ans = new ArrayList<Integer>();
         while(maxInd != -1) {
             ans.add(nums[maxInd]);
             maxInd = prev[maxInd];
         }
-
-        // System.out.println(Arrays.toString(dp));
         return ans;
     }
 }
