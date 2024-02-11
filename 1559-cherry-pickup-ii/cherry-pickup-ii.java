@@ -7,10 +7,7 @@ class Solution {
         if(dp[i][j1][j2] != -1) return dp[i][j1][j2];
         int ans = 0;
         if(j1 == j2) ans = grid[i][j1];
-        else {
-            ans += grid[i][j1];
-            ans += grid[i][j2];
-        }
+        else ans = grid[i][j1] + grid[i][j2];
         int res = 0;
         for(int dir : directions) {
             for(int dir2 : directions) {
