@@ -13,54 +13,32 @@ class Solution {
             }
         }
 
-        // System.out.println(Arrays.toString(lps));
-
         int ans = 0;
         int arr = 1, ptr = 0;
         while(arr < n) {
+            boolean flag = false;
             switch(pattern[ptr]) {
                 case 1:
-                    if(nums[arr] > nums[arr-1]) {
-                        arr++;
-                        ptr++;
-                        if(ptr == m) {
-                            ans++;
-                            ptr = lps[ptr-1];
-                        }
-                    }
-                    else {
-                        if(ptr != 0) ptr = lps[ptr-1];
-                        else arr++;
-                    }
+                    flag = nums[arr] > nums[arr-1];
                     break;
                 case 0:
-                    if(nums[arr] == nums[arr-1]) {
-                        arr++;
-                        ptr++;
-                        if(ptr == m) {
-                            ans++;
-                            ptr = lps[ptr-1];
-                        }
-                    }
-                    else {
-                        if(ptr != 0) ptr = lps[ptr-1];
-                        else arr++;
-                    }
+                    flag = nums[arr] == nums[arr-1];
                     break;
                 case -1:
-                    if(nums[arr] < nums[arr-1]) {
-                        arr++;
-                        ptr++;
-                        if(ptr == m) {
-                            ans++;
-                            ptr = lps[ptr-1];
-                        }
-                    }
-                    else {
-                        if(ptr != 0) ptr = lps[ptr-1];
-                        else arr++;
-                    }
+                    flag = nums[arr] < nums[arr-1];
                     break;
+            }
+            if(flag) {
+                arr++;
+                ptr++;
+                if(ptr == m) {
+                    ans++;
+                    ptr = lps[ptr-1];
+                }
+            }
+            else {
+                if(ptr != 0) ptr = lps[ptr-1];
+                else arr++;
             }
         }
 
