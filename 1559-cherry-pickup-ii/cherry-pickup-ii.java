@@ -14,7 +14,7 @@ class Solution {
                 Arrays.fill(dp[l], -100000);
             }
             for(int j=0; j<grid[0].length; j++) {
-                for(int k=0; k<grid[0].length; k++) {
+                for(int k=j+1; k<grid[0].length; k++) {
                     for(int j1 : directions) {
                         for(int j2 : directions) {
                             int y1 = j1 + j;
