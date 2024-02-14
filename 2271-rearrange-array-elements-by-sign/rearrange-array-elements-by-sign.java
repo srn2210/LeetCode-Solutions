@@ -1,7 +1,7 @@
 class Solution {
     public int[] rearrangeArray(int[] nums) {
-        var pos = new LinkedList<Integer>();
-        var neg = new LinkedList<Integer>();
+        var pos = new ArrayDeque<Integer>();
+        var neg = new ArrayDeque<Integer>();
         int ptr = 0, fwd = 0;
         while(ptr < nums.length) {
             int num = nums[ptr];
