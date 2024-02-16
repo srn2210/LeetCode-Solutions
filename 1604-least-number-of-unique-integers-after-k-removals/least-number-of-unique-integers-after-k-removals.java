@@ -9,7 +9,7 @@ class Solution {
             map.add(entry);
         }
         Collections.sort(map);
-        System.out.println(map);
+        // System.out.println(map);
         int ans = 0;
         for(int j=0; j<map.size() && k > 0; j++) {
             k -= map.get(j);
