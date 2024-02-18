@@ -6,6 +6,7 @@ class Solution {
         var pq = new PriorityQueue<Integer>();
         for(int i=0; i<n; i++) pq.add(i);
         long time = 0;
+        int max = 0, idx = 0;
         for(int[] meeting : meetings) {
             int start = meeting[0];
             int end = meeting[1];
@@ -17,6 +18,11 @@ class Solution {
             if(!pq.isEmpty()) {
                 int room = pq.poll();
                 arr[room]++;
+                if(arr[room] > max) {
+                    max = arr[room];
+                    idx = room;
+                }
+                else if(arr[room] == max) idx = Math.min(idx, room);
                 long[] t = {time + duration, room};
                 process.add(t);
             }
@@ -26,15 +32,13 @@ class Solution {
                 pq.add((int)tt[1]);
                 int room = pq.poll();
                 arr[room]++;
+                if(arr[room] > max) {
+                    max = arr[room];
+                    idx = room;
+                }
+                else if(arr[room] == max) idx = Math.min(idx, room);
                 long[] t = {time + duration, room};
                 process.add(t);
-            }
-        }
-        int max = 0, idx = 0;
-        for(int i=0; i<n; i++) {
-            if(arr[i] > max) {
-                max = arr[i];
-                idx = i;
             }
         }
         return idx;
