@@ -2,7 +2,7 @@ class Solution {
     public int mostBooked(int n, int[][] meetings) {
         Arrays.sort(meetings, (a,b) -> Integer.compare(a[0], b[0]));
         int[] arr = new int[n];
-        var process = new PriorityQueue<long[]>((a,b) -> Long.compare(a[0], b[0]) == 0 ? Long.compare(a[1], b[1]) : Long.compare(a[0], b[0]));
+        var process = new PriorityQueue<long[]>((a,b) -> a[0] == b[0] ? Long.compare(a[1], b[1]) : Long.compare(a[0], b[0]));
         var pq = new PriorityQueue<Integer>();
         for(int i=0; i<n; i++) pq.add(i);
         long time = 0;
