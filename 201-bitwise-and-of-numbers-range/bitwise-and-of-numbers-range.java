@@ -1,11 +1,5 @@
 class Solution {
     public int rangeBitwiseAnd(int left, int right) {
-        // if(left == right) return left;
-        // int low = (int)(Math.log(left) / Math.log(2));
-        // int high = (int)(Math.log(right) / Math.log(2));
-        // System.out.println((int)(Math.pow(2, 31)- Math.pow(2, 30)));
-        // return low == high ? (int)Math.pow(2, low) : 0;
-        // return left & right;
         int ans = 0;
         var s1 = Integer.toBinaryString(left);
         var s2 = Integer.toBinaryString(right);
@@ -21,7 +15,6 @@ class Solution {
             sbr.append(s2);
             s2 = sbr.toString();
         }
-        // System.out.println(s1 + " --- " + s2);
         for(int i=0; i<31; i++) {
             if(s1.charAt(i) == s2.charAt(i)) {
                 if(s1.charAt(i) == '1') ans = ans | (1 << (31 - i - 1));
