@@ -14,8 +14,8 @@
 var isSameTree = function(p, q) {
     
     function dfs(x, y) {
-        if(x === null && y === null) return true;
-        if((x === null && y !== null) || (x !== null && y === null)) return false;
+        if(!x && !y) return true;
+        if((x && !y) || (!x && y)) return false;
         if(x.val != y.val) return false;
         return dfs(x.left, y.left) && dfs(x.right, y.right);
     }
