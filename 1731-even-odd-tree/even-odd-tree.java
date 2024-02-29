@@ -24,14 +24,9 @@ class Solution {
             int prev = row % 2 == 0 ? 0 : Integer.MAX_VALUE;
             while(size-- > 0) {
                 var node = q.poll();
-                if(row % 2 == 0) {
-                    if(node.val % 2 == 0 || node.val <= prev) return false;
-                    prev = node.val;
-                }
-                else {
-                    if(node.val % 2 != 0 || node.val >= prev) return false;
-                    prev = node.val;
-                }
+                if(row % 2 == 0 && (node.val % 2 == 0 || node.val <= prev)) return false;
+                if(row % 2 != 0 && (node.val % 2 != 0 || node.val >= prev)) return false;
+                prev = node.val;
                 if(node.left != null) q.add(node.left);
                 if(node.right != null) q.add(node.right);
             }
