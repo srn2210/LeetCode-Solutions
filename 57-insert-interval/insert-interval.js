@@ -4,18 +4,15 @@
  * @return {number[][]}
  */
 var insert = function(intervals, newInterval) {
-    intervals.push(newInterval);
-    intervals.sort((a,b) => a[0]===b[0] ? a[1]-b[1] : a[0]-b[0]);
     let ans = [];
-    for(let interval of intervals) {
-        if(ans.length === 0) ans.push(interval);
-        else {
-            if(ans[ans.length-1][1] >= interval[0]) {
-                ans[ans.length-1][0] = Math.min(ans[ans.length-1][0], interval[0]);
-                ans[ans.length-1][1] = Math.max(ans[ans.length-1][1], interval[1]);
-            }
-            else ans.push(interval);
-        }
+    let i=0;
+    while(i < intervals.length && intervals[i][1] < newInterval[0]) ans.push(intervals[i++]);
+    while(i < intervals.length && intervals[i][0] <= newInterval[1]) {
+        newInterval[0] = Math.min(newInterval[0], intervals[i][0]);
+        newInterval[1] = Math.max(newInterval[1], intervals[i][1]);
+        i++;
     }
+    ans.push(newInterval);
+    while(i < intervals.length && intervals[i][0] > newInterval[1]) ans.push(intervals[i++]);
     return ans;
 };
