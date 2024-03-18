@@ -4,16 +4,17 @@
  */
 var findMinArrowShots = function(points) {
     points.sort((a,b) => a[0] === b[0] ? a[1] - b[1] : a[0] - b[0]);
-    let arr = [];
+    let last = [points[0][0], points[0][1]];
+    let count = 1;
     for(let point of points) {
-        if(arr.length === 0) arr.push(point);
+        if(last[1] >= point[0]) {
+            last[0] = Math.max(point[0], last[0]);
+            last[1] = Math.min(point[1], last[1]);
+        }
         else {
-            if(arr[arr.length-1][1] >= point[0]) {
-                arr[arr.length-1][0] = Math.max(point[0], arr[arr.length-1][0]);
-                arr[arr.length-1][1] = Math.min(point[1], arr[arr.length-1][1]);
-            }
-            else arr.push(point);
+            last = point;
+            count++;
         }
     }
-    return arr.length;
+    return count;
 };
