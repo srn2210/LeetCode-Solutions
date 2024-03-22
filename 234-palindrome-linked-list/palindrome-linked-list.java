@@ -9,18 +9,17 @@
  * }
  */
 class Solution {
-    boolean ans;
     ListNode start;
-    void recurse(ListNode end) {
-        if(end == null) return;
-        recurse(end.next);
-        if(start.val == end.val) start = start.next;
-        else ans = false;
+    boolean recurse(ListNode end) {
+        if(end == null) return true;
+        if(recurse(end.next) && start.val == end.val) {
+            start = start.next;
+            return true;
+        }
+        return false;
     }
     public boolean isPalindrome(ListNode head) {
         start = head;
-        ans = true;
-        recurse(head);
-        return ans;
+        return recurse(head);
     }
 }
