@@ -6,7 +6,7 @@ class Solution {
             prod *= nums[right++];
             ans += right-left;
             int count = 0;
-            while(left < nums.length && left < right && prod >= k) {
+            while(left < right && prod >= k) {
                 prod /= nums[left++];
                 count++;
             }
