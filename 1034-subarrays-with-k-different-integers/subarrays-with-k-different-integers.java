@@ -22,7 +22,7 @@ class Solution {
         while(right < n) {
             int curr = nums[right];
             map.put(curr, map.getOrDefault(curr, 0)+1);
-            while(map.size() > k) {
+            while(map.size() == k+1) {
                 if(map.get(nums[left]) == 1) map.remove(nums[left]);
                 else map.put(nums[left], map.get(nums[left])-1);
                 left++;
